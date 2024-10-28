@@ -66,6 +66,9 @@ if ( ! function_exists( 'qc_clr_comments_include_promo_page_scripts' ) ) {
 /*******************************
  * Callback function to show the HTML
  *******************************/
+
+include_once qc_clr_comments_support_path . '/qc-clr-recommendbot-support-plugin.php';
+
 if ( ! function_exists( 'qc_clr_comments_promo_support_page_callback_func' ) ) {
 
 	function qc_clr_comments_promo_support_page_callback_func() {
@@ -84,25 +87,20 @@ if ( ! function_exists( 'qc_clr_comments_promo_support_page_callback_func' ) ) {
                     </div>
                 </div>
             
-            <div class="qc-column-12" >
-                <div class="support-btn">
-                    
-                    <a class="premium-support premium-support-free" href="<?php echo esc_url('https://www.quantumcloud.com/resources/free-support/','qc-clr') ?>" target="_blank"><?php esc_html_e('Get Support for Free Version','qc-clr') ?></a>
+                <div class="qc-column-12" >
+                    <div class="support-btn">
+                        
+                        <a class="premium-support premium-support-free" href="<?php echo esc_url('https://www.quantumcloud.com/resources/free-support/','qc-clr') ?>" target="_blank"><?php esc_html_e('Get Support for Free Version','qc-clr') ?></a>
+                    </div>
                 </div>
-            </div>
             </div>
             
             <div class="qcld-plugins-lists">
-
-            <?php include_once qc_clr_comments_support_path . '/qc-clr-recommendbot-support-plugin.php'; ?>
-
+                <div class="qcld-plugins-loading">
+                    <img src="<?php echo esc_url(qcld_support_img_url); ?>/loading.gif" alt="loading">
+                </div>
             </div>
-            </div>
-
-
-
-
-
+        </div>
 			
 		
 <?php

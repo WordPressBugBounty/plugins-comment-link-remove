@@ -5,11 +5,11 @@ Tags: Comments, Disable Comment Link, anti spam, Disable Comments, comment attac
 Requires at least: 4.6
 Tested up to: 6.6.2
 Requires PHP: 5.6
-Stable tag: 2.6.4
+Stable tag: 2.6.6
 License: GPLv2 or later
 License URI: https://www.quantumcloud.com
 
-Remove Comment Author Link & Links from Comments, Unlink, Disable Comments, Delete All Pending Comments. AI Auto Comment Reply, Voice, file attachments and more in PRO.
+Remove Comment Author Link & Links from Comments, Unlink, Disable Comments, Delete All Pending Comments. AI Auto Comment Reply, Voice, file attachments and more in PRO
 
 == Description ==
 
@@ -17,7 +17,7 @@ All in one solution to fight blog comment spammers and improve comment quality. 
 
 If you run a blog or WordPress website with comments enabled, there is no getting away from comment spammers. Captchas help with bot spamming. But how do you prevent a human who is willing to put in a moment to pass the captcha and write a spam comment just to push a link in your website?
 
-[Support, Bug Report, Feature Requests](https://www.quantumcloud.com/resources/free-support/) | [Pro version Live Demo](https://dev.quantumcloud.com/comment-tools/) | <strong>[Upgrade to Pro!](https://www.quantumcloud.com/products/comment-tools/)</strong>
+[Support, Bug Report, Feature Requests](https://www.quantumcloud.com/resources/free-support/) | [Pro version Live Demo](https://dev.quantumcloud.com/comment-tools/) | <strong>[Upgrade to Pro!](https://www.quantumcloud.com/products/comment-tools/) with HALLOWEEN SALE! Use coupon code [monster] during checkout.</strong>
 
 > 🚀 Upgrade to the Comment Tools pro version and Increase Interactivity with features like AI Auto Comment reply, adding a Voice record to the comments or Upload files, Images and Videos. Ability to Subscribe to newsletters, UpVote/DownVote comments or send eMail notifications and reminders to your commenters grow relationship with your users. Supports comment username <strong>mention, quote, collapsing comments</strong> and tons of other options.
 
@@ -247,6 +247,9 @@ Comments tools plugin works with default WordPress comment feature with standard
 
 
 == Changelog ==
+
+= 2.6.6 =
+# Halloween Sale
 
 = 2.6.4 =
 # End Sale
