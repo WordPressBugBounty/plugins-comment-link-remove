@@ -5,7 +5,7 @@ Tags: Comments, Disable Comment Link, anti spam, Disable Comments, comment attac
 Requires at least: 4.6
 Tested up to: 6.6.2
 Requires PHP: 5.6
-Stable tag: 2.6.6
+Stable tag: 2.6.7
 License: GPLv2 or later
 License URI: https://www.quantumcloud.com
 
@@ -247,6 +247,9 @@ Comments tools plugin works with default WordPress comment feature with standard
 
 
 == Changelog ==
+
+= 2.6.7 =
+# End Sale
 
 = 2.6.6 =
 # Halloween Sale
