@@ -3,11 +3,11 @@
  * Plugin Name: Comment Link Remove
  * Plugin URI: https://wordpress.org/plugins/comment-link-remove
  * Description: Remove author link and any other posted links from the comment fields. 
- * Version: 2.6.7
+ * Version: 2.6.8
  * Author: QuantumCloud
  * Author URI: https://www.quantumcloud.com/
  * Requires at least: 4.6
- * Tested up to: 6.6.2
+ * Tested up to: 6.7
  * Text Domain: qc-clr
  * Domain Path: /lang/
  * License: GPL2
@@ -253,24 +253,35 @@ function qcld_clr_plugin_submenus( $menu_ord ){
 }
 
 
-//add_action( 'admin_notices', 'qcld_clr_pro_notice',100 );
+add_action( 'admin_notices', 'qcld_clr_pro_notice',100 );
 function qcld_clr_pro_notice(){
 
     global $pagenow, $typenow;
     $screen = get_current_screen();
-    // var_dump( $screen->base );
-    // wp_die();
+    //var_dump( $screen->base );
+    //wp_die();
 
-    if( isset($screen->base) && ( $screen->base == 'toplevel_page_comment-link-remove' || $screen->base == 'qc-clr-settings_page_commenter-emails' || $screen->base == 'qc-clr-settings_page_email-subscriptions'  || $screen->base == 'qc-clr-settings_page_qcld_clr_config'  || $screen->base == 'qc-clr-settings_page_clr-comment-attachment' || $screen->base == 'qc-clr-settings_page_qcclr_comment_supports' || $screen->base == 'qc-clr-settings_page_qcclr_comment_autoreply' || $screen->base == 'qc-clr-settings_page_qcclr_comment_mention' ) ){
+    if( isset($screen->base) && ( 
+
+    	$screen->base == 'toplevel_page_comment-link-remove' || 
+    	$screen->base == 'comment-tools_page_commenter-emails' || 
+    	$screen->base == 'comment-tools_page_email-subscriptions'  || 
+    	$screen->base == 'comment-tools_page_qcld_clr_config'  || 
+    	$screen->base == 'comment-tools_page_clr-comment-attachment' || 
+    	$screen->base == 'comment-tools_page_qcclr_comment_supports' || 
+    	$screen->base == 'comment-tools_page_qcclr_comment_autoreply' || 
+    	$screen->base == 'comment-tools_page_qcclr_comment_mention' 
+	    ) 
+	){
 
     ?>
 
-    <div id="message-clr" class="notice notice-info is-dismissible" style="padding:4px 0px 0px 4px;background:#C13825;">
+    <div id="message-clr" class="notice notice-info is-dismissible" style="padding:4px 0px 0px 4px;background:#151618;">
         <?php
             printf(
                 __('%s  %s  %s','qc-clr'),
                 '<a href="'.esc_url('https://www.quantumcloud.com/products/comment-tools/').'" target="_blank">',
-                '<img src="'.esc_url(QCCLR_ASSETS_URL).'/img/halloween-comment-tools.jpg" >',
+                '<img src="'.esc_url(QCCLR_ASSETS_URL).'/img/blackfriday24-comment-tools.jpg" >',
                 '</a>'
             );
 

@@ -405,11 +405,6 @@ if( !function_exists('qcld_recommend_support_function_ajax') ){
                                 }
                             }
 
-                            // $details_link = self_admin_url(
-                            //     'plugin-install.php?tab=plugin-information&amp;plugin=' . $plugin['slug'] .
-                            //     '&amp;width=700&amp;height=550'
-                            // );
-                            // $action_links[] = sprintf( '%s','<a href="#" data-toggle="modal" data-target="#myModal_'.$plugin['slug'].'">More Details</a><div class="modal fade" id="myModal_'.$plugin['slug'].'" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"><div class="modal-dialog" role="document"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button></div><div class="modal-body"><iframe width="100%" height="550" src="'.$details_link.'"></iframe></div></div></div></div>');
                             $plugin_live_link = "https://wordpress.org/plugins/".$plugin['slug'];
                             $action_links[] = sprintf( '%s','<a href="'.esc_url($plugin_live_link).'" target="_blank">' . esc_html('More Details') . '</a>');
                             /*===show icon ==*/
