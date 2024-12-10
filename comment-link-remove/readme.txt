@@ -5,15 +5,14 @@ Tags: Comments, Disable Comment Link, anti spam, Disable Comments, comment attac
 Requires at least: 4.6
 Tested up to: 6.6.2
 Requires PHP: 5.6
-Stable tag: 2.6.8
+Stable tag: 2.6.9
 License: GPLv2 or later
 License URI: https://www.quantumcloud.com
 
 Remove Comment Author Link & Links from Comments, Unlink, Disable Comments, Delete All Pending Comments. AI Auto Comment Reply, Voice, file attachments and more in PRO
 
 == Description ==
-
-All in one solution to fight blog comment spammers and improve comment quality. Tired of deleting useless spammy comments from your WordPress blog posts? Comment Link Remove WordPress plugin removes author link and any other links from the user comments among other features. 
+All in one solution to <strong>fight blog comment spammers </strong>and <strong>improve comment quality</strong>. Tired of deleting useless spammy comments from your WordPress blog posts? Comment Link Remove WordPress plugin removes author link and any other links from the user comments among other features. 
 
 If you run a blog or WordPress website with comments enabled, there is no getting away from comment spammers. Captchas help with bot spamming. But how do you prevent a human who is willing to put in a moment to pass the captcha and write a spam comment just to push a link in your website?
 
@@ -21,7 +20,7 @@ If you run a blog or WordPress website with comments enabled, there is no gettin
 > 🚀 <strong>Upgrade to [Comment Tools Pro](https://www.quantumcloud.com/products/comment-tools/) now!</strong>
 > 🚀 [Support, Bug Report, Feature Requests](https://www.quantumcloud.com/resources/free-support/) | [Pro version Live Demo](https://dev.quantumcloud.com/comment-tools/) | 
 
-> Upgrade to the Comment Tools pro version and Increase Interactivity with features like AI Auto Comment reply, adding a Voice record to the comments or Upload files, Images and Videos. Ability to Subscribe to newsletters, UpVote/DownVote comments or send eMail notifications and reminders to your commenters grow relationship with your users. Supports comment username <strong>mention, quote, collapsing comments</strong> and tons of other options.
+> <strong>++ Upgrade to the Comment Tools pro</strong> version and <strong>Increase Interactivity</strong> with features like <strong>AI Auto Comment reply</strong>, adding a <strong>Voice record to the comments</strong> or <strong>Upload files, Images and Videos</strong>. Ability to <strong>Subscribe to newsletters</strong>, <strong>UpVote/DownVote comments</strong> or send eMail notifications and reminders to your commenters grow relationship with your users. Supports comment username <strong>mention, quote, collapsing comments</strong> and tons of other options.
 
 > //-> Try our <strong>[FREE ChatBot for WordPress with AI - WPBot](https://wordpress.org/plugins/chatbot/)</strong>. It is an easy to use, Native, No coding required, AI ChatBot to provide Automated Live Chat Support. Use ChatBot to <strong>answer user questions</strong> and also <strong>collect information</strong> from the users using <strong>conversational forms</strong>. It can be also be powered by DialogFlow, Tavily or OpenAI ChatGPT or simply use the built-in features to provide Live support and collect data. ++ Check out the [ChatBot for WordPress](https://www.wpbot.pro/) Demo.
 
@@ -249,6 +248,9 @@ Comments tools plugin works with default WordPress comment feature with standard
 
 
 == Changelog ==
+
+= 2.6.9 =
+# End Black Friday sale
 
 = 2.6.8 =
 # Black Friday Sale
