@@ -5,18 +5,17 @@ Tags: Comments, Disable Comment Link, anti spam, Disable Comments, comment attac
 Requires at least: 4.6
 Tested up to: 6.6.2
 Requires PHP: 5.6
-Stable tag: 2.6.9
+Stable tag: 2.7.0
 License: GPLv2 or later
 License URI: https://www.quantumcloud.com
 
-Remove Comment Author Link & Links from Comments, Unlink, Disable Comments, Delete All Pending Comments. AI Auto Comment Reply, Voice, file attachments and more in PRO
+Remove Comment Author Link & Links from Comments, Unlink, Disable Comments, Delete All Pending Comments. AI Auto Comment Reply, Voice, file attachments
 
 == Description ==
 All in one solution to <strong>fight blog comment spammers </strong>and <strong>improve comment quality</strong>. Tired of deleting useless spammy comments from your WordPress blog posts? Comment Link Remove WordPress plugin removes author link and any other links from the user comments among other features. 
 
 If you run a blog or WordPress website with comments enabled, there is no getting away from comment spammers. Captchas help with bot spamming. But how do you prevent a human who is willing to put in a moment to pass the captcha and write a spam comment just to push a link in your website?
 
-> 🚀 BLACK FRIDAY SALE is ON! USE COUPON CODE <strong>friday</strong> during checkout!
 > 🚀 <strong>Upgrade to [Comment Tools Pro](https://www.quantumcloud.com/products/comment-tools/) now!</strong>
 > 🚀 [Support, Bug Report, Feature Requests](https://www.quantumcloud.com/resources/free-support/) | [Pro version Live Demo](https://dev.quantumcloud.com/comment-tools/) | 
 
@@ -248,6 +247,9 @@ Comments tools plugin works with default WordPress comment feature with standard
 
 
 == Changelog ==
+
+= 2.7.0 =
+# Sale
 
 = 2.6.9 =
 # End Black Friday sale
