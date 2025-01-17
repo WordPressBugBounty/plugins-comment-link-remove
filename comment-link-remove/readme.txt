@@ -1,15 +1,15 @@
 === Comment Link Remove and Other Comment Tools ===
 Contributors: quantumcloud
 Donate link: https://www.quantumcloud.com
-Tags: Comments, Disable Comment Link, anti spam, Disable Comments, comment attachment, Link Remover, Spam Protection
+Tags: Comments, Disable Comment Link, anti spam, Disable Comments, Link Remover
 Requires at least: 4.6
 Tested up to: 6.6.2
 Requires PHP: 5.6
-Stable tag: 2.7.0
+Stable tag: 2.7.1
 License: GPLv2 or later
 License URI: https://www.quantumcloud.com
 
-Remove Comment Author Link & Links from Comments, Unlink, Disable Comments, Delete All Pending Comments. AI Auto Comment Reply, Voice, file attachments
+Remove Comment Author Link & Links from Comments, Unlink, Disable Comments, Delete All Pending Comments. AI Auto Comment Reply, Voice, Attachments
 
 == Description ==
 All in one solution to <strong>fight blog comment spammers </strong>and <strong>improve comment quality</strong>. Tired of deleting useless spammy comments from your WordPress blog posts? Comment Link Remove WordPress plugin removes author link and any other links from the user comments among other features. 
@@ -247,6 +247,9 @@ Comments tools plugin works with default WordPress comment feature with standard
 
 
 == Changelog ==
+
+= 2.7.1 =
+# End Sale
 
 = 2.7.0 =
 # Sale
