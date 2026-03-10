@@ -3,9 +3,9 @@ Contributors: quantumcloud
 Donate link: https://www.quantumcloud.com
 Tags: Comments, Disable Comment Link, anti spam, Disable Comments, Link Remover
 Requires at least: 4.6
-Tested up to: 6.6.2
+Tested up to: 6.9
 Requires PHP: 5.6
-Stable tag: 2.7.1
+Stable tag: 2.7.2
 License: GPLv2 or later
 License URI: https://www.quantumcloud.com
 
@@ -247,6 +247,9 @@ Comments tools plugin works with default WordPress comment feature with standard
 
 
 == Changelog ==
+
+= 2.7.2 =
+# Fixed a PHP issue
 
 = 2.7.1 =
 # End Sale

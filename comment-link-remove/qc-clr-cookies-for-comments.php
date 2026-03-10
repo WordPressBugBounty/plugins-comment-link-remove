@@ -84,8 +84,9 @@ function qcld_clr_add_referrer_to_notification( $text, $comment_id ) {
 	if ( is_user_logged_in() )
 		return $text;
 
-	if ( $_COOKIE[ $qcld_clr_key ] > 1 ) {
-		$ttp = ( time() - $_COOKIE[ $qcld_clr_key ] );
+	if ( isset( $_COOKIE[ $qcld_clr_key ] ) && is_numeric( $_COOKIE[ $qcld_clr_key ] ) && $_COOKIE[ $qcld_clr_key ] > 1 ) {
+		$ttp = ( time() - (int) $_COOKIE[ $qcld_clr_key ] );
+
 		$format = "seconds";
 		if ( $ttp > 60 ) {
 			$ttp = $ttp / 60;
@@ -95,7 +96,6 @@ function qcld_clr_add_referrer_to_notification( $text, $comment_id ) {
 			$ttp = $ttp / 60;
 			$format = "hours";
 		}
-
 
 		$text .= "\r\nTime to post comment: " . number_format( $ttp, 2 ) . " $format\r\n";
 	}
