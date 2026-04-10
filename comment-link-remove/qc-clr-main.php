@@ -3,7 +3,7 @@
  * Plugin Name: Comment Link Remove
  * Plugin URI: https://wordpress.org/plugins/comment-link-remove
  * Description: Remove author link and any other posted links from the comment fields. 
- * Version: 2.7.2
+ * Version: 2.7.3
  * Author: QuantumCloud
  * Author URI: https://www.quantumcloud.com/
  * Requires at least: 4.6

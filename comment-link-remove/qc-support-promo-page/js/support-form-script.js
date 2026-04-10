@@ -91,13 +91,49 @@
 
 				
 			var data = {
-				'action': 'qcld_recommend_support_function_ajax',
+				'action': 'qcld_recommend_support_function_first_ajax',
 				'security': qc_clr_comments_ajax_nonce
 			};
 
 	        jQuery.post(qc_clr_comments_ajaxurl, data, function (response) {
 
-	           	$('.qc-clr-comments-support').find('.qcld-plugins-lists').html(response);
+	           	$('.qc-clr-comments-support').find('.qcld-plugins-lists').prepend(response);
+				
+				var data = {
+					'action': 'qcld_recommend_support_function_second_ajax',
+					'security': qc_clr_comments_ajax_nonce
+				};
+
+		        jQuery.post(qc_clr_comments_ajaxurl, data, function (response) {
+
+		           	$('.qc-clr-comments-support').find('.qcld-plugins-lists').find('.recommended-plugins').last().after(response);
+				
+					var data = {
+						'action': 'qcld_recommend_support_function_third_ajax',
+						'security': qc_clr_comments_ajax_nonce
+					};
+
+			        jQuery.post(qc_clr_comments_ajaxurl, data, function (response) {
+
+			           	$('.qc-clr-comments-support').find('.qcld-plugins-lists').find('.recommended-plugins').last().after(response);
+				
+						var data = {
+							'action': 'qcld_recommend_support_function_forth_ajax',
+							'security': qc_clr_comments_ajax_nonce
+						};
+
+				        jQuery.post(qc_clr_comments_ajaxurl, data, function (response) {
+
+				           	$('.qc-clr-comments-support').find('.qcld-plugins-lists').find('.recommended-plugins').last().after(response);
+				           	$('.qcld-plugins-loading').remove();
+
+				        });
+			           	
+
+			        });
+
+
+		        });
 
 	        });
 

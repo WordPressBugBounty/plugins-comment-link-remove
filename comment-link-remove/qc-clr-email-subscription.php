@@ -31,7 +31,7 @@
 		$page             = isset( $_GET['cpage'] ) ? abs( (int) $_GET['cpage'] ) : 1;
 		$offset         = ( $page * $items_per_page ) - $items_per_page;
 		
-		$sql .=" LIMIT ${offset}, ${items_per_page}";
+		$sql .=" LIMIT $offset, $items_per_page";
 		
 		$rows = $wpdb->get_results( $sql );
 		$totalPage         = ceil($total / $items_per_page);
