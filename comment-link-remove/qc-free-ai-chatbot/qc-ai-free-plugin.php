@@ -91,7 +91,7 @@ if( !function_exists('qc_clr_free_ai_function_first_sld_ajax') ){
                             $author = wp_kses( $plugin['author'], $qcld_chatplugintags );
                             if ( ! empty( $author ) ) {
                                 /* translators: %s: Plugin author. */
-                                $author = ' <cite>' . sprintf( __( 'By %s' ), $author ) . '</cite>';
+                                $author = ' <cite>' . sprintf( __('By %s', 'qc-opd'), $author ) . '</cite>';
                             }
 
                             $requires_php = isset( $plugin['requires_php'] ) ? $plugin['requires_php'] : null;
@@ -115,14 +115,14 @@ if( !function_exists('qc_clr_free_ai_function_first_sld_ajax') ){
                                                     esc_attr( $plugin['slug'] ),
                                                     esc_url( $status['url'] ),
                                                     /* translators: %s: Plugin name and version. */
-                                                    esc_attr( sprintf( _x( 'Install %s now', 'plugin' ), $name ) ),
+                                                    esc_attr( sprintf( _x('Install %s now', 'plugin', 'qc-opd'), $name ) ),
                                                     esc_attr( $name ),
-                                                    __( 'Install Now' )
+                                                    __('Install Now', 'qc-opd')
                                                 );
                                             } else {
                                                 $action_links[] = sprintf(
                                                     '<button type="button" class="button button-disabled" disabled="disabled">%s</button>',
-                                                    _x( 'Cannot Install', 'plugin' )
+                                                    _x('Cannot Install', 'plugin', 'qc-opd')
                                                 );
                                             }
                                         }
@@ -137,14 +137,14 @@ if( !function_exists('qc_clr_free_ai_function_first_sld_ajax') ){
                                                     esc_attr( $plugin['slug'] ),
                                                     esc_url( $status['url'] ),
                                                     /* translators: %s: Plugin name and version. */
-                                                    esc_attr( sprintf( _x( 'Update %s now', 'plugin' ), $name ) ),
+                                                    esc_attr( sprintf( _x('Update %s now', 'plugin', 'qc-opd'), $name ) ),
                                                     esc_attr( $name ),
-                                                    __( 'Update Now' )
+                                                    __('Update Now', 'qc-opd')
                                                 );
                                             } else {
                                                 $action_links[] = sprintf(
                                                     '<button type="button" class="button button-disabled" disabled="disabled">%s</button>',
-                                                    _x( 'Cannot Update', 'plugin' )
+                                                    _x('Cannot Update', 'plugin', 'qc-opd')
                                                 );
                                             }
                                         }
@@ -155,12 +155,12 @@ if( !function_exists('qc_clr_free_ai_function_first_sld_ajax') ){
                                         if ( is_plugin_active( $status['file'] ) ) {
                                             $action_links[] = sprintf(
                                                 '<button type="button" class="button button-disabled" disabled="disabled">%s</button>',
-                                                _x( 'Active', 'plugin' )
+                                                _x('Active', 'plugin', 'qc-opd')
                                             );
                                         } elseif ( current_user_can( 'activate_plugin', $status['file'] ) ) {
-                                            $button_text = __( 'Activate' );
+                                            $button_text = __('Activate', 'qc-opd');
                                             /* translators: %s: Plugin name. */
-                                            $button_label = _x( 'Activate %s', 'plugin' );
+                                            $button_label = _x('Activate %s', 'plugin', 'qc-opd');
                                             $activate_url = add_query_arg(
                                                 array(
                                                     '_wpnonce' => wp_create_nonce( 'activate-plugin_' . $status['file'] ),
@@ -171,9 +171,9 @@ if( !function_exists('qc_clr_free_ai_function_first_sld_ajax') ){
                                             );
 
                                             if ( is_network_admin() ) {
-                                                $button_text = __( 'Network Activate' );
+                                                $button_text = __('Network Activate', 'qc-opd');
                                                 /* translators: %s: Plugin name. */
-                                                $button_label = _x( 'Network Activate %s', 'plugin' );
+                                                $button_label = _x('Network Activate %s', 'plugin', 'qc-opd');
                                                 $activate_url = add_query_arg( array( 'networkwide' => 1 ), $activate_url );
                                             }
 
@@ -186,7 +186,7 @@ if( !function_exists('qc_clr_free_ai_function_first_sld_ajax') ){
                                         } else {
                                             $action_links[] = sprintf(
                                                 '<button type="button" class="button button-disabled" disabled="disabled">%s</button>',
-                                                _x( 'Installed', 'plugin' )
+                                                _x('Installed', 'plugin', 'qc-opd')
                                             );
                                         }
                                         break;
@@ -219,11 +219,11 @@ if( !function_exists('qc_clr_free_ai_function_first_sld_ajax') ){
                                 if ( ! $compatible_php || ! $compatible_wp ) {
                                     echo '<div class="notice inline notice-error notice-alt"><p>';
                                     if ( ! $compatible_php && ! $compatible_wp ) {
-                                        _e( 'This plugin doesn&#8217;t work with your versions of WordPress and PHP.' );
+                                        _e('This plugin doesn&#8217;t work with your versions of WordPress and PHP.', 'qc-opd');
                                         if ( current_user_can( 'update_core' ) && current_user_can( 'update_php' ) ) {
                                             printf(
                                             /* translators: 1: URL to WordPress Updates screen, 2: URL to Update PHP page. */
-                                                ' ' . __( '<a href="%1$s">Please update WordPress</a>, and then <a href="%2$s">learn more about updating PHP</a>.' ),
+                                                ' ' . __('<a href="%1$s">Please update WordPress</a>, and then <a href="%2$s">learn more about updating PHP</a>.', 'qc-opd'),
                                                 self_admin_url( 'update-core.php' ),
                                                 esc_url( wp_get_update_php_url() )
                                             );
@@ -231,32 +231,32 @@ if( !function_exists('qc_clr_free_ai_function_first_sld_ajax') ){
                                         } elseif ( current_user_can( 'update_core' ) ) {
                                             printf(
                                             /* translators: %s: URL to WordPress Updates screen. */
-                                                ' ' . __( '<a href="%s">Please update WordPress</a>.' ),
+                                                ' ' . __('<a href="%s">Please update WordPress</a>.', 'qc-opd'),
                                                 self_admin_url( 'update-core.php' )
                                             );
                                         } elseif ( current_user_can( 'update_php' ) ) {
                                             printf(
                                             /* translators: %s: URL to Update PHP page. */
-                                                ' ' . __( '<a href="%s">Learn more about updating PHP</a>.' ),
+                                                ' ' . __('<a href="%s">Learn more about updating PHP</a>.', 'qc-opd'),
                                                 esc_url( wp_get_update_php_url() )
                                             );
                                             wp_update_php_annotation( '</p><p><em>', '</em>' );
                                         }
                                     } elseif ( ! $compatible_wp ) {
-                                        _e( 'This plugin doesn&#8217;t work with your version of WordPress.' );
+                                        _e('This plugin doesn&#8217;t work with your version of WordPress.', 'qc-opd');
                                         if ( current_user_can( 'update_core' ) ) {
                                             printf(
                                             /* translators: %s: URL to WordPress Updates screen. */
-                                                ' ' . __( '<a href="%s">Please update WordPress</a>.' ),
+                                                ' ' . __('<a href="%s">Please update WordPress</a>.', 'qc-opd'),
                                                 self_admin_url( 'update-core.php' )
                                             );
                                         }
                                     } elseif ( ! $compatible_php ) {
-                                        _e( 'This plugin doesn&#8217;t work with your version of PHP.' );
+                                        _e('This plugin doesn&#8217;t work with your version of PHP.', 'qc-opd');
                                         if ( current_user_can( 'update_php' ) ) {
                                             printf(
                                             /* translators: %s: URL to Update PHP page. */
-                                                ' ' . __( '<a href="%s">Learn more about updating PHP</a>.' ),
+                                                ' ' . __('<a href="%s">Learn more about updating PHP</a>.', 'qc-opd'),
                                                 esc_url( wp_get_update_php_url() )
                                             );
                                             wp_update_php_annotation( '</p><p><em>', '</em>' );
