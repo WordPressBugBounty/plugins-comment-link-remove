@@ -37,66 +37,400 @@
 }
 
 
-.qc-clr-commenter-emails-table { 
-  width: 100%; 
-  border-collapse: collapse; 
-}
-/* Zebra striping */
-.qc-clr-commenter-emails-table tr:nth-child(odd) { 
-  background: #F0F0F0; 
-}
-.qc-clr-commenter-emails-table th { 
-  background: #666666; 
-  color: white; 
-  font-weight: bold; 
-}
-.qc-clr-commenter-emails-table td, .qc-clr-commenter-emails-table th { 
-  padding: 8px; 
-  border: 1px solid #ccc; 
-  text-align: left; 
-  word-wrap: break-word;
+/* ==========================================================================
+   Commenter Emails Page - Modern Professional Styling
+   ========================================================================== */
+.qc-clr-emails-page-wrap {
+    margin: 20px 0px 20px 0px;
+    max-width: 100%;
 }
 
-@media only screen and (max-width: 760px), (min-device-width: 768px) and (max-device-width: 1024px)  {
+.qc-clr-emails-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
+    padding: 28px;
+    box-sizing: border-box;
+}
 
-	/* Force table to not be like tables anymore */
-	.qc-clr-commenter-emails-table table, 
-	.qc-clr-commenter-emails-table thead, 
-	.qc-clr-commenter-emails-table tbody, 
-	.qc-clr-commenter-emails-table th, 
-	.qc-clr-commenter-emails-table td, .qc-clr-commenter-emails-table tr { 
-		display: block; 
-	}
-	
-	/* Hide table headers (but not display: none;, for accessibility) */
-	.qc-clr-commenter-emails-table thead tr { 
-		position: absolute;
-		top: -9999px;
-		left: -9999px;
-	}
-	
-	.qc-clr-commenter-emails-table tr { border: 1px solid #ccc; }
-	
-	.qc-clr-commenter-emails-table td { 
-		/* Behave  like a "row" */
-		border: none;
-		border-bottom: 1px solid #eee; 
-		position: relative;
-		padding-left: 5%; 
-	}
-	
-	.qc-clr-commenter-emails-table td:before { 
-		/* Now like a table header */
-		position: absolute;
-		/* Top/left values mimic padding */
-		top: 6px;
-		left: 6px;
-		width: 45%; 
-		padding-right: 10px; 
-		white-space: nowrap;
-	}
-	
+.qc-clr-emails-header {
+    margin-bottom: 24px;
+}
 
+.qc-clr-emails-title-area {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+}
+
+.qc-clr-emails-title {
+    font-size: 22px;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0;
+    line-height: 1.2;
+    display: inline-block;
+}
+
+.qc-clr-pro-badge {
+    background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+    color: #ffffff;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 3px 10px;
+    border-radius: 20px;
+    box-shadow: 0 2px 4px rgba(217, 119, 6, 0.25);
+    display: inline-block;
+}
+
+/* Pro Notice Banner */
+.qc-clr-pro-banner {
+    background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+    border: 1px solid #bae6fd;
+    border-left: 4px solid #0284c7;
+    border-radius: 8px;
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.qc-clr-pro-banner-content {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    flex: 1;
+    min-width: 280px;
+}
+
+.qc-clr-lock-icon {
+    color: #0284c7;
+    font-size: 22px;
+    width: 22px;
+    height: 22px;
+    margin-top: 2px;
+    flex-shrink: 0;
+}
+
+.qc-clr-pro-banner-text strong {
+    display: block;
+    color: #0369a1;
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 3px;
+}
+
+.qc-clr-pro-banner-text p {
+    margin: 0;
+    color: #334155;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+.qc-clr-pro-upgrade-btn {
+    background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+    color: #ffffff !important;
+    font-weight: 600;
+    font-size: 13px;
+    padding: 10px 20px;
+    border-radius: 6px;
+    text-decoration: none !important;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    box-shadow: 0 2px 6px rgba(2, 132, 199, 0.3);
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+.qc-clr-pro-upgrade-btn:hover {
+    background: linear-gradient(135deg, #0369a1 0%, #075985 100%);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(2, 132, 199, 0.4);
+    color: #ffffff !important;
+}
+
+/* Stats Chip */
+.qc-clr-emails-stats {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    padding: 8px 14px;
+    border-radius: 6px;
+    color: #475569;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.qc-clr-emails-stats .dashicons {
+    color: #64748b;
+    font-size: 17px;
+    width: 17px;
+    height: 17px;
+}
+
+/* Data Table */
+.qc-clr-emails-table-container {
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    overflow: hidden;
+    background: #ffffff;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+    margin-bottom: 24px;
+}
+
+.qc-clr-commenter-emails-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0;
+    text-align: left;
+}
+
+.qc-clr-commenter-emails-table thead th,
+.qc-clr-commenter-emails-table th {
+    background: #1e293b;
+    color: #ffffff;
+    font-size: 12.5px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 13px 18px;
+    border: none;
+}
+
+.qc-clr-commenter-emails-table tbody tr {
+    border-bottom: 1px solid #f1f5f9;
+    transition: background-color 0.15s ease;
+}
+
+.qc-clr-commenter-emails-table tbody tr:nth-child(even) {
+    background: #f8fafc;
+}
+
+.qc-clr-commenter-emails-table tbody tr:hover {
+    background: #f0f9ff;
+}
+
+.qc-clr-commenter-emails-table td {
+    padding: 13px 18px;
+    font-size: 13.5px;
+    color: #334155;
+    border: none;
+    vertical-align: middle;
+}
+
+.qc-clr-email-tag {
+    font-family: Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    font-size: 13px;
+    color: #0f172a;
+    font-weight: 500;
+}
+
+.qc-clr-name-tag {
+    font-weight: 600;
+    color: #1e293b;
+}
+
+.qc-clr-table-url {
+    color: #0284c7;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.15s ease;
+}
+
+.qc-clr-table-url:hover {
+    color: #0369a1;
+    text-decoration: underline;
+}
+
+.qc-clr-empty-val {
+    color: #94a3b8;
+    font-weight: 600;
+}
+
+.qc-clr-table-footer {
+    padding: 12px 18px;
+    background: #f8fafc;
+    border-top: 1px solid #e2e8f0;
+    color: #64748b;
+    font-size: 12.5px;
+    font-weight: 500;
+}
+
+/* CSV Export Section */
+.qc-clr-export-card {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 20px 22px;
+}
+
+.qc-clr-export-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.qc-clr-export-icon {
+    color: #059669;
+    font-size: 24px;
+    width: 24px;
+    height: 24px;
+    margin-top: 2px;
+}
+
+.qc-clr-export-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: #1e293b;
+    margin: 0 0 4px 0;
+}
+
+.qc-clr-export-desc {
+    font-size: 13px;
+    color: #64748b;
+    margin: 0;
+}
+
+.qc-clr-export-form {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.qc-clr-checkbox-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: #334155;
+    font-size: 13.5px;
+    font-weight: 500;
+    cursor: default;
+}
+
+.qc-clr-checkbox-label input[type="checkbox"] {
+    margin: 0;
+    border-radius: 4px;
+    border-color: #cbd5e1;
+}
+
+.qc-clr-export-actions {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex-wrap: wrap;
+}
+
+.qc-clr-btn-disabled,
+.button.qc-clr-btn-disabled,
+.qc_clr_btn_disabled {
+    background: #94a3b8 !important;
+    border-color: #94a3b8 !important;
+    color: #ffffff !important;
+    cursor: not-allowed !important;
+    opacity: 0.85;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 16px;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 13px;
+    height: auto;
+    line-height: 26px;
+    box-shadow: none !important;
+}
+
+.qc-clr-btn-disabled .dashicons {
+    font-size: 16px;
+    width: 16px;
+    height: 16px;
+    line-height: 26px;
+}
+
+.qc-clr-upgrade-text-link {
+    color: #0284c7;
+    font-weight: 600;
+    font-size: 13px;
+    text-decoration: none;
+    transition: color 0.15s ease;
+}
+
+.qc-clr-upgrade-text-link:hover {
+    color: #0369a1;
+    text-decoration: underline;
+}
+
+/* Responsive Table */
+@media screen and (max-width: 768px) {
+    .qc-clr-emails-page-wrap {
+        margin: 10px 10px 0 0;
+    }
+    
+    .qc-clr-emails-card {
+        padding: 16px;
+    }
+
+    .qc-clr-pro-banner {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .qc-clr-commenter-emails-table thead {
+        display: none;
+    }
+
+    .qc-clr-commenter-emails-table,
+    .qc-clr-commenter-emails-table tbody,
+    .qc-clr-commenter-emails-table tr,
+    .qc-clr-commenter-emails-table td {
+        display: block;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .qc-clr-commenter-emails-table tbody tr {
+        margin-bottom: 12px;
+        border: 1px solid #e2e8f0;
+        border-radius: 8px;
+        padding: 8px 12px;
+        background: #ffffff !important;
+    }
+
+    .qc-clr-commenter-emails-table td {
+        padding: 8px 0;
+        border-bottom: 1px solid #f1f5f9;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        text-align: right;
+    }
+
+    .qc-clr-commenter-emails-table td:last-child {
+        border-bottom: none;
+    }
+
+    .qc-clr-commenter-emails-table td:before {
+        content: attr(data-label);
+        font-weight: 600;
+        color: #64748b;
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        text-align: left;
+        margin-right: 12px;
+    }
 }
 
 
@@ -108,13 +442,14 @@
 }
 #post-body-content .clr_titles { padding-left: 0; font-size:22px;
     font-weight: 700;color:#23282D; }
-.wrap-content { background: #fff; box-shadow: 0px 0px 25px -5px rgba(0,0,0,0.45); padding: 20px; border-radius: 10px; margin: 10px 20px 0 2px; }
+.wrap .wrap-content { width:100%; background: #fff; padding: 20px; border-radius: 10px; margin: 10px 0px 20px 0px; }
 .clear { clear: both; }
-.clr_warapper .form-table { border: 1px solid #F0F0F0; margin-top:0px; }
-.clr_warapper .form-table th { width: 350px; padding: 20px 10px 20px 16px }
-.clr_warapper .form-table tr:nth-child(odd) { background: #F0F0F0; transition: all 0.3s ease;}
-.clr_warapper .form-table tr:nth-child(odd):hover { background: #E0E0E0; transition: all 0.3s ease; }
-.clr_warapper .form-table tr:nth-child(even):hover { background: #E0E0E0; transition: all 0.3s ease;  }
+.clr_warapper .form-table { border: 1px solid #F0F0F0; margin-top:0px; border-collapse: separate; border-spacing: 0; }
+.clr_warapper .form-table th { width: 350px; padding: 16px 20px; vertical-align: middle; font-size: 13.5px; color: #1e293b; font-weight: 600; }
+.clr_warapper .form-table td { padding: 16px 20px; vertical-align: middle; }
+.clr_warapper .form-table tr:nth-child(odd) { background: #f8fafc; transition: all 0.2s ease;}
+.clr_warapper .form-table tr:nth-child(odd):hover { background: #f1f5f9; transition: all 0.2s ease; }
+.clr_warapper .form-table tr:nth-child(even):hover { background: #f1f5f9; transition: all 0.2s ease;  }
 .clr_warapper{ border: 1px solid #ddd; margin-top:15px;padding:6px; }
 .clr_warapper h2{ background: #33B0D9; padding: 6px 15px; padding-left: 15px !important; line-height: 45px !important; color: #fff; font-size: 18px; font-weight: 700; cursor: pointer; text-transform: uppercase; margin-bottom:5px !important;
 }
@@ -128,90 +463,321 @@
 .clr_warapper .form-table #comment_maximum_length_mgs{
     width:100%;
 }
-.dele-cmts{
-    display: block;
-    margin-bottom:15px;
+
+/* ==========================================================================
+   3. Comment Delete Action Banner
+   ========================================================================== */
+.clr_dele-cmts {
+    background: #fef2f2;
+    border: 1px solid #fecaca;
+    border-left: 4px solid #ef4444;
+    border-radius: 6px;
+    padding: 14px 18px;
+    margin-bottom: 22px;
+}
+
+.clr_dele-cmts p {
+    margin: 0 0 10px 0;
+    color: #991b1b;
+    font-size: 13px;
+}
+
+.clr_dele-cmts .commentDelete.button {
+    background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+    border-color: #0284c7;
+    color: #ffffff;
+    font-weight: 500;
+    font-size: 13px;
+    padding: 0 14px;
+    height: 32px;
+    line-height: 30px;
+    border-radius: 4px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    transition: all 0.2s ease;
+    margin-right: 8px;
+    margin-bottom: 4px;
+}
+
+.clr_dele-cmts .commentDelete.button:hover,
+.clr_dele-cmts .commentDelete.button:focus {
+    background: linear-gradient(135deg, #0369a1 0%, #0284c7 100%);
+    border-color: #0369a1;
+    color: #ffffff;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(220, 38, 38, 0.25);
 }
 
 .qcld_clr_wrap h2 { padding-left: 0; font-weight: bold;}
 .qcld_clr_wrap p {  font-size:16px; font-weight: 400; }
 .qcld_clr_wrap p a{ text-decoration: none }
 
-.qc_clr_pro_feature{
-  font-weight: bold; 
-  color: #FCB214
+.qc_clr_upgrade_pro {
+    background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+    border: 1px solid #bae6fd;
+    border-left: 4px solid #0284c7;
+    border-radius: 8px;
+    padding: 14px 18px;
+    font-size: 13.5px;
+    color: #334155;
+    margin: 16px 0 20px 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
 }
 
-.qc-promo-plugins{
-  text-align: center;
-}
-.qc-promo-content{
-  margin-top: 20px;
+.qc_clr_upgrade_pro a {
+    text-decoration: none !important;
 }
 
-.qc-promo-title{
-  border: 1px solid #ccc; 
-  padding: 10px 0; 
-  text-align: center;
+.qc_clr_pro_feature {
+    background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+    color: #ffffff !important;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 4px 10px;
+    border-radius: 20px;
+    box-shadow: 0 2px 4px rgba(217, 119, 6, 0.25);
+    display: inline-flex;
+    align-items: center;
+    transition: all 0.2s ease;
 }
 
-.qc-pro-alert{
-  color:#ce0707
+.qc_clr_upgrade_pro a:hover .qc_clr_pro_feature {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(217, 119, 6, 0.35);
 }
 
-.qc-promo-plugins-info h4{
-  font-size: 18px;
-  line-height: 20px;
-  margin-bottom: 8px;
-  font-weight: bold;
-}
-.qc-promo-plugins-info ul{
-  width:100%;
-  height:auto;
-  padding: 0px;
-  margin:0px;
-  list-style-type: square;
-  padding-left: 18px;
+/* ==========================================================================
+   QC Promo Plugins & Sidebar - Professional Styling
+   ========================================================================== */
+#postbox-container-1.postbox-container {
+    box-sizing: border-box;
 }
 
-.qc-promo-plugins-info ul li{
-  margin: 0;
-  padding: 4px 0 4px 0px;
-
+.qc-promo-title {
+    background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    padding: 14px 18px;
+    text-align: center;
+    border-radius: 10px 10px 0 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
-.qc-promo-plugins-info ul li a{
-  text-decoration: none;
-  color:#23282d;
-  transition: 0.3s ease all;
-}
-.qc-promo-plugins-info ul li:hover a{
-  text-decoration: none;
-  color:#33B0D9;
+.qc-promo-content {
+    margin-top: 0;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-top: none;
+    border-radius: 0 0 10px 10px;
+    padding: 20px 18px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
 }
 
-.qc-promo-bold{
-  font-weight: bold;
-  display: inline;
+.qc-promo-plugins {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.qc-promo-plugins img {
+    max-width: 170px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    transition: transform 0.3s ease;
+}
+
+.qc-promo-plugins img:hover {
+    transform: scale(1.04);
+}
+
+.qc-promo-plugins hr {
+    border: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #e2e8f0, transparent);
+    margin: 14px 0;
+    width: 80%;
+}
+
+.qc-promo-plugins a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: #0284c7;
+    color: #ffffff !important;
+    font-weight: 600;
+    font-size: 13px;
+    padding: 8px 20px;
+    border-radius: 6px;
+    text-decoration: none !important;
+    box-shadow: 0 2px 4px rgba(2, 132, 199, 0.25);
+    transition: all 0.2s ease;
+}
+
+.qc-promo-plugins a:hover,
+.qc-promo-plugins a:focus {
+    background: #0369a1;
+    color: #ffffff !important;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 10px rgba(2, 132, 199, 0.35);
+}
+
+/* ==========================================================================
+   QC Pro Feature Alert Badge - Professional View
+   ========================================================================== */
+.qc-pro-alert {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%) !important;
+    color: #ffffff !important;
+    font-size: 11px !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.5px !important;
+    padding: 3px 10px 3px 8px !important;
+    border-radius: 9999px !important;
+    box-shadow: 0 2px 4px rgba(217, 119, 6, 0.25) !important;
+    vertical-align: middle !important;
+    margin: 0 0 0 10px !important;
+    line-height: 1.4 !important;
+    white-space: nowrap !important;
+    user-select: none !important;
+    transition: all 0.2s ease !important;
+}
+
+.qc-pro-alert::before {
+    content: "\f160";
+    font-family: dashicons;
+    font-size: 12px;
+    width: 12px;
+    height: 12px;
+    line-height: 1;
+    margin-right: 4px;
+    display: inline-block;
+    vertical-align: middle;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.qc-pro-alert:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(217, 119, 6, 0.35) !important;
+}
+
+textarea + .qc-pro-alert {
+    margin-top: 8px !important;
+    margin-left: 0 !important;
+}
+
+.qc-promo-plugins-info {
+    margin-top: 20px;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 20px 18px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+.qc-promo-plugins-info h4 {
+    font-size: 14px;
+    font-weight: 700;
+    color: #1e293b;
+    margin: 0 0 16px 0;
+    padding-bottom: 12px;
+    border-bottom: 2px solid #f1f5f9;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.qc-promo-plugins-info ul {
+    width: 100%;
+    height: auto;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.qc-promo-plugins-info ul li {
+    margin: 0;
+    padding: 0;
+}
+
+.qc-promo-plugins-info ul li a {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 2px 4px;
+    padding: 9px 12px;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-left: 3px solid #cbd5e1;
+    border-radius: 6px;
+    color: #475569;
+    font-size: 12.5px;
+    line-height: 1.4;
+    text-decoration: none;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    box-sizing: border-box;
+}
+
+.qc-promo-plugins-info ul li a:hover,
+.qc-promo-plugins-info ul li a:focus {
+    background: #f0f9ff;
+    border-color: #bae6fd;
+    border-left-color: #0284c7;
+    color: #0369a1;
+    transform: translateX(3px);
+    box-shadow: 0 2px 8px rgba(2, 132, 199, 0.1);
+}
+
+.qc-promo-bold {
+    font-weight: 700;
+    color: #0f172a;
+    display: inline;
+    margin: 0 2px;
+    transition: color 0.2s ease;
+}
+
+.qc-promo-plugins-info ul li:hover .qc-promo-bold {
+    color: #0284c7;
+}
+
+.qc-promo-plugins-info ul li a::after {
+    content: "→";
+    margin-left: auto;
+    font-size: 13px;
+    font-weight: 700;
+    color: #0284c7;
+    opacity: 0;
+    transform: translateX(-4px);
+    transition: all 0.2s ease;
+    padding-left: 6px;
+    flex-shrink: 0;
+}
+
+.qc-promo-plugins-info ul li:hover a::after {
+    opacity: 1;
+    transform: translateX(0);
 }
 
 @media only screen and (max-width: 760px){
-    .qc-clr-commenter-emails-table td:before {
-        content: "" !important;
-    }
-    .qc-clr-commenter-emails-table td {
-        padding-left: 5% !important; 
-    }
-}
-
-@media only screen and (max-width: 760px){
-    .qc-clr-commenter-emails-table td:before {
-        content: "" !important;
-    }
-    .qc-clr-commenter-emails-table td {
-        padding-left: 5% !important; 
-    }
-
     .form-table th {
 	    width: 100% !important;
 	}
@@ -222,6 +788,296 @@
   color:black;
 }
 
+
+/* ==========================================================================
+   Comment Attachment Settings (clr-comment-attachment) - Professional View
+   ========================================================================== */
+.qc-clr-attachment-page-wrap {
+    margin: 20px 0px 20px 0px;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+.qc-clr-attachment-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
+    padding: 28px;
+    box-sizing: border-box;
+}
+
+.qc-clr-attachment-header {
+    margin-bottom: 24px;
+}
+
+.qc-clr-attachment-title-area {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 6px;
+}
+
+.qc-clr-attachment-title {
+    font-size: 22px;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0;
+    line-height: 1.2;
+    display: inline-block;
+}
+
+.qc-clr-attachment-subtitle {
+    font-size: 13.5px;
+    color: #64748b;
+    margin: 0 0 16px 0;
+}
+
+.qc-clr-paperclip-icon {
+    color: #0284c7;
+    font-size: 24px;
+    width: 24px;
+    height: 24px;
+    margin-top: 2px;
+    flex-shrink: 0;
+}
+
+/* Form Sections */
+.qc-clr-attachment-form h2 {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-left: 4px solid #0284c7;
+    padding: 12px 18px;
+    border-radius: 8px 8px 0 0;
+    margin-top: 24px;
+    margin-bottom: 0;
+    font-size: 14.5px;
+    font-weight: 700;
+    color: #0f172a;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.qc-clr-attachment-form .form-table {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-top: none;
+    border-radius: 0 0 8px 8px;
+    margin-top: 0;
+    margin-bottom: 24px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+    width: 100%;
+}
+
+.qc-clr-attachment-form .form-table tr {
+    transition: background-color 0.15s ease;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.qc-clr-attachment-form .form-table tr:last-child {
+    border-bottom: none;
+}
+
+.qc-clr-attachment-form .form-table tr:hover {
+    background-color: #f8fafc;
+}
+
+.qc-clr-attachment-form .form-table th {
+    width: 320px;
+    padding: 16px 20px;
+    font-weight: 600;
+    color: #1e293b;
+    font-size: 13.5px;
+    vertical-align: top;
+}
+
+.qc-clr-attachment-form .form-table td {
+    padding: 16px 20px;
+    color: #334155;
+    font-size: 13.5px;
+    vertical-align: top;
+}
+
+.qc-clr-attachment-form .form-table input[type="number"].regular-text {
+    width: 110px;
+    height: 38px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    padding: 0 12px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #0f172a;
+}
+
+.qc-clr-attachment-form .form-table select {
+    min-width: 260px;
+    height: 38px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    padding: 0 12px;
+    background-color: #f8fafc;
+    font-size: 13px;
+    color: #1e293b;
+}
+
+.qc-clr-attachment-form .form-table select:focus,
+.qc-clr-attachment-form .form-table input[type="number"]:focus {
+    border-color: #0284c7;
+    box-shadow: 0 0 0 1px #0284c7;
+    outline: none;
+}
+
+.qc-clr-attachment-form .form-table fieldset label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 13.5px;
+    color: #334155;
+}
+
+.qc-clr-attachment-form .form-table fieldset label:last-child {
+    margin-bottom: 0;
+}
+
+.qc-clr-attachment-form .form-table input[type="checkbox"],
+.qc-clr-attachment-form .form-table input[type="radio"] {
+    width: 17px;
+    height: 17px;
+    margin: 0 8px 0 0;
+    border-radius: 4px;
+    border-color: #cbd5e1;
+    cursor: pointer;
+    vertical-align: middle;
+}
+
+.qc-clr-attachment-form .form-table input[type="radio"] {
+    border-radius: 50%;
+}
+
+.qc-clr-attachment-form .form-table p.description {
+    display: block;
+    color: #64748b;
+    font-size: 12.5px;
+    margin-top: 6px;
+    margin-bottom: 0;
+    line-height: 1.45;
+}
+
+/* Allowed File Types Grid */
+#qc-clr-file-types {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    gap: 12px;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 16px;
+    margin-top: 10px;
+}
+
+.qc-clr-file-type {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    padding: 10px 12px;
+    margin: 0;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
+}
+
+.qc-clr-file-type-name {
+    font-size: 11.5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #0284c7;
+    margin-bottom: 8px;
+    display: block;
+    border-bottom: 1px solid #f1f5f9;
+    padding-bottom: 4px;
+}
+
+.qc-clr-file-type-items {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.qc-clr-file-type-item {
+    font-size: 12px;
+    color: #334155;
+    margin: 0;
+}
+
+.qc-clr-file-type-item label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+}
+
+.qc-clr-show-all {
+    display: inline-block;
+    margin-top: 6px;
+    font-size: 11px;
+    font-weight: 600;
+    color: #0284c7;
+    text-decoration: none;
+    transition: color 0.15s ease;
+}
+
+.qc-clr-show-all:hover {
+    color: #0369a1;
+    text-decoration: underline;
+}
+
+.qc-clr-attachment-form p.submit {
+    margin-top: 10px;
+    padding: 0;
+}
+
+.qc-clr-attachment-form p.submit .button-primary {
+    background: #0284c7 !important;
+    border-color: #0284c7 !important;
+    color: #ffffff !important;
+    font-weight: 600 !important;
+    font-size: 13.5px !important;
+    padding: 8px 24px !important;
+    height: auto !important;
+    line-height: 24px !important;
+    border-radius: 6px !important;
+    box-shadow: 0 2px 6px rgba(2, 132, 199, 0.3) !important;
+    transition: all 0.2s ease !important;
+}
+
+.qc-clr-attachment-form p.submit .button-primary:hover {
+    background: #0369a1 !important;
+    border-color: #0369a1 !important;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(2, 132, 199, 0.4) !important;
+}
+
+@media screen and (max-width: 782px) {
+    .qc-clr-attachment-page-wrap {
+        margin: 10px 10px 0 0;
+    }
+
+    .qc-clr-attachment-card {
+        padding: 16px;
+    }
+
+    .qc-clr-attachment-form .form-table th {
+        width: 100%;
+        padding-bottom: 4px;
+    }
+
+    .qc-clr-attachment-form .form-table td {
+        padding-top: 4px;
+    }
+
+    #qc-clr-file-types {
+        grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+    }
+}
 
 .qc-clr-attachment-wrap {
     margin-top: 30px;
@@ -275,42 +1131,6 @@
 
 .qc-clr-hidden {
     display: none !important;
-}
-
-.qc-clr-file-type {
-    display: inline-block;
-    vertical-align: top;
-    margin-bottom: 15px;
-}
-
-@media (max-width: 782px) {
-
-    .qc-clr-file-type {
-        margin-bottom: 20px;
-    }
-}
-
-.qc-clr-file-type-name {
-    display: inline-block;
-    margin-bottom: 5px;
-}
-
-@media (max-width: 782px) {
-
-    .qc-clr-file-type-name {
-        margin-bottom: 10px;
-    }
-}
-
-.qc-clr-file-type-item {
-    margin-bottom: 3px;
-}
-
-@media (max-width: 782px) {
-
-    .qc-clr-file-type-item {
-        margin-bottom: 8px;
-    }
 }
 
 .qc-clr-file-type-items-more {
@@ -412,7 +1232,7 @@ table.form-table p.description{
   width: 100%;
   align-items: center;
   padding: 0px 0px;
-  margin: 0px 0px;
+  margin: 5px 0px;
 }
 
 .clr_warapper_box a.qcld_live_link {
@@ -462,3 +1282,1180 @@ table.form-table p.description{
   } 
 
 }
+
+/* Form & Table Descriptions */
+.qcld_autoreply .form-table td p.description,
+.wrap .form-table td p.description {
+    display: inline;
+}
+
+/* Admin Menu Submenu Styles */
+#adminmenu .wp-submenu li a[href*="admin.php?page=qc_clr_free_ai"] {
+    border-top: 1px solid #ddd;
+    margin: 5px 1px;
+}
+
+/* Upgrade Notice Links */
+.qc-clr-upgrade-link {
+    font-weight: bold;
+    color: #fcb214;
+}
+
+.qc-up-pro-link {
+    font-weight: bold;
+    padding: 5px;
+    background: #2271B1;
+    border-radius: 4px;
+    color: #fcb214;
+}
+
+/* ==========================================================================
+   Comment Spam Protection (qcld_clr_config) - Professional SaaS Design
+   ========================================================================== */
+.qc-clr-config-page-wrap {
+    margin: 20px 0px 20px 0px;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+.qc-clr-config-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
+    padding: 28px;
+    box-sizing: border-box;
+}
+
+.qc-clr-config-header {
+    margin-bottom: 26px;
+}
+
+.qc-clr-config-title-area {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 6px;
+}
+
+.qc-clr-config-title {
+    font-size: 22px;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0;
+    line-height: 1.2;
+    display: inline-block;
+}
+
+.qc-clr-config-subtitle {
+    font-size: 13.5px;
+    color: #64748b;
+    margin: 0 0 16px 0;
+}
+
+.qc-clr-shield-icon {
+    color: #0284c7;
+    font-size: 24px;
+    width: 24px;
+    height: 24px;
+    margin-top: 2px;
+    flex-shrink: 0;
+}
+
+/* Config Form Cards */
+.qc-clr-config-form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    margin-bottom: 28px;
+}
+
+.qc-clr-form-group-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 20px;
+    transition: all 0.2s ease;
+}
+
+.qc-clr-form-group-card:hover {
+    border-color: #cbd5e1;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.qc-clr-form-group-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.qc-clr-form-group-header .dashicons {
+    color: #0284c7;
+    font-size: 18px;
+    width: 18px;
+    height: 18px;
+}
+
+.qc-clr-form-group-header h3 {
+    margin: 0;
+    font-size: 14.5px;
+    font-weight: 700;
+    color: #1e293b;
+}
+
+.qc-clr-form-group-body {
+    padding-left: 2px;
+}
+
+.qc-clr-field-desc {
+    font-size: 13px;
+    color: #64748b;
+    margin: 6px 0 0 0;
+    line-height: 1.5;
+}
+
+/* Toggle / Checkbox Control */
+.qc-clr-toggle-control {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+}
+
+.qc-clr-toggle-control input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    margin: 0;
+    border-radius: 4px;
+    border-color: #cbd5e1;
+    cursor: pointer;
+}
+
+.qc-clr-toggle-label {
+    font-size: 14px;
+    color: #1e293b;
+}
+
+/* Select Dropdown */
+.qc-clr-select-label {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    font-size: 13.5px;
+    color: #334155;
+    font-weight: 500;
+}
+
+.qc-clr-select-input {
+    max-width: 320px;
+    height: 38px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    padding: 0 12px;
+    font-size: 13.5px;
+    color: #1e293b;
+    background-color: #f8fafc;
+    transition: all 0.2s ease;
+}
+
+.qc-clr-select-input:focus {
+    border-color: #0284c7;
+    background-color: #ffffff;
+    box-shadow: 0 0 0 1px #0284c7;
+    outline: none;
+}
+
+/* Radio Cards (Payload delivery) */
+.qc-clr-radio-options {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 14px;
+}
+
+.qc-clr-radio-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 14px 16px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.qc-clr-radio-card:hover {
+    background: #f0f9ff;
+    border-color: #bae6fd;
+}
+
+.qc-clr-radio-card.is-recommended {
+    border-color: #93c5fd;
+    background: #eff6ff;
+}
+
+.qc-clr-radio-card input[type="radio"] {
+    margin-top: 3px;
+    cursor: pointer;
+}
+
+.qc-clr-radio-info strong {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13.5px;
+    color: #1e293b;
+    margin-bottom: 4px;
+}
+
+.qc-clr-radio-info p {
+    margin: 0;
+    font-size: 12.5px;
+    color: #64748b;
+    line-height: 1.45;
+}
+
+.qc-clr-recommended-badge {
+    background: #10b981;
+    color: #ffffff;
+    font-size: 10.5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    padding: 2px 7px;
+    border-radius: 10px;
+}
+
+/* Speed Spammer Input */
+.qc-clr-speed-input-wrap {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 12px;
+    flex-wrap: wrap;
+}
+
+.qc-clr-number-input {
+    width: 80px;
+    height: 38px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    padding: 0 10px;
+    font-size: 14px;
+    font-weight: 600;
+    text-align: center;
+    color: #0f172a;
+}
+
+.qc-clr-input-unit {
+    font-weight: 600;
+    color: #475569;
+    font-size: 13.5px;
+}
+
+.qc-clr-hint-chip {
+    display: inline-block;
+    background: #f1f5f9;
+    color: #475569;
+    font-size: 12px;
+    padding: 4px 10px;
+    border-radius: 4px;
+    border: 1px solid #e2e8f0;
+}
+
+/* Textarea */
+.qc-clr-textarea {
+    width: 100%;
+    max-width: 650px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    padding: 10px 14px;
+    font-size: 13.5px;
+    color: #1e293b;
+    margin-top: 8px;
+    resize: vertical;
+    transition: all 0.2s ease;
+}
+
+.qc-clr-textarea:focus {
+    border-color: #0284c7;
+    box-shadow: 0 0 0 1px #0284c7;
+    outline: none;
+}
+
+/* Submit Bar */
+.qc-clr-submit-bar {
+    padding-top: 8px;
+}
+
+.qc-clr-save-btn {
+    background: #0284c7 !important;
+    border-color: #0284c7 !important;
+    color: #ffffff !important;
+    font-weight: 600 !important;
+    font-size: 13.5px !important;
+    padding: 8px 24px !important;
+    height: auto !important;
+    line-height: 24px !important;
+    border-radius: 6px !important;
+    box-shadow: 0 2px 6px rgba(2, 132, 199, 0.3) !important;
+    transition: all 0.2s ease !important;
+}
+
+.qc-clr-save-btn:hover {
+    background: #0369a1 !important;
+    border-color: #0369a1 !important;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(2, 132, 199, 0.4) !important;
+}
+
+/* .htaccess Code Card */
+.qc-clr-htaccess-card {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 22px;
+    margin-top: 24px;
+}
+
+.qc-clr-htaccess-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+    flex-wrap: wrap;
+}
+
+.qc-clr-htaccess-header .dashicons {
+    color: #0284c7;
+    font-size: 20px;
+    width: 20px;
+    height: 20px;
+}
+
+.qc-clr-htaccess-header h4 {
+    margin: 0;
+    font-size: 15px;
+    font-weight: 700;
+    color: #0f172a;
+}
+
+.qc-clr-optional-badge {
+    background: #f1f5f9;
+    border: 1px solid #cbd5e1;
+    color: #475569;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+}
+
+.qc-clr-htaccess-desc {
+    font-size: 13px;
+    color: #64748b;
+    margin: 0 0 14px 0;
+    line-height: 1.5;
+}
+
+.qc-clr-code-block {
+    background: #0f172a;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.qc-clr-code-bar {
+    background: #1e293b;
+    padding: 6px 14px;
+    border-bottom: 1px solid #334155;
+}
+
+.qc-clr-code-lang {
+    font-size: 11px;
+    font-family: Menlo, Monaco, Consolas, monospace;
+    color: #94a3b8;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.qc-clr-code {
+    margin: 0;
+    padding: 16px;
+    color: #38bdf8;
+    background: transparent;
+    font-family: Menlo, Monaco, Consolas, monospace;
+    font-size: 13px;
+    line-height: 1.6;
+    overflow-x: auto;
+}
+
+/* Cookie Page Container */
+.qc-clr-cookie-wrap {
+    padding: 15px;
+}
+
+/* Responsive */
+@media screen and (max-width: 768px) {
+    .qc-clr-config-page-wrap {
+        margin: 10px 10px 0 0;
+    }
+
+    .qc-clr-config-card {
+        padding: 16px;
+    }
+
+    .qc-clr-radio-options {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Admin Notice Banner */
+#message-clr {
+    padding: 4px 0 0 4px;
+    background: #e80607;
+}
+
+/* ==========================================================================
+   Comment Mention Settings (qcclr_comment_mention) - Professional SaaS Design
+   ========================================================================== */
+.qc-clr-mention-page-wrap {
+    margin: 20px 0px 20px 0px;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+.qc-clr-mention-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
+    padding: 28px;
+    box-sizing: border-box;
+}
+
+.qc-clr-mention-header {
+    margin-bottom: 24px;
+}
+
+.qc-clr-mention-title-area {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 6px;
+}
+
+.qc-clr-mention-title {
+    font-size: 22px;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0;
+    line-height: 1.2;
+    display: inline-block;
+}
+
+.qc-clr-mention-subtitle {
+    font-size: 13.5px;
+    color: #64748b;
+    margin: 0 0 16px 0;
+}
+
+.qc-clr-at-icon {
+    color: #0284c7;
+    font-size: 24px;
+    width: 24px;
+    height: 24px;
+    margin-top: 2px;
+    flex-shrink: 0;
+}
+
+/* Mention Table Form */
+.qc-clr-mention-table {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+    width: 100%;
+    margin-bottom: 24px;
+}
+
+.qc-clr-mention-table tr {
+    transition: background-color 0.15s ease;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.qc-clr-mention-table tr:last-child {
+    border-bottom: none;
+}
+
+.qc-clr-mention-table tr:hover {
+    background-color: #f8fafc;
+}
+
+.qc-clr-mention-table th {
+    width: 260px;
+    padding: 18px 20px;
+    font-weight: 600;
+    color: #1e293b;
+    font-size: 13.5px;
+    vertical-align: top;
+}
+
+.qc-clr-mention-table td {
+    padding: 18px 20px;
+    color: #334155;
+    font-size: 13.5px;
+    vertical-align: top;
+}
+
+/* ==========================================================================
+   Universal Modern On/Off Switch Button Toggles for All Checkboxes
+   ========================================================================== */
+.qc-clr-checkbox-toggle,
+.qc-clr-toggle-control {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 12px !important;
+    cursor: pointer !important;
+    font-size: 13.5px !important;
+    color: #334155 !important;
+    user-select: none !important;
+    vertical-align: middle !important;
+    margin: 4px 0 !important;
+}
+
+/* Master Checkbox Switch Style */
+.clr_warapper input[type="checkbox"]:not(.qc_clr_email_checkbox):not(#qc_clr_checked_all),
+.wrap-content input[type="checkbox"]:not(.qc_clr_email_checkbox):not(#qc_clr_checked_all),
+#poststuff input[type="checkbox"]:not(.qc_clr_email_checkbox):not(#qc_clr_checked_all),
+.qcld_clr_wrap input[type="checkbox"]:not(.qc_clr_email_checkbox):not(#qc_clr_checked_all),
+.qc-clr-mention-page-wrap input[type="checkbox"],
+.qc-clr-autoreply-page-wrap input[type="checkbox"],
+.qc-clr-config-page-wrap input[type="checkbox"],
+.qc-clr-checkbox-toggle input[type="checkbox"],
+.qc-clr-toggle-control input[type="checkbox"],
+.form-table td input[type="checkbox"]:not(.qc_clr_email_checkbox):not(#qc_clr_checked_all),
+.qc-clr-toggle-switch input[type="checkbox"] {
+    -webkit-appearance: none !important;
+    -moz-appearance: none !important;
+    appearance: none !important;
+    position: relative !important;
+    display: inline-block !important;
+    width: 44px !important;
+    min-width: 44px !important;
+    max-width: 44px !important;
+    height: 24px !important;
+    min-height: 24px !important;
+    max-height: 24px !important;
+    background-color: #cbd5e1 !important;
+    border: 1px solid #94a3b8 !important;
+    border-radius: 24px !important;
+    cursor: pointer !important;
+    outline: none !important;
+    vertical-align: middle !important;
+    margin: 0 10px 0 0 !important;
+    padding: 0 !important;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.08) !important;
+    transition: background-color 0.25s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.25s ease, box-shadow 0.25s ease !important;
+    box-sizing: border-box !important;
+    flex-shrink: 0 !important;
+}
+
+/* Switch Knob (Sliding Circle) */
+.clr_warapper input[type="checkbox"]:not(.qc_clr_email_checkbox):not(#qc_clr_checked_all)::before,
+.wrap-content input[type="checkbox"]:not(.qc_clr_email_checkbox):not(#qc_clr_checked_all)::before,
+#poststuff input[type="checkbox"]:not(.qc_clr_email_checkbox):not(#qc_clr_checked_all)::before,
+.qcld_clr_wrap input[type="checkbox"]:not(.qc_clr_email_checkbox):not(#qc_clr_checked_all)::before,
+.qc-clr-mention-page-wrap input[type="checkbox"]::before,
+.qc-clr-autoreply-page-wrap input[type="checkbox"]::before,
+.qc-clr-config-page-wrap input[type="checkbox"]::before,
+.qc-clr-checkbox-toggle input[type="checkbox"]::before,
+.qc-clr-toggle-control input[type="checkbox"]::before,
+.form-table td input[type="checkbox"]:not(.qc_clr_email_checkbox):not(#qc_clr_checked_all):before,
+.form-table td input[type="checkbox"]:not(.qc_clr_email_checkbox):not(#qc_clr_checked_all)::before,
+.qc-clr-toggle-switch input[type="checkbox"]::before {
+    content: "" !important;
+    position: absolute !important;
+    top: 2px !important;
+    left: 2px !important;
+    width: 18px !important;
+    height: 18px !important;
+    background-color: #ffffff !important;
+    border-radius: 50% !important;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25), 0 1px 1px rgba(0, 0, 0, 0.1) !important;
+    transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.2s ease !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    float: none !important;
+    font: none !important;
+    speak: none !important;
+    display: block !important;
+    line-height: normal !important;
+}
+
+/* Checked (ON State) */
+.clr_warapper input[type="checkbox"]:not(.qc_clr_email_checkbox):not(#qc_clr_checked_all):checked,
+.wrap-content input[type="checkbox"]:not(.qc_clr_email_checkbox):not(#qc_clr_checked_all):checked,
+#poststuff input[type="checkbox"]:not(.qc_clr_email_checkbox):not(#qc_clr_checked_all):checked,
+.qcld_clr_wrap input[type="checkbox"]:not(.qc_clr_email_checkbox):not(#qc_clr_checked_all):checked,
+.qc-clr-mention-page-wrap input[type="checkbox"]:checked,
+.qc-clr-autoreply-page-wrap input[type="checkbox"]:checked,
+.qc-clr-config-page-wrap input[type="checkbox"]:checked,
+.qc-clr-checkbox-toggle input[type="checkbox"]:checked,
+.qc-clr-toggle-control input[type="checkbox"]:checked,
+.form-table td input[type="checkbox"]:not(.qc_clr_email_checkbox):not(#qc_clr_checked_all):checked,
+.qc-clr-toggle-switch input[type="checkbox"]:checked {
+    background-color: #0284c7 !important;
+    border-color: #0284c7 !important;
+    box-shadow: 0 0 0 1px rgba(2, 132, 199, 0.15) !important;
+}
+
+/* Knob Movement (ON State) */
+.clr_warapper input[type="checkbox"]:not(.qc_clr_email_checkbox):not(#qc_clr_checked_all):checked::before,
+.wrap-content input[type="checkbox"]:not(.qc_clr_email_checkbox):not(#qc_clr_checked_all):checked::before,
+#poststuff input[type="checkbox"]:not(.qc_clr_email_checkbox):not(#qc_clr_checked_all):checked::before,
+.qcld_clr_wrap input[type="checkbox"]:not(.qc_clr_email_checkbox):not(#qc_clr_checked_all):checked::before,
+.qc-clr-mention-page-wrap input[type="checkbox"]:checked::before,
+.qc-clr-autoreply-page-wrap input[type="checkbox"]:checked::before,
+.qc-clr-config-page-wrap input[type="checkbox"]:checked::before,
+.qc-clr-checkbox-toggle input[type="checkbox"]:checked::before,
+.qc-clr-toggle-control input[type="checkbox"]:checked::before,
+.form-table td input[type="checkbox"]:not(.qc_clr_email_checkbox):not(#qc_clr_checked_all):checked:before,
+.form-table td input[type="checkbox"]:not(.qc_clr_email_checkbox):not(#qc_clr_checked_all):checked::before,
+.qc-clr-toggle-switch input[type="checkbox"]:checked::before {
+    transform: translateX(20px) !important;
+    background-color: #ffffff !important;
+}
+
+/* Hover States */
+.clr_warapper input[type="checkbox"]:not(.qc_clr_email_checkbox):not(#qc_clr_checked_all):hover:not(:disabled),
+.wrap-content input[type="checkbox"]:not(.qc_clr_email_checkbox):not(#qc_clr_checked_all):hover:not(:disabled),
+#poststuff input[type="checkbox"]:not(.qc_clr_email_checkbox):not(#qc_clr_checked_all):hover:not(:disabled),
+.qc-clr-mention-page-wrap input[type="checkbox"]:hover:not(:disabled),
+.qc-clr-autoreply-page-wrap input[type="checkbox"]:hover:not(:disabled),
+.qc-clr-config-page-wrap input[type="checkbox"]:hover:not(:disabled),
+.qc-clr-checkbox-toggle input[type="checkbox"]:hover:not(:disabled),
+.qc-clr-toggle-control input[type="checkbox"]:hover:not(:disabled),
+.form-table td input[type="checkbox"]:not(.qc_clr_email_checkbox):not(#qc_clr_checked_all):hover:not(:disabled),
+.qc-clr-toggle-switch input[type="checkbox"]:hover:not(:disabled) {
+    background-color: #94a3b8 !important;
+    border-color: #64748b !important;
+}
+
+.clr_warapper input[type="checkbox"]:not(.qc_clr_email_checkbox):not(#qc_clr_checked_all):checked:hover:not(:disabled),
+.wrap-content input[type="checkbox"]:not(.qc_clr_email_checkbox):not(#qc_clr_checked_all):checked:hover:not(:disabled),
+#poststuff input[type="checkbox"]:not(.qc_clr_email_checkbox):not(#qc_clr_checked_all):checked:hover:not(:disabled),
+.qc-clr-mention-page-wrap input[type="checkbox"]:checked:hover:not(:disabled),
+.qc-clr-autoreply-page-wrap input[type="checkbox"]:checked:hover:not(:disabled),
+.qc-clr-config-page-wrap input[type="checkbox"]:checked:hover:not(:disabled),
+.qc-clr-checkbox-toggle input[type="checkbox"]:checked:hover:not(:disabled),
+.qc-clr-toggle-control input[type="checkbox"]:checked:hover:not(:disabled),
+.form-table td input[type="checkbox"]:not(.qc_clr_email_checkbox):not(#qc_clr_checked_all):checked:hover:not(:disabled),
+.qc-clr-toggle-switch input[type="checkbox"]:checked:hover:not(:disabled) {
+    background-color: #0369a1 !important;
+    border-color: #0369a1 !important;
+}
+
+/* Focus Ring */
+.clr_warapper input[type="checkbox"]:not(.qc_clr_email_checkbox):not(#qc_clr_checked_all):focus,
+.wrap-content input[type="checkbox"]:not(.qc_clr_email_checkbox):not(#qc_clr_checked_all):focus,
+#poststuff input[type="checkbox"]:not(.qc_clr_email_checkbox):not(#qc_clr_checked_all):focus,
+.qc-clr-mention-page-wrap input[type="checkbox"]:focus,
+.qc-clr-autoreply-page-wrap input[type="checkbox"]:focus,
+.qc-clr-config-page-wrap input[type="checkbox"]:focus,
+.qc-clr-checkbox-toggle input[type="checkbox"]:focus,
+.qc-clr-toggle-control input[type="checkbox"]:focus,
+.form-table td input[type="checkbox"]:not(.qc_clr_email_checkbox):not(#qc_clr_checked_all):focus,
+.qc-clr-toggle-switch input[type="checkbox"]:focus {
+    box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.25) !important;
+    border-color: #0284c7 !important;
+    outline: none !important;
+}
+
+/* Disabled State */
+.clr_warapper input[type="checkbox"]:disabled,
+.wrap-content input[type="checkbox"]:disabled,
+#poststuff input[type="checkbox"]:disabled,
+.qc-clr-mention-page-wrap input[type="checkbox"]:disabled,
+.qc-clr-autoreply-page-wrap input[type="checkbox"]:disabled,
+.qc-clr-config-page-wrap input[type="checkbox"]:disabled,
+.qc-clr-checkbox-toggle input[type="checkbox"]:disabled,
+.qc-clr-toggle-control input[type="checkbox"]:disabled,
+.form-table td input[type="checkbox"]:disabled,
+.qc-clr-toggle-switch input[type="checkbox"]:disabled {
+    opacity: 0.5 !important;
+    cursor: not-allowed !important;
+    background-color: #e2e8f0 !important;
+    border-color: #cbd5e1 !important;
+}
+
+/* Email Subject Input */
+.qcclr-email-subject-input {
+    width: 100%;
+    max-width: 540px;
+    height: 38px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    padding: 0 12px;
+    font-size: 13.5px;
+    color: #1e293b;
+    background-color: #f8fafc;
+    transition: all 0.2s ease;
+}
+
+.qcclr-email-subject-input:focus {
+    border-color: #0284c7;
+    background-color: #ffffff;
+    box-shadow: 0 0 0 1px #0284c7;
+    outline: none;
+}
+
+/* Editor Wrapper */
+.qc-clr-editor-wrap {
+    max-width: 720px;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid #cbd5e1;
+    margin-bottom: 16px;
+}
+
+.qc-clr-editor-wrap .wp-editor-container {
+    border: none;
+}
+
+/* Shortcodes Helper Container */
+.qc-clr-shortcodes-container {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 16px;
+    max-width: 720px;
+    box-sizing: border-box;
+}
+
+.qc-clr-shortcodes-header {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 12px;
+    color: #1e293b;
+    font-size: 13px;
+}
+
+.qc-clr-shortcodes-header .dashicons {
+    color: #0284c7;
+    font-size: 16px;
+    width: 16px;
+    height: 16px;
+}
+
+.qc-clr-shortcodes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 8px;
+}
+
+.qc-clr-shortcode-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12.5px;
+    color: #475569;
+}
+
+.qc-clr-shortcode-tag {
+    background: #eff6ff;
+    color: #0284c7;
+    border: 1px solid #bfdbfe;
+    font-family: Menlo, Monaco, Consolas, monospace;
+    padding: 2px 7px;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 11.5px;
+    white-space: nowrap;
+}
+
+@media screen and (max-width: 782px) {
+    .qc-clr-mention-page-wrap {
+        margin: 10px 10px 0 0;
+    }
+
+    .qc-clr-mention-card {
+        padding: 16px;
+    }
+
+    .qc-clr-mention-table th {
+        width: 100%;
+        padding-bottom: 4px;
+    }
+
+    .qc-clr-mention-table td {
+        padding-top: 4px;
+    }
+
+    .qc-clr-shortcodes-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Attachment Pro File Types */
+.qc-clr-file-type {
+    width: 100px;
+    display: inline-block;
+    vertical-align: top;
+}
+
+/* Settings Page Elements */
+.qc-clr-inline-form {
+    display: inline-block;
+}
+
+.clr_pro_feature_taggle {
+    background: #72aee6;
+}
+
+.clr_pro_feature_toggle_btn {
+    float: right;
+    font-size: 12px;
+}
+
+.clr-language-note {
+    color: red;
+}
+
+.clr-sentiment-desc {
+    font-size: 12px;
+    margin-left: 10px;
+}
+
+.clr-readmore-input {
+    width: 200px;
+}
+
+/* ==========================================================================
+   Comment AI Auto Reply Settings (qcclr_comment_autoreply) - Modern Styling
+   ========================================================================== */
+.qc-clr-autoreply-page-wrap {
+    margin: 20px 0px 20px 0px;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+.qc-clr-autoreply-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
+    padding: 28px;
+    box-sizing: border-box;
+}
+
+.qc-clr-autoreply-header {
+    margin-bottom: 24px;
+}
+
+.qc-clr-autoreply-title-area {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 6px;
+}
+
+.qc-clr-autoreply-title {
+    font-size: 22px;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0;
+    line-height: 1.2;
+    display: inline-block;
+}
+
+.qc-clr-autoreply-subtitle {
+    font-size: 13.5px;
+    color: #64748b;
+    margin: 0 0 16px 0;
+}
+
+.qc-clr-ai-icon {
+    color: #0284c7;
+    font-size: 24px;
+    width: 24px;
+    height: 24px;
+    margin-top: 2px;
+    flex-shrink: 0;
+}
+
+/* Auto Reply Table Form */
+.qc-clr-autoreply-table {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+    width: 100%;
+    margin-bottom: 24px;
+}
+
+.qc-clr-autoreply-table tr {
+    transition: background-color 0.15s ease;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.qc-clr-autoreply-table tr:last-child {
+    border-bottom: none;
+}
+
+.qc-clr-autoreply-table tr:hover {
+    background-color: #f8fafc;
+}
+
+.qc-clr-autoreply-table th {
+    width: 260px;
+    padding: 18px 20px;
+    font-weight: 600;
+    color: #1e293b;
+    font-size: 13.5px;
+    vertical-align: top;
+}
+
+.qc-clr-autoreply-table td {
+    padding: 18px 20px;
+    color: #334155;
+    font-size: 13.5px;
+    vertical-align: top;
+}
+
+.qc-clr-autoreply-table p.description {
+    margin-top: 8px;
+    font-size: 12.5px;
+    color: #64748b;
+}
+
+/* API Key Input Container */
+.qc-clr-api-input-wrap {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.qc-clr-input-field {
+    width: 100%;
+    max-width: 420px;
+    height: 38px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    padding: 0 12px;
+    font-size: 13.5px;
+    color: #1e293b;
+    background-color: #f8fafc;
+    transition: all 0.2s ease;
+    letter-spacing: 1px;
+}
+
+.qc-clr-input-field:focus {
+    border-color: #0284c7;
+    background-color: #ffffff;
+    box-shadow: 0 0 0 1px #0284c7;
+    outline: none;
+}
+
+.qc-clr-api-key-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 12.5px;
+    font-weight: 600;
+    color: #0284c7 !important;
+    text-decoration: none !important;
+    padding: 6px 12px;
+    background: #f0f9ff;
+    border: 1px solid #bae6fd;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+}
+
+.qc-clr-api-key-link:hover {
+    background: #e0f2fe;
+    color: #0369a1 !important;
+    border-color: #7dd3fc;
+}
+
+.qc-clr-api-key-link .dashicons {
+    font-size: 14px;
+    width: 14px;
+    height: 14px;
+}
+
+/* Select Input */
+.qc-clr-select-input {
+    height: 38px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    padding: 0 32px 0 12px;
+    font-size: 13.5px;
+    font-weight: 500;
+    color: #1e293b;
+    background-color: #f8fafc;
+    min-width: 260px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.qc-clr-select-input:focus {
+    border-color: #0284c7;
+    background-color: #ffffff;
+    box-shadow: 0 0 0 1px #0284c7;
+    outline: none;
+}
+
+/* Inline Number Field with Units & Chips */
+.qc-clr-inline-field {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.qc-clr-number-input {
+    width: 120px;
+    height: 38px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    padding: 0 12px;
+    font-size: 13.5px;
+    font-weight: 600;
+    color: #1e293b;
+    background-color: #f8fafc;
+    transition: all 0.2s ease;
+}
+
+.qc-clr-number-input:focus {
+    border-color: #0284c7;
+    background-color: #ffffff;
+    box-shadow: 0 0 0 1px #0284c7;
+    outline: none;
+}
+
+.qc-clr-input-unit {
+    font-size: 13px;
+    font-weight: 600;
+    color: #64748b;
+}
+
+.qc-clr-hint-chip {
+    display: inline-flex;
+    align-items: center;
+    background: #f1f5f9;
+    color: #475569;
+    padding: 4px 10px;
+    border-radius: 9999px;
+    font-size: 11.5px;
+    font-weight: 500;
+    border: 1px solid #e2e8f0;
+}
+
+/* Range Slider Control & Value Badge */
+.qc-clr-range-control {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    max-width: 380px;
+}
+
+.qc-clr-range-input {
+    flex: 1;
+    -webkit-appearance: none;
+    appearance: none;
+    height: 6px;
+    background: #e2e8f0;
+    border-radius: 3px;
+    outline: none;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.qc-clr-range-input::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #0284c7;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(2, 132, 199, 0.4);
+    transition: all 0.15s ease;
+}
+
+.qc-clr-range-input::-webkit-slider-thumb:hover {
+    transform: scale(1.15);
+    background: #0369a1;
+}
+
+.qc-clr-range-input::-moz-range-thumb {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #0284c7;
+    cursor: pointer;
+    border: none;
+    box-shadow: 0 2px 5px rgba(2, 132, 199, 0.4);
+    transition: all 0.15s ease;
+}
+
+.qc-clr-range-input::-moz-range-thumb:hover {
+    transform: scale(1.15);
+    background: #0369a1;
+}
+
+.qc-clr-param-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 44px;
+    padding: 4px 8px;
+    background: #0f172a;
+    color: #ffffff;
+    font-family: Menlo, Monaco, Consolas, monospace;
+    font-size: 12.5px;
+    font-weight: 700;
+    border-radius: 6px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+}
+
+@media screen and (max-width: 782px) {
+    .qc-clr-autoreply-page-wrap {
+        margin: 10px 10px 0 0;
+    }
+
+    .qc-clr-autoreply-card {
+        padding: 16px;
+    }
+
+    .qc-clr-autoreply-table th {
+        width: 100%;
+        padding-bottom: 4px;
+    }
+
+    .qc-clr-autoreply-table td {
+        padding-top: 4px;
+    }
+
+    .qc-clr-input-field {
+        max-width: 100%;
+    }
+
+    .qc-clr-range-control {
+        max-width: 100%;
+    }
+}
+
+

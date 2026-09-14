@@ -1,13 +1,13 @@
 === Comment Link Remove and Other Comment Tools ===
 Contributors: quantumcloud
-Donate link: https://www.quantumcloud.com
+Donate link: https://www.quantumcloud.net
 Tags: Comments, Disable Comment Link, anti spam, Disable Comments, Link Remover
 Requires at least: 4.6
 Tested up to: 7.1
 Requires PHP: 5.6
-Stable tag: 2.7.5
+Stable tag: 2.7.6
 License: GPLv2 or later
-License URI: https://www.quantumcloud.com
+License URI: https://www.quantumcloud.net
 
 Remove Comment Author Link & Links from Comments, Unlink, Disable Comments, Delete All Pending Comments. AI Auto Comment Reply, Voice, Attachments
 
@@ -16,8 +16,8 @@ All in one solution to <strong>fight blog comment spammers </strong>and <strong>
 
 If you run a blog or WordPress website with comments enabled, there is no getting away from comment spammers. Captchas help with bot spamming. But how do you prevent a human who is willing to put in a moment to pass the captcha and write a spam comment just to push a link in your website?
 
-> 🚀 <strong>Upgrade to [Comment Tools Pro](https://www.quantumcloud.com/products/comment-tools/) now!</strong>
-> 🚀 [Support, Bug Report, Feature Requests](https://www.quantumcloud.com/resources/free-support/) | [Pro version Live Demo](https://dev.quantumcloud.com/comment-tools/) | 
+> 🚀 <strong>Upgrade to [Comment Tools Pro](https://www.quantumcloud.net/products/comment-tools/) now!</strong>
+> 🚀 [Support, Bug Report, Feature Requests](https://www.quantumcloud.net/resources/free-support/) | [Pro version Live Demo](https://dev.quantumcloud.net/comment-tools/) | 
 
 > <strong>++ Upgrade to the Comment Tools pro</strong> version and <strong>Increase Interactivity</strong> with features like <strong>AI Auto Comment reply</strong>, adding a <strong>Voice record to the comments</strong> or <strong>Upload files, Images and Videos</strong>. Ability to <strong>Subscribe to newsletters</strong>, <strong>UpVote/DownVote comments</strong> or send eMail notifications and reminders to your commenters grow relationship with your users. Supports comment username <strong>mention, quote, collapsing comments</strong> and tons of other options.
 
@@ -74,7 +74,7 @@ Subscribed users' name and emails can be <strong>exported as CSV</strong> or you
 
 Enable Comment Sentiment setting to Show the commentator’s Emotion with icon. Filter comments by Emotion (positive, negative or neutral) in the Front and Backend! Auto moderate comments for profanity by setting a threshold for negative comments! Commentator will be shown warning message you define and asked to rephrase her comments to adhere to the community rules!
 
-> ++ [View Demo of Comment Tools Pro Version](http://dev.quantumcloud.com/comment-tools/)
+> ++ [View Demo of Comment Tools Pro Version](http://dev.quantumcloud.net/comment-tools/)
 
 = All the Pro Version Features for WordPress Comment Tools Pro =
 
@@ -229,7 +229,7 @@ Comments tools plugin works with default WordPress comment feature with standard
 4. Upload and Activate the latest pro version of the plugin
 5. You are done.
 
-[Pro version Live Demo](https://dev.quantumcloud.com/comment-tools/) | <strong>[Upgrade to Pro!](https://www.quantumcloud.com/products/comment-tools/)</strong>
+[Pro version Live Demo](https://dev.quantumcloud.net/comment-tools/) | <strong>[Upgrade to Pro!](https://www.quantumcloud.net/products/comment-tools/)</strong>
 
 
 
@@ -247,6 +247,9 @@ Comments tools plugin works with default WordPress comment feature with standard
 
 
 == Changelog ==
+
+= 2.7.6 =
+# URLs updated
 
 = 2.7.5 =
 # WP 7.1 Conflict fixed

@@ -1,5 +1,4 @@
 <?php
-
 defined('ABSPATH') or die("No direct script access!");
 
 function qc_clr_load_front_scripts(){
@@ -16,15 +15,15 @@ function qc_clr_load_admin_scripts(){
 	$screen = get_current_screen();
 
     // Styles
-    wp_enqueue_style( 'qc_clr_admin_style_css', QCCLR_ASSETS_URL . "/css/qc-clr-style.css");
+    wp_enqueue_style( 'qc_clr_admin_style_css', QCCLR_ASSETS_URL . "/css/qc-clr-style.css", array(), QCCLR_VERSION );
 
  	// Scripts
-	wp_enqueue_script( 'jquery', 'jquery');
-	wp_enqueue_script( 'qc_clr_admin_custom_scripts_js', QCCLR_ASSETS_URL . "/js/custom-scripts.js", array('jquery'));
+	wp_enqueue_script( 'jquery' );
+	wp_enqueue_script( 'qc_clr_admin_custom_scripts_js', QCCLR_ASSETS_URL . "/js/custom-scripts.js", array('jquery'), QCCLR_VERSION, true );
 
 	if( isset( $screen->base) && ( $screen->base == 'toplevel_page_comment-link-remove' ) ){
-    	wp_enqueue_style( 'qc_clr_admin_bootstrap_css', QCCLR_ASSETS_URL . "/css/bootstrap.min.css");
-		wp_enqueue_script( 'qc_clr_admin_bootstrap_js', QCCLR_ASSETS_URL . "/js/bootstrap.js", array('jquery'));
+    	wp_enqueue_style( 'qc_clr_admin_bootstrap_css', QCCLR_ASSETS_URL . "/css/bootstrap.min.css", array(), '3.3.7' );
+		wp_enqueue_script( 'qc_clr_admin_bootstrap_js', QCCLR_ASSETS_URL . "/js/bootstrap.js", array('jquery'), '3.3.7', true );
 
 	}
 

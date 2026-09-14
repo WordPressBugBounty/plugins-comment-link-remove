@@ -1,17 +1,14 @@
 <?php
-if (defined('ABSPATH') === false) {
-    exit;
-}
+defined('ABSPATH') or die("No direct script access!");
 
-?>
-<?php
+
 add_action( 'wp_ajax_qcld_recommend_support_function_first_ajax', 'qcld_recommend_support_function_first_ajax' );
 
 if( !function_exists('qcld_recommend_support_function_first_ajax') ){
 
     function qcld_recommend_support_function_first_ajax(){
 
-            check_ajax_referer( 'qc-clr', 'security');
+            check_ajax_referer( 'comment-link-remove', 'security');
 
             require_once ABSPATH . 'wp-admin/includes/plugin-install.php';
             remove_all_filters('plugins_api');
@@ -26,8 +23,8 @@ if( !function_exists('qcld_recommend_support_function_first_ajax') ){
                         'icons'             => true,
                         'reviews'           => true, // excludes all reviews
                     ],
-        			'live_preview'   => 'https://dev.quantumcloud.com/knowledgebase/',
-        			'update_to_pro'  => 'https://www.quantumcloud.com/products/knowledgebase-helpdesk/'
+        			'live_preview'   => 'https://dev.quantumcloud.net/knowledgebase/',
+        			'update_to_pro'  => 'https://www.quantumcloud.net/products/knowledgebase-helpdesk/'
                 ], 
                 [
                     'slug'      => 'woowbot-woocommerce-chatbot',
@@ -104,15 +101,15 @@ if( !function_exists('qcld_recommend_support_function_first_ajax') ){
                             $title = wp_kses( $plugin['name'], $qcld_chatplugintags );
 
                             // Remove any HTML from the description.
-                            $description = strip_tags( $plugin['short_description'] );
+                            $description = wp_strip_all_tags( $plugin['short_description'] );
                             $version     = wp_kses( $plugin['version'], $qcld_chatplugintags );
 
-                            $name = strip_tags( $title . ' ' . $version );
+                            $name = wp_strip_all_tags( $title . ' ' . $version );
 
                             $author = wp_kses( $plugin['author'], $qcld_chatplugintags );
                             if ( ! empty( $author ) ) {
                                 /* translators: %s: Plugin author. */
-                                $author = ' <cite>' . sprintf( __( 'By %s' ), $author ) . '</cite>';
+                                $author = ' <cite>' . sprintf( __( 'By %s' , 'comment-link-remove'), $author ) . '</cite>';
                             }
 
                             $requires_php = isset( $plugin['requires_php'] ) ? $plugin['requires_php'] : null;
@@ -136,14 +133,14 @@ if( !function_exists('qcld_recommend_support_function_first_ajax') ){
                                                     esc_attr( $plugin['slug'] ),
                                                     esc_url( $status['url'] ),
                                                     /* translators: %s: Plugin name and version. */
-                                                    esc_attr( sprintf( _x( 'Install %s now', 'plugin' ), $name ) ),
+                                                    esc_attr( sprintf( _x( 'Install %s now',  'plugin' , 'comment-link-remove'), $name ) ),
                                                     esc_attr( $name ),
-                                                    __( 'Install Now' )
+                                                    __( 'Install Now' , 'comment-link-remove')
                                                 );
                                             } else {
                                                 $action_links[] = sprintf(
                                                     '<button type="button" class="button button-disabled" disabled="disabled">%s</button>',
-                                                    _x( 'Cannot Install', 'plugin' )
+                                                    _x( 'Cannot Install',  'plugin' , 'comment-link-remove')
                                                 );
                                             }
                                         }
@@ -158,14 +155,14 @@ if( !function_exists('qcld_recommend_support_function_first_ajax') ){
                                                     esc_attr( $plugin['slug'] ),
                                                     esc_url( $status['url'] ),
                                                     /* translators: %s: Plugin name and version. */
-                                                    esc_attr( sprintf( _x( 'Update %s now', 'plugin' ), $name ) ),
+                                                    esc_attr( sprintf( _x( 'Update %s now',  'plugin' , 'comment-link-remove'), $name ) ),
                                                     esc_attr( $name ),
-                                                    __( 'Update Now' )
+                                                    __( 'Update Now' , 'comment-link-remove')
                                                 );
                                             } else {
                                                 $action_links[] = sprintf(
                                                     '<button type="button" class="button button-disabled" disabled="disabled">%s</button>',
-                                                    _x( 'Cannot Update', 'plugin' )
+                                                    _x( 'Cannot Update',  'plugin' , 'comment-link-remove')
                                                 );
                                             }
                                         }
@@ -176,12 +173,12 @@ if( !function_exists('qcld_recommend_support_function_first_ajax') ){
                                         if ( is_plugin_active( $status['file'] ) ) {
                                             $action_links[] = sprintf(
                                                 '<button type="button" class="button button-disabled" disabled="disabled">%s</button>',
-                                                _x( 'Active', 'plugin' )
+                                                _x( 'Active',  'plugin' , 'comment-link-remove')
                                             );
                                         } elseif ( current_user_can( 'activate_plugin', $status['file'] ) ) {
-                                            $button_text = __( 'Activate' );
+                                            $button_text = __( 'Activate' , 'comment-link-remove');
                                             /* translators: %s: Plugin name. */
-                                            $button_label = _x( 'Activate %s', 'plugin' );
+                                            $button_label = _x( 'Activate %s',  'plugin' , 'comment-link-remove');
                                             $activate_url = add_query_arg(
                                                 array(
                                                     '_wpnonce' => wp_create_nonce( 'activate-plugin_' . $status['file'] ),
@@ -192,9 +189,9 @@ if( !function_exists('qcld_recommend_support_function_first_ajax') ){
                                             );
 
                                             if ( is_network_admin() ) {
-                                                $button_text = __( 'Network Activate' );
+                                                $button_text = __( 'Network Activate' , 'comment-link-remove');
                                                 /* translators: %s: Plugin name. */
-                                                $button_label = _x( 'Network Activate %s', 'plugin' );
+                                                $button_label = _x( 'Network Activate %s',  'plugin' , 'comment-link-remove');
                                                 $activate_url = add_query_arg( array( 'networkwide' => 1 ), $activate_url );
                                             }
 
@@ -207,7 +204,7 @@ if( !function_exists('qcld_recommend_support_function_first_ajax') ){
                                         } else {
                                             $action_links[] = sprintf(
                                                 '<button type="button" class="button button-disabled" disabled="disabled">%s</button>',
-                                                _x( 'Installed', 'plugin' )
+                                                _x( 'Installed',  'plugin' , 'comment-link-remove')
                                             );
                                         }
                                         break;
@@ -239,45 +236,55 @@ if( !function_exists('qcld_recommend_support_function_first_ajax') ){
                                 if ( ! $compatible_php || ! $compatible_wp ) {
                                     echo '<div class="notice inline notice-error notice-alt"><p>';
                                     if ( ! $compatible_php && ! $compatible_wp ) {
-                                        _e( 'This plugin doesn&#8217;t work with your versions of WordPress and PHP.' );
+                                        esc_html_e( 'This plugin doesn&#8217;t work with your versions of WordPress and PHP.' , 'comment-link-remove');
                                         if ( current_user_can( 'update_core' ) && current_user_can( 'update_php' ) ) {
-                                            printf(
-                                            /* translators: 1: URL to WordPress Updates screen, 2: URL to Update PHP page. */
-                                                ' ' . __( '<a href="%1$s">Please update WordPress</a>, and then <a href="%2$s">learn more about updating PHP</a>.' ),
-                                                self_admin_url( 'update-core.php' ),
-                                                esc_url( wp_get_update_php_url() )
+                                            echo wp_kses_post(
+                                                sprintf(
+                                                /* translators: 1: URL to WordPress Updates screen, 2: URL to Update PHP page. */
+                                                    ' ' . __( '<a href="%1$s">Please update WordPress</a>, and then <a href="%2$s">learn more about updating PHP</a>.' , 'comment-link-remove'),
+                                                    esc_url( self_admin_url( 'update-core.php' ) ),
+                                                    esc_url( wp_get_update_php_url() )
+                                                )
                                             );
                                             wp_update_php_annotation( '</p><p><em>', '</em>' );
                                         } elseif ( current_user_can( 'update_core' ) ) {
-                                            printf(
-                                            /* translators: %s: URL to WordPress Updates screen. */
-                                                ' ' . __( '<a href="%s">Please update WordPress</a>.' ),
-                                                self_admin_url( 'update-core.php' )
+                                            echo wp_kses_post(
+                                                sprintf(
+                                                /* translators: %s: URL to WordPress Updates screen. */
+                                                    ' ' . __( '<a href="%s">Please update WordPress</a>.' , 'comment-link-remove'),
+                                                    esc_url( self_admin_url( 'update-core.php' ) )
+                                                )
                                             );
                                         } elseif ( current_user_can( 'update_php' ) ) {
-                                            printf(
-                                            /* translators: %s: URL to Update PHP page. */
-                                                ' ' . __( '<a href="%s">Learn more about updating PHP</a>.' ),
-                                                esc_url( wp_get_update_php_url() )
+                                            echo wp_kses_post(
+                                                sprintf(
+                                                /* translators: %s: URL to Update PHP page. */
+                                                    ' ' . __( '<a href="%s">Learn more about updating PHP</a>.' , 'comment-link-remove'),
+                                                    esc_url( wp_get_update_php_url() )
+                                                )
                                             );
                                             wp_update_php_annotation( '</p><p><em>', '</em>' );
                                         }
                                     } elseif ( ! $compatible_wp ) {
-                                        _e( 'This plugin doesn&#8217;t work with your version of WordPress.' );
+                                        esc_html_e( 'This plugin doesn&#8217;t work with your version of WordPress.' , 'comment-link-remove');
                                         if ( current_user_can( 'update_core' ) ) {
-                                            printf(
-                                            /* translators: %s: URL to WordPress Updates screen. */
-                                                ' ' . __( '<a href="%s">Please update WordPress</a>.' ),
-                                                self_admin_url( 'update-core.php' )
+                                            echo wp_kses_post(
+                                                sprintf(
+                                                /* translators: %s: URL to WordPress Updates screen. */
+                                                    ' ' . __( '<a href="%s">Please update WordPress</a>.' , 'comment-link-remove'),
+                                                    esc_url( self_admin_url( 'update-core.php' ) )
+                                                )
                                             );
                                         }
                                     } elseif ( ! $compatible_php ) {
-                                        _e( 'This plugin doesn&#8217;t work with your version of PHP.' );
+                                        esc_html_e( 'This plugin doesn&#8217;t work with your version of PHP.' , 'comment-link-remove');
                                         if ( current_user_can( 'update_php' ) ) {
-                                            printf(
-                                            /* translators: %s: URL to Update PHP page. */
-                                                ' ' . __( '<a href="%s">Learn more about updating PHP</a>.' ),
-                                                esc_url( wp_get_update_php_url() )
+                                            echo wp_kses_post(
+                                                sprintf(
+                                                /* translators: %s: URL to Update PHP page. */
+                                                    ' ' . __( '<a href="%s">Learn more about updating PHP</a>.' , 'comment-link-remove'),
+                                                    esc_url( wp_get_update_php_url() )
+                                                )
                                             );
                                             wp_update_php_annotation( '</p><p><em>', '</em>' );
                                         }
@@ -289,16 +296,16 @@ if( !function_exists('qcld_recommend_support_function_first_ajax') ){
                                     <div class="name column-name">
                                         <h3>
                                             <a href="<?php echo esc_url( $plugin_live_link ); ?>" target="_blank" >
-                                                <?php echo esc_attr($title); ?>
+                                                <?php echo esc_html($title); ?>
                                                
-                                                <img src="<?php echo esc_attr( $plugin_icon_url ); ?>" class="plugin-icon" alt="" />
+                                                <img src="<?php echo esc_url( $plugin_icon_url ); ?>" class="plugin-icon" alt="" />
                                             </a>
                                         </h3>
                                     </div>
                                     <div class="action-links">
                                         <?php
                                         if ( $action_links ) {
-                                            echo '<ul class="plugin-action-buttons"><li>' . implode( '</li><li>', $action_links ) . '</li></ul>';
+                                            echo wp_kses_post( '<ul class="plugin-action-buttons"><li>' . implode( '</li><li>', $action_links ) . '</li></ul>' );
                                         }
                                         ?>
                                     </div>
@@ -330,7 +337,7 @@ if( !function_exists('qcld_recommend_support_function_first_ajax') ){
         </div>
 <?php 
 
-    echo  ob_get_clean();
+    echo wp_kses_post( ob_get_clean() );
     exit();
 
 
@@ -349,7 +356,7 @@ if( !function_exists('qcld_recommend_support_function_second_ajax') ){
 
     function qcld_recommend_support_function_second_ajax(){
 
-            check_ajax_referer( 'qc-clr', 'security');
+            check_ajax_referer( 'comment-link-remove', 'security');
 
             require_once ABSPATH . 'wp-admin/includes/plugin-install.php';
             remove_all_filters('plugins_api');
@@ -364,8 +371,8 @@ if( !function_exists('qcld_recommend_support_function_second_ajax') ){
                         'icons'             => true,
                         'reviews'           => false, // excludes all reviews
                     ],
-                    'live_preview'   => 'https://dev.quantumcloud.com/simple-business-directory/',
-                    'update_to_pro'  => 'https://www.quantumcloud.com/products/simple-business-directory/'
+                    'live_preview'   => 'https://dev.quantumcloud.net/simple-business-directory/',
+                    'update_to_pro'  => 'https://www.quantumcloud.net/products/simple-business-directory/'
                 ], 
                 [
                     'slug'      => 'slider-hero',
@@ -375,7 +382,7 @@ if( !function_exists('qcld_recommend_support_function_second_ajax') ){
                         'reviews'           => false, // excludes all reviews
                     ],
                     'live_preview'   => 'https://dev2.testversions.com/sliderhero/',
-                    'update_to_pro'  => 'https://www.quantumcloud.com/products/slider-hero/'
+                    'update_to_pro'  => 'https://www.quantumcloud.net/products/slider-hero/'
                 ],
                 [
                     'slug'      => 'simple-link-directory',
@@ -384,8 +391,8 @@ if( !function_exists('qcld_recommend_support_function_second_ajax') ){
                         'icons'             => true,
                         'reviews'           => false, // excludes all reviews
                     ],
-                    'live_preview'   => 'https://dev.quantumcloud.com/sld/',
-                    'update_to_pro'  => 'https://www.quantumcloud.com/products/simple-link-directory/'
+                    'live_preview'   => 'https://dev.quantumcloud.net/sld/',
+                    'update_to_pro'  => 'https://www.quantumcloud.net/products/simple-link-directory/'
                 ]
 
 
@@ -443,15 +450,15 @@ if( !function_exists('qcld_recommend_support_function_second_ajax') ){
                             $title = wp_kses( $plugin['name'], $qcld_chatplugintags );
 
                             // Remove any HTML from the description.
-                            $description = strip_tags( $plugin['short_description'] );
+                            $description = wp_strip_all_tags( $plugin['short_description'] );
                             $version     = wp_kses( $plugin['version'], $qcld_chatplugintags );
 
-                            $name = strip_tags( $title . ' ' . $version );
+                            $name = wp_strip_all_tags( $title . ' ' . $version );
 
                             $author = wp_kses( $plugin['author'], $qcld_chatplugintags );
                             if ( ! empty( $author ) ) {
                                 /* translators: %s: Plugin author. */
-                                $author = ' <cite>' . sprintf( __( 'By %s' ), $author ) . '</cite>';
+                                $author = ' <cite>' . sprintf( __( 'By %s' , 'comment-link-remove'), $author ) . '</cite>';
                             }
 
                             $requires_php = isset( $plugin['requires_php'] ) ? $plugin['requires_php'] : null;
@@ -475,14 +482,14 @@ if( !function_exists('qcld_recommend_support_function_second_ajax') ){
                                                     esc_attr( $plugin['slug'] ),
                                                     esc_url( $status['url'] ),
                                                     /* translators: %s: Plugin name and version. */
-                                                    esc_attr( sprintf( _x( 'Install %s now', 'plugin' ), $name ) ),
+                                                    esc_attr( sprintf( _x( 'Install %s now',  'plugin' , 'comment-link-remove'), $name ) ),
                                                     esc_attr( $name ),
-                                                    __( 'Install Now' )
+                                                    __( 'Install Now' , 'comment-link-remove')
                                                 );
                                             } else {
                                                 $action_links[] = sprintf(
                                                     '<button type="button" class="button button-disabled" disabled="disabled">%s</button>',
-                                                    _x( 'Cannot Install', 'plugin' )
+                                                    _x( 'Cannot Install',  'plugin' , 'comment-link-remove')
                                                 );
                                             }
                                         }
@@ -497,14 +504,14 @@ if( !function_exists('qcld_recommend_support_function_second_ajax') ){
                                                     esc_attr( $plugin['slug'] ),
                                                     esc_url( $status['url'] ),
                                                     /* translators: %s: Plugin name and version. */
-                                                    esc_attr( sprintf( _x( 'Update %s now', 'plugin' ), $name ) ),
+                                                    esc_attr( sprintf( _x( 'Update %s now',  'plugin' , 'comment-link-remove'), $name ) ),
                                                     esc_attr( $name ),
-                                                    __( 'Update Now' )
+                                                    __( 'Update Now' , 'comment-link-remove')
                                                 );
                                             } else {
                                                 $action_links[] = sprintf(
                                                     '<button type="button" class="button button-disabled" disabled="disabled">%s</button>',
-                                                    _x( 'Cannot Update', 'plugin' )
+                                                    _x( 'Cannot Update',  'plugin' , 'comment-link-remove')
                                                 );
                                             }
                                         }
@@ -515,12 +522,12 @@ if( !function_exists('qcld_recommend_support_function_second_ajax') ){
                                         if ( is_plugin_active( $status['file'] ) ) {
                                             $action_links[] = sprintf(
                                                 '<button type="button" class="button button-disabled" disabled="disabled">%s</button>',
-                                                _x( 'Active', 'plugin' )
+                                                _x( 'Active',  'plugin' , 'comment-link-remove')
                                             );
                                         } elseif ( current_user_can( 'activate_plugin', $status['file'] ) ) {
-                                            $button_text = __( 'Activate' );
+                                            $button_text = __( 'Activate' , 'comment-link-remove');
                                             /* translators: %s: Plugin name. */
-                                            $button_label = _x( 'Activate %s', 'plugin' );
+                                            $button_label = _x( 'Activate %s',  'plugin' , 'comment-link-remove');
                                             $activate_url = add_query_arg(
                                                 array(
                                                     '_wpnonce' => wp_create_nonce( 'activate-plugin_' . $status['file'] ),
@@ -531,9 +538,9 @@ if( !function_exists('qcld_recommend_support_function_second_ajax') ){
                                             );
 
                                             if ( is_network_admin() ) {
-                                                $button_text = __( 'Network Activate' );
+                                                $button_text = __( 'Network Activate' , 'comment-link-remove');
                                                 /* translators: %s: Plugin name. */
-                                                $button_label = _x( 'Network Activate %s', 'plugin' );
+                                                $button_label = _x( 'Network Activate %s',  'plugin' , 'comment-link-remove');
                                                 $activate_url = add_query_arg( array( 'networkwide' => 1 ), $activate_url );
                                             }
 
@@ -546,7 +553,7 @@ if( !function_exists('qcld_recommend_support_function_second_ajax') ){
                                         } else {
                                             $action_links[] = sprintf(
                                                 '<button type="button" class="button button-disabled" disabled="disabled">%s</button>',
-                                                _x( 'Installed', 'plugin' )
+                                                _x( 'Installed',  'plugin' , 'comment-link-remove')
                                             );
                                         }
                                         break;
@@ -578,45 +585,55 @@ if( !function_exists('qcld_recommend_support_function_second_ajax') ){
                                 if ( ! $compatible_php || ! $compatible_wp ) {
                                     echo '<div class="notice inline notice-error notice-alt"><p>';
                                     if ( ! $compatible_php && ! $compatible_wp ) {
-                                        _e( 'This plugin doesn&#8217;t work with your versions of WordPress and PHP.' );
+                                        esc_html_e( 'This plugin doesn&#8217;t work with your versions of WordPress and PHP.' , 'comment-link-remove');
                                         if ( current_user_can( 'update_core' ) && current_user_can( 'update_php' ) ) {
-                                            printf(
-                                            /* translators: 1: URL to WordPress Updates screen, 2: URL to Update PHP page. */
-                                                ' ' . __( '<a href="%1$s">Please update WordPress</a>, and then <a href="%2$s">learn more about updating PHP</a>.' ),
-                                                self_admin_url( 'update-core.php' ),
-                                                esc_url( wp_get_update_php_url() )
+                                            echo wp_kses_post(
+                                                sprintf(
+                                                /* translators: 1: URL to WordPress Updates screen, 2: URL to Update PHP page. */
+                                                    ' ' . __( '<a href="%1$s">Please update WordPress</a>, and then <a href="%2$s">learn more about updating PHP</a>.' , 'comment-link-remove'),
+                                                    esc_url( self_admin_url( 'update-core.php' ) ),
+                                                    esc_url( wp_get_update_php_url() )
+                                                )
                                             );
                                             wp_update_php_annotation( '</p><p><em>', '</em>' );
                                         } elseif ( current_user_can( 'update_core' ) ) {
-                                            printf(
-                                            /* translators: %s: URL to WordPress Updates screen. */
-                                                ' ' . __( '<a href="%s">Please update WordPress</a>.' ),
-                                                self_admin_url( 'update-core.php' )
+                                            echo wp_kses_post(
+                                                sprintf(
+                                                /* translators: %s: URL to WordPress Updates screen. */
+                                                    ' ' . __( '<a href="%s">Please update WordPress</a>.' , 'comment-link-remove'),
+                                                    esc_url( self_admin_url( 'update-core.php' ) )
+                                                )
                                             );
                                         } elseif ( current_user_can( 'update_php' ) ) {
-                                            printf(
-                                            /* translators: %s: URL to Update PHP page. */
-                                                ' ' . __( '<a href="%s">Learn more about updating PHP</a>.' ),
-                                                esc_url( wp_get_update_php_url() )
+                                            echo wp_kses_post(
+                                                sprintf(
+                                                /* translators: %s: URL to Update PHP page. */
+                                                    ' ' . __( '<a href="%s">Learn more about updating PHP</a>.' , 'comment-link-remove'),
+                                                    esc_url( wp_get_update_php_url() )
+                                                )
                                             );
                                             wp_update_php_annotation( '</p><p><em>', '</em>' );
                                         }
                                     } elseif ( ! $compatible_wp ) {
-                                        _e( 'This plugin doesn&#8217;t work with your version of WordPress.' );
+                                        esc_html_e( 'This plugin doesn&#8217;t work with your version of WordPress.' , 'comment-link-remove');
                                         if ( current_user_can( 'update_core' ) ) {
-                                            printf(
-                                            /* translators: %s: URL to WordPress Updates screen. */
-                                                ' ' . __( '<a href="%s">Please update WordPress</a>.' ),
-                                                self_admin_url( 'update-core.php' )
+                                            echo wp_kses_post(
+                                                sprintf(
+                                                /* translators: %s: URL to WordPress Updates screen. */
+                                                    ' ' . __( '<a href="%s">Please update WordPress</a>.' , 'comment-link-remove'),
+                                                    esc_url( self_admin_url( 'update-core.php' ) )
+                                                )
                                             );
                                         }
                                     } elseif ( ! $compatible_php ) {
-                                        _e( 'This plugin doesn&#8217;t work with your version of PHP.' );
+                                        esc_html_e( 'This plugin doesn&#8217;t work with your version of PHP.' , 'comment-link-remove');
                                         if ( current_user_can( 'update_php' ) ) {
-                                            printf(
-                                            /* translators: %s: URL to Update PHP page. */
-                                                ' ' . __( '<a href="%s">Learn more about updating PHP</a>.' ),
-                                                esc_url( wp_get_update_php_url() )
+                                            echo wp_kses_post(
+                                                sprintf(
+                                                /* translators: %s: URL to Update PHP page. */
+                                                    ' ' . __( '<a href="%s">Learn more about updating PHP</a>.' , 'comment-link-remove'),
+                                                    esc_url( wp_get_update_php_url() )
+                                                )
                                             );
                                             wp_update_php_annotation( '</p><p><em>', '</em>' );
                                         }
@@ -628,16 +645,16 @@ if( !function_exists('qcld_recommend_support_function_second_ajax') ){
                                     <div class="name column-name">
                                         <h3>
                                             <a href="<?php echo esc_url( $plugin_live_link ); ?>" target="_blank" >
-                                                <?php echo esc_attr($title); ?>
+                                                <?php echo esc_html($title); ?>
                                                
-                                                <img src="<?php echo esc_attr( $plugin_icon_url ); ?>" class="plugin-icon" alt="" />
+                                                <img src="<?php echo esc_url( $plugin_icon_url ); ?>" class="plugin-icon" alt="" />
                                             </a>
                                         </h3>
                                     </div>
                                     <div class="action-links">
                                         <?php
                                         if ( $action_links ) {
-                                            echo '<ul class="plugin-action-buttons"><li>' . implode( '</li><li>', $action_links ) . '</li></ul>';
+                                            echo wp_kses_post( '<ul class="plugin-action-buttons"><li>' . implode( '</li><li>', $action_links ) . '</li></ul>' );
                                         }
                                         ?>
                                     </div>
@@ -669,7 +686,7 @@ if( !function_exists('qcld_recommend_support_function_second_ajax') ){
         </div>
 <?php 
 
-    echo  ob_get_clean();
+    echo wp_kses_post( ob_get_clean() );
     exit();
 
 
@@ -689,7 +706,7 @@ if( !function_exists('qcld_recommend_support_function_third_ajax') ){
 
     function qcld_recommend_support_function_third_ajax(){
 
-            check_ajax_referer( 'qc-clr', 'security');
+            check_ajax_referer( 'comment-link-remove', 'security');
 
             require_once ABSPATH . 'wp-admin/includes/plugin-install.php';
             remove_all_filters('plugins_api');
@@ -704,8 +721,8 @@ if( !function_exists('qcld_recommend_support_function_third_ajax') ){
                         'icons'             => true,
                         'reviews'           => false, // excludes all reviews
                     ],
-                    'live_preview'   => 'https://dev.quantumcloud.com/iList/',
-                    'update_to_pro'  => 'https://www.quantumcloud.com/products/infographic-maker-ilist/'
+                    'live_preview'   => 'https://dev.quantumcloud.net/iList/',
+                    'update_to_pro'  => 'https://www.quantumcloud.net/products/infographic-maker-ilist/'
                 ],
                 [
                     'slug'      => 'ichart',
@@ -714,8 +731,8 @@ if( !function_exists('qcld_recommend_support_function_third_ajax') ){
                         'icons'             => true,
                         'reviews'           => false, // excludes all reviews
                     ],
-                    'live_preview'   => 'https://dev.quantumcloud.com/ichart/',
-                    'update_to_pro'  => 'https://www.quantumcloud.com/products/ichart/'
+                    'live_preview'   => 'https://dev.quantumcloud.net/ichart/',
+                    'update_to_pro'  => 'https://www.quantumcloud.net/products/ichart/'
                 ],
                 [
                     'slug'      => 'comment-link-remove',
@@ -724,8 +741,8 @@ if( !function_exists('qcld_recommend_support_function_third_ajax') ){
                         'icons'             => true,
                         'reviews'           => false, // excludes all reviews
                     ],
-                    'live_preview'   => 'https://dev.quantumcloud.com/comment-tools/',
-                    'update_to_pro'  => 'https://www.quantumcloud.com/products/comment-tools/'
+                    'live_preview'   => 'https://dev.quantumcloud.net/comment-tools/',
+                    'update_to_pro'  => 'https://www.quantumcloud.net/products/comment-tools/'
                 ],
                 [
                     'slug'      => 'shop-assistant-for-woocommerce-jarvis',
@@ -734,8 +751,8 @@ if( !function_exists('qcld_recommend_support_function_third_ajax') ){
                         'icons'             => true,
                         'reviews'           => false, // excludes all reviews
                     ],
-                    'live_preview'   => 'https://dev.quantumcloud.com/JARVIS-woo/',
-                    'update_to_pro'  => 'https://www.quantumcloud.com/products/woocommerce-shop-assistant-jarvis/'
+                    'live_preview'   => 'https://dev.quantumcloud.net/JARVIS-woo/',
+                    'update_to_pro'  => 'https://www.quantumcloud.net/products/woocommerce-shop-assistant-jarvis/'
                 ], 
                 [
                     'slug'      => 'express-shop',
@@ -744,8 +761,8 @@ if( !function_exists('qcld_recommend_support_function_third_ajax') ){
                         'icons'             => true,
                         'reviews'           => false, // excludes all reviews
                     ],
-                    'live_preview'   => 'https://dev.quantumcloud.com/express-shop-pro/',
-                    'update_to_pro'  => 'https://www.quantumcloud.com/products/express-shop/'
+                    'live_preview'   => 'https://dev.quantumcloud.net/express-shop-pro/',
+                    'update_to_pro'  => 'https://www.quantumcloud.net/products/express-shop/'
                 ], 
 
                 [
@@ -755,8 +772,8 @@ if( !function_exists('qcld_recommend_support_function_third_ajax') ){
                         'icons'             => true,
                         'reviews'           => false, // excludes all reviews
                     ],
-                    'live_preview'   => 'https://dev.quantumcloud.com/woocommerce-tabbed-product-display/',
-                    'update_to_pro'  => 'https://www.quantumcloud.com/products/woo-tabbed-category-product-listing/'
+                    'live_preview'   => 'https://dev.quantumcloud.net/woocommerce-tabbed-product-display/',
+                    'update_to_pro'  => 'https://www.quantumcloud.net/products/woo-tabbed-category-product-listing/'
                 ]
 
 
@@ -814,15 +831,15 @@ if( !function_exists('qcld_recommend_support_function_third_ajax') ){
                             $title = wp_kses( $plugin['name'], $qcld_chatplugintags );
 
                             // Remove any HTML from the description.
-                            $description = strip_tags( $plugin['short_description'] );
+                            $description = wp_strip_all_tags( $plugin['short_description'] );
                             $version     = wp_kses( $plugin['version'], $qcld_chatplugintags );
 
-                            $name = strip_tags( $title . ' ' . $version );
+                            $name = wp_strip_all_tags( $title . ' ' . $version );
 
                             $author = wp_kses( $plugin['author'], $qcld_chatplugintags );
                             if ( ! empty( $author ) ) {
                                 /* translators: %s: Plugin author. */
-                                $author = ' <cite>' . sprintf( __( 'By %s' ), $author ) . '</cite>';
+                                $author = ' <cite>' . sprintf( __( 'By %s' , 'comment-link-remove'), $author ) . '</cite>';
                             }
 
                             $requires_php = isset( $plugin['requires_php'] ) ? $plugin['requires_php'] : null;
@@ -846,14 +863,14 @@ if( !function_exists('qcld_recommend_support_function_third_ajax') ){
                                                     esc_attr( $plugin['slug'] ),
                                                     esc_url( $status['url'] ),
                                                     /* translators: %s: Plugin name and version. */
-                                                    esc_attr( sprintf( _x( 'Install %s now', 'plugin' ), $name ) ),
+                                                    esc_attr( sprintf( _x( 'Install %s now',  'plugin' , 'comment-link-remove'), $name ) ),
                                                     esc_attr( $name ),
-                                                    __( 'Install Now' )
+                                                    __( 'Install Now' , 'comment-link-remove')
                                                 );
                                             } else {
                                                 $action_links[] = sprintf(
                                                     '<button type="button" class="button button-disabled" disabled="disabled">%s</button>',
-                                                    _x( 'Cannot Install', 'plugin' )
+                                                    _x( 'Cannot Install',  'plugin' , 'comment-link-remove')
                                                 );
                                             }
                                         }
@@ -868,14 +885,14 @@ if( !function_exists('qcld_recommend_support_function_third_ajax') ){
                                                     esc_attr( $plugin['slug'] ),
                                                     esc_url( $status['url'] ),
                                                     /* translators: %s: Plugin name and version. */
-                                                    esc_attr( sprintf( _x( 'Update %s now', 'plugin' ), $name ) ),
+                                                    esc_attr( sprintf( _x( 'Update %s now',  'plugin' , 'comment-link-remove'), $name ) ),
                                                     esc_attr( $name ),
-                                                    __( 'Update Now' )
+                                                    __( 'Update Now' , 'comment-link-remove')
                                                 );
                                             } else {
                                                 $action_links[] = sprintf(
                                                     '<button type="button" class="button button-disabled" disabled="disabled">%s</button>',
-                                                    _x( 'Cannot Update', 'plugin' )
+                                                    _x( 'Cannot Update',  'plugin' , 'comment-link-remove')
                                                 );
                                             }
                                         }
@@ -886,12 +903,12 @@ if( !function_exists('qcld_recommend_support_function_third_ajax') ){
                                         if ( is_plugin_active( $status['file'] ) ) {
                                             $action_links[] = sprintf(
                                                 '<button type="button" class="button button-disabled" disabled="disabled">%s</button>',
-                                                _x( 'Active', 'plugin' )
+                                                _x( 'Active',  'plugin' , 'comment-link-remove')
                                             );
                                         } elseif ( current_user_can( 'activate_plugin', $status['file'] ) ) {
-                                            $button_text = __( 'Activate' );
+                                            $button_text = __( 'Activate' , 'comment-link-remove');
                                             /* translators: %s: Plugin name. */
-                                            $button_label = _x( 'Activate %s', 'plugin' );
+                                            $button_label = _x( 'Activate %s',  'plugin' , 'comment-link-remove');
                                             $activate_url = add_query_arg(
                                                 array(
                                                     '_wpnonce' => wp_create_nonce( 'activate-plugin_' . $status['file'] ),
@@ -902,9 +919,9 @@ if( !function_exists('qcld_recommend_support_function_third_ajax') ){
                                             );
 
                                             if ( is_network_admin() ) {
-                                                $button_text = __( 'Network Activate' );
+                                                $button_text = __( 'Network Activate' , 'comment-link-remove');
                                                 /* translators: %s: Plugin name. */
-                                                $button_label = _x( 'Network Activate %s', 'plugin' );
+                                                $button_label = _x( 'Network Activate %s',  'plugin' , 'comment-link-remove');
                                                 $activate_url = add_query_arg( array( 'networkwide' => 1 ), $activate_url );
                                             }
 
@@ -917,7 +934,7 @@ if( !function_exists('qcld_recommend_support_function_third_ajax') ){
                                         } else {
                                             $action_links[] = sprintf(
                                                 '<button type="button" class="button button-disabled" disabled="disabled">%s</button>',
-                                                _x( 'Installed', 'plugin' )
+                                                _x( 'Installed',  'plugin' , 'comment-link-remove')
                                             );
                                         }
                                         break;
@@ -949,45 +966,55 @@ if( !function_exists('qcld_recommend_support_function_third_ajax') ){
                                 if ( ! $compatible_php || ! $compatible_wp ) {
                                     echo '<div class="notice inline notice-error notice-alt"><p>';
                                     if ( ! $compatible_php && ! $compatible_wp ) {
-                                        _e( 'This plugin doesn&#8217;t work with your versions of WordPress and PHP.' );
+                                        esc_html_e( 'This plugin doesn&#8217;t work with your versions of WordPress and PHP.' , 'comment-link-remove');
                                         if ( current_user_can( 'update_core' ) && current_user_can( 'update_php' ) ) {
-                                            printf(
-                                            /* translators: 1: URL to WordPress Updates screen, 2: URL to Update PHP page. */
-                                                ' ' . __( '<a href="%1$s">Please update WordPress</a>, and then <a href="%2$s">learn more about updating PHP</a>.' ),
-                                                self_admin_url( 'update-core.php' ),
-                                                esc_url( wp_get_update_php_url() )
+                                            echo wp_kses_post(
+                                                sprintf(
+                                                /* translators: 1: URL to WordPress Updates screen, 2: URL to Update PHP page. */
+                                                    ' ' . __( '<a href="%1$s">Please update WordPress</a>, and then <a href="%2$s">learn more about updating PHP</a>.' , 'comment-link-remove'),
+                                                    esc_url( self_admin_url( 'update-core.php' ) ),
+                                                    esc_url( wp_get_update_php_url() )
+                                                )
                                             );
                                             wp_update_php_annotation( '</p><p><em>', '</em>' );
                                         } elseif ( current_user_can( 'update_core' ) ) {
-                                            printf(
-                                            /* translators: %s: URL to WordPress Updates screen. */
-                                                ' ' . __( '<a href="%s">Please update WordPress</a>.' ),
-                                                self_admin_url( 'update-core.php' )
+                                            echo wp_kses_post(
+                                                sprintf(
+                                                /* translators: %s: URL to WordPress Updates screen. */
+                                                    ' ' . __( '<a href="%s">Please update WordPress</a>.' , 'comment-link-remove'),
+                                                    esc_url( self_admin_url( 'update-core.php' ) )
+                                                )
                                             );
                                         } elseif ( current_user_can( 'update_php' ) ) {
-                                            printf(
-                                            /* translators: %s: URL to Update PHP page. */
-                                                ' ' . __( '<a href="%s">Learn more about updating PHP</a>.' ),
-                                                esc_url( wp_get_update_php_url() )
+                                            echo wp_kses_post(
+                                                sprintf(
+                                                /* translators: %s: URL to Update PHP page. */
+                                                    ' ' . __( '<a href="%s">Learn more about updating PHP</a>.' , 'comment-link-remove'),
+                                                    esc_url( wp_get_update_php_url() )
+                                                )
                                             );
                                             wp_update_php_annotation( '</p><p><em>', '</em>' );
                                         }
                                     } elseif ( ! $compatible_wp ) {
-                                        _e( 'This plugin doesn&#8217;t work with your version of WordPress.' );
+                                        esc_html_e( 'This plugin doesn&#8217;t work with your version of WordPress.' , 'comment-link-remove');
                                         if ( current_user_can( 'update_core' ) ) {
-                                            printf(
-                                            /* translators: %s: URL to WordPress Updates screen. */
-                                                ' ' . __( '<a href="%s">Please update WordPress</a>.' ),
-                                                self_admin_url( 'update-core.php' )
+                                            echo wp_kses_post(
+                                                sprintf(
+                                                /* translators: %s: URL to WordPress Updates screen. */
+                                                    ' ' . __( '<a href="%s">Please update WordPress</a>.' , 'comment-link-remove'),
+                                                    esc_url( self_admin_url( 'update-core.php' ) )
+                                                )
                                             );
                                         }
                                     } elseif ( ! $compatible_php ) {
-                                        _e( 'This plugin doesn&#8217;t work with your version of PHP.' );
+                                        esc_html_e( 'This plugin doesn&#8217;t work with your version of PHP.' , 'comment-link-remove');
                                         if ( current_user_can( 'update_php' ) ) {
-                                            printf(
-                                            /* translators: %s: URL to Update PHP page. */
-                                                ' ' . __( '<a href="%s">Learn more about updating PHP</a>.' ),
-                                                esc_url( wp_get_update_php_url() )
+                                            echo wp_kses_post(
+                                                sprintf(
+                                                /* translators: %s: URL to Update PHP page. */
+                                                    ' ' . __( '<a href="%s">Learn more about updating PHP</a>.' , 'comment-link-remove'),
+                                                    esc_url( wp_get_update_php_url() )
+                                                )
                                             );
                                             wp_update_php_annotation( '</p><p><em>', '</em>' );
                                         }
@@ -999,16 +1026,16 @@ if( !function_exists('qcld_recommend_support_function_third_ajax') ){
                                     <div class="name column-name">
                                         <h3>
                                             <a href="<?php echo esc_url( $plugin_live_link ); ?>" target="_blank" >
-                                                <?php echo esc_attr($title); ?>
+                                                <?php echo esc_html($title); ?>
                                                
-                                                <img src="<?php echo esc_attr( $plugin_icon_url ); ?>" class="plugin-icon" alt="" />
+                                                <img src="<?php echo esc_url( $plugin_icon_url ); ?>" class="plugin-icon" alt="" />
                                             </a>
                                         </h3>
                                     </div>
                                     <div class="action-links">
                                         <?php
                                         if ( $action_links ) {
-                                            echo '<ul class="plugin-action-buttons"><li>' . implode( '</li><li>', $action_links ) . '</li></ul>';
+                                            echo wp_kses_post( '<ul class="plugin-action-buttons"><li>' . implode( '</li><li>', $action_links ) . '</li></ul>' );
                                         }
                                         ?>
                                     </div>
@@ -1040,7 +1067,7 @@ if( !function_exists('qcld_recommend_support_function_third_ajax') ){
         </div>
 <?php 
 
-    echo  ob_get_clean();
+    echo wp_kses_post( ob_get_clean() );
     exit();
 
 
@@ -1060,7 +1087,7 @@ if( !function_exists('qcld_recommend_support_function_forth_ajax') ){
 
     function qcld_recommend_support_function_forth_ajax(){
 
-            check_ajax_referer( 'qc-clr', 'security');
+            check_ajax_referer( 'comment-link-remove', 'security');
 
             require_once ABSPATH . 'wp-admin/includes/plugin-install.php';
             remove_all_filters('plugins_api');
@@ -1075,8 +1102,8 @@ if( !function_exists('qcld_recommend_support_function_forth_ajax') ){
                         'icons'             => true,
                         'reviews'           => false, // excludes all reviews
                     ],
-                    'live_preview'   => 'https://dev.quantumcloud.com/portfolio-x/',
-                    'update_to_pro'  => 'https://www.quantumcloud.com/products/portfolio-x-plugin/'
+                    'live_preview'   => 'https://dev.quantumcloud.net/portfolio-x/',
+                    'update_to_pro'  => 'https://www.quantumcloud.net/products/portfolio-x-plugin/'
                 ],
                 [
                     'slug'      => 'bargain',
@@ -1085,8 +1112,8 @@ if( !function_exists('qcld_recommend_support_function_forth_ajax') ){
                         'icons'             => true,
                         'reviews'           => false, // excludes all reviews
                     ],
-                    'live_preview'   => 'https://dev.quantumcloud.com/bargainbot/',
-                    'update_to_pro'  => 'https://www.quantumcloud.com/products/bargain-bot/'
+                    'live_preview'   => 'https://dev.quantumcloud.net/bargainbot/',
+                    'update_to_pro'  => 'https://www.quantumcloud.net/products/bargain-bot/'
                 ],
 
                 [
@@ -1139,7 +1166,7 @@ if( !function_exists('qcld_recommend_support_function_forth_ajax') ){
                         'reviews'           => false, // excludes all reviews
                     ],
                     'live_preview'   => '',
-                    'update_to_pro'  => 'https://www.quantumcloud.com/products/image-tools-for-wordpress/'
+                    'update_to_pro'  => 'https://www.quantumcloud.net/products/image-tools-for-wordpress/'
                 ], 
                 [
                     'slug'      => 'simple-media-directory',
@@ -1148,7 +1175,7 @@ if( !function_exists('qcld_recommend_support_function_forth_ajax') ){
                         'icons'             => true,
                         'reviews'           => false, // excludes all reviews
                     ],
-                    'live_preview'   => 'https://dev.quantumcloud.com/simple-media-directory/',
+                    'live_preview'   => 'https://dev.quantumcloud.net/simple-media-directory/',
                     'update_to_pro'  => ''
                 ], 
 
@@ -1218,15 +1245,15 @@ if( !function_exists('qcld_recommend_support_function_forth_ajax') ){
                             $title = wp_kses( $plugin['name'], $qcld_chatplugintags );
 
                             // Remove any HTML from the description.
-                            $description = strip_tags( $plugin['short_description'] );
+                            $description = wp_strip_all_tags( $plugin['short_description'] );
                             $version     = wp_kses( $plugin['version'], $qcld_chatplugintags );
 
-                            $name = strip_tags( $title . ' ' . $version );
+                            $name = wp_strip_all_tags( $title . ' ' . $version );
 
                             $author = wp_kses( $plugin['author'], $qcld_chatplugintags );
                             if ( ! empty( $author ) ) {
                                 /* translators: %s: Plugin author. */
-                                $author = ' <cite>' . sprintf( __( 'By %s' ), $author ) . '</cite>';
+                                $author = ' <cite>' . sprintf( __( 'By %s' , 'comment-link-remove'), $author ) . '</cite>';
                             }
 
                             $requires_php = isset( $plugin['requires_php'] ) ? $plugin['requires_php'] : null;
@@ -1250,14 +1277,14 @@ if( !function_exists('qcld_recommend_support_function_forth_ajax') ){
                                                     esc_attr( $plugin['slug'] ),
                                                     esc_url( $status['url'] ),
                                                     /* translators: %s: Plugin name and version. */
-                                                    esc_attr( sprintf( _x( 'Install %s now', 'plugin' ), $name ) ),
+                                                    esc_attr( sprintf( _x( 'Install %s now',  'plugin' , 'comment-link-remove'), $name ) ),
                                                     esc_attr( $name ),
-                                                    __( 'Install Now' )
+                                                    __( 'Install Now' , 'comment-link-remove')
                                                 );
                                             } else {
                                                 $action_links[] = sprintf(
                                                     '<button type="button" class="button button-disabled" disabled="disabled">%s</button>',
-                                                    _x( 'Cannot Install', 'plugin' )
+                                                    _x( 'Cannot Install',  'plugin' , 'comment-link-remove')
                                                 );
                                             }
                                         }
@@ -1272,14 +1299,14 @@ if( !function_exists('qcld_recommend_support_function_forth_ajax') ){
                                                     esc_attr( $plugin['slug'] ),
                                                     esc_url( $status['url'] ),
                                                     /* translators: %s: Plugin name and version. */
-                                                    esc_attr( sprintf( _x( 'Update %s now', 'plugin' ), $name ) ),
+                                                    esc_attr( sprintf( _x( 'Update %s now',  'plugin' , 'comment-link-remove'), $name ) ),
                                                     esc_attr( $name ),
-                                                    __( 'Update Now' )
+                                                    __( 'Update Now' , 'comment-link-remove')
                                                 );
                                             } else {
                                                 $action_links[] = sprintf(
                                                     '<button type="button" class="button button-disabled" disabled="disabled">%s</button>',
-                                                    _x( 'Cannot Update', 'plugin' )
+                                                    _x( 'Cannot Update',  'plugin' , 'comment-link-remove')
                                                 );
                                             }
                                         }
@@ -1290,12 +1317,12 @@ if( !function_exists('qcld_recommend_support_function_forth_ajax') ){
                                         if ( is_plugin_active( $status['file'] ) ) {
                                             $action_links[] = sprintf(
                                                 '<button type="button" class="button button-disabled" disabled="disabled">%s</button>',
-                                                _x( 'Active', 'plugin' )
+                                                _x( 'Active',  'plugin' , 'comment-link-remove')
                                             );
                                         } elseif ( current_user_can( 'activate_plugin', $status['file'] ) ) {
-                                            $button_text = __( 'Activate' );
+                                            $button_text = __( 'Activate' , 'comment-link-remove');
                                             /* translators: %s: Plugin name. */
-                                            $button_label = _x( 'Activate %s', 'plugin' );
+                                            $button_label = _x( 'Activate %s',  'plugin' , 'comment-link-remove');
                                             $activate_url = add_query_arg(
                                                 array(
                                                     '_wpnonce' => wp_create_nonce( 'activate-plugin_' . $status['file'] ),
@@ -1306,9 +1333,9 @@ if( !function_exists('qcld_recommend_support_function_forth_ajax') ){
                                             );
 
                                             if ( is_network_admin() ) {
-                                                $button_text = __( 'Network Activate' );
+                                                $button_text = __( 'Network Activate' , 'comment-link-remove');
                                                 /* translators: %s: Plugin name. */
-                                                $button_label = _x( 'Network Activate %s', 'plugin' );
+                                                $button_label = _x( 'Network Activate %s',  'plugin' , 'comment-link-remove');
                                                 $activate_url = add_query_arg( array( 'networkwide' => 1 ), $activate_url );
                                             }
 
@@ -1321,7 +1348,7 @@ if( !function_exists('qcld_recommend_support_function_forth_ajax') ){
                                         } else {
                                             $action_links[] = sprintf(
                                                 '<button type="button" class="button button-disabled" disabled="disabled">%s</button>',
-                                                _x( 'Installed', 'plugin' )
+                                                _x( 'Installed',  'plugin' , 'comment-link-remove')
                                             );
                                         }
                                         break;
@@ -1353,45 +1380,55 @@ if( !function_exists('qcld_recommend_support_function_forth_ajax') ){
                                 if ( ! $compatible_php || ! $compatible_wp ) {
                                     echo '<div class="notice inline notice-error notice-alt"><p>';
                                     if ( ! $compatible_php && ! $compatible_wp ) {
-                                        _e( 'This plugin doesn&#8217;t work with your versions of WordPress and PHP.' );
+                                        esc_html_e( 'This plugin doesn&#8217;t work with your versions of WordPress and PHP.' , 'comment-link-remove');
                                         if ( current_user_can( 'update_core' ) && current_user_can( 'update_php' ) ) {
-                                            printf(
-                                            /* translators: 1: URL to WordPress Updates screen, 2: URL to Update PHP page. */
-                                                ' ' . __( '<a href="%1$s">Please update WordPress</a>, and then <a href="%2$s">learn more about updating PHP</a>.' ),
-                                                self_admin_url( 'update-core.php' ),
-                                                esc_url( wp_get_update_php_url() )
+                                            echo wp_kses_post(
+                                                sprintf(
+                                                /* translators: 1: URL to WordPress Updates screen, 2: URL to Update PHP page. */
+                                                    ' ' . __( '<a href="%1$s">Please update WordPress</a>, and then <a href="%2$s">learn more about updating PHP</a>.' , 'comment-link-remove'),
+                                                    esc_url( self_admin_url( 'update-core.php' ) ),
+                                                    esc_url( wp_get_update_php_url() )
+                                                )
                                             );
                                             wp_update_php_annotation( '</p><p><em>', '</em>' );
                                         } elseif ( current_user_can( 'update_core' ) ) {
-                                            printf(
-                                            /* translators: %s: URL to WordPress Updates screen. */
-                                                ' ' . __( '<a href="%s">Please update WordPress</a>.' ),
-                                                self_admin_url( 'update-core.php' )
+                                            echo wp_kses_post(
+                                                sprintf(
+                                                /* translators: %s: URL to WordPress Updates screen. */
+                                                    ' ' . __( '<a href="%s">Please update WordPress</a>.' , 'comment-link-remove'),
+                                                    esc_url( self_admin_url( 'update-core.php' ) )
+                                                )
                                             );
                                         } elseif ( current_user_can( 'update_php' ) ) {
-                                            printf(
-                                            /* translators: %s: URL to Update PHP page. */
-                                                ' ' . __( '<a href="%s">Learn more about updating PHP</a>.' ),
-                                                esc_url( wp_get_update_php_url() )
+                                            echo wp_kses_post(
+                                                sprintf(
+                                                /* translators: %s: URL to Update PHP page. */
+                                                    ' ' . __( '<a href="%s">Learn more about updating PHP</a>.' , 'comment-link-remove'),
+                                                    esc_url( wp_get_update_php_url() )
+                                                )
                                             );
                                             wp_update_php_annotation( '</p><p><em>', '</em>' );
                                         }
                                     } elseif ( ! $compatible_wp ) {
-                                        _e( 'This plugin doesn&#8217;t work with your version of WordPress.' );
+                                        esc_html_e( 'This plugin doesn&#8217;t work with your version of WordPress.' , 'comment-link-remove');
                                         if ( current_user_can( 'update_core' ) ) {
-                                            printf(
-                                            /* translators: %s: URL to WordPress Updates screen. */
-                                                ' ' . __( '<a href="%s">Please update WordPress</a>.' ),
-                                                self_admin_url( 'update-core.php' )
+                                            echo wp_kses_post(
+                                                sprintf(
+                                                /* translators: %s: URL to WordPress Updates screen. */
+                                                    ' ' . __( '<a href="%s">Please update WordPress</a>.' , 'comment-link-remove'),
+                                                    esc_url( self_admin_url( 'update-core.php' ) )
+                                                )
                                             );
                                         }
                                     } elseif ( ! $compatible_php ) {
-                                        _e( 'This plugin doesn&#8217;t work with your version of PHP.' );
+                                        esc_html_e( 'This plugin doesn&#8217;t work with your version of PHP.' , 'comment-link-remove');
                                         if ( current_user_can( 'update_php' ) ) {
-                                            printf(
-                                            /* translators: %s: URL to Update PHP page. */
-                                                ' ' . __( '<a href="%s">Learn more about updating PHP</a>.' ),
-                                                esc_url( wp_get_update_php_url() )
+                                            echo wp_kses_post(
+                                                sprintf(
+                                                /* translators: %s: URL to Update PHP page. */
+                                                    ' ' . __( '<a href="%s">Learn more about updating PHP</a>.' , 'comment-link-remove'),
+                                                    esc_url( wp_get_update_php_url() )
+                                                )
                                             );
                                             wp_update_php_annotation( '</p><p><em>', '</em>' );
                                         }
@@ -1403,16 +1440,16 @@ if( !function_exists('qcld_recommend_support_function_forth_ajax') ){
                                     <div class="name column-name">
                                         <h3>
                                             <a href="<?php echo esc_url( $plugin_live_link ); ?>" target="_blank" >
-                                                <?php echo esc_attr($title); ?>
+                                                <?php echo esc_html($title); ?>
                                                
-                                                <img src="<?php echo esc_attr( $plugin_icon_url ); ?>" class="plugin-icon" alt="" />
+                                                <img src="<?php echo esc_url( $plugin_icon_url ); ?>" class="plugin-icon" alt="" />
                                             </a>
                                         </h3>
                                     </div>
                                     <div class="action-links">
                                         <?php
                                         if ( $action_links ) {
-                                            echo '<ul class="plugin-action-buttons"><li>' . implode( '</li><li>', $action_links ) . '</li></ul>';
+                                            echo wp_kses_post( '<ul class="plugin-action-buttons"><li>' . implode( '</li><li>', $action_links ) . '</li></ul>' );
                                         }
                                         ?>
                                     </div>
@@ -1444,7 +1481,7 @@ if( !function_exists('qcld_recommend_support_function_forth_ajax') ){
         </div>
 <?php 
 
-    echo  ob_get_clean();
+    echo wp_kses_post( ob_get_clean() );
     exit();
 
 

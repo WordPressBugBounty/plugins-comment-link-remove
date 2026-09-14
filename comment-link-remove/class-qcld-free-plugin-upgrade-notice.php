@@ -1,5 +1,4 @@
 <?php
-
 defined('ABSPATH') or die("No direct script access!");
 
 /*******************************************
@@ -13,7 +12,7 @@ if( !class_exists('QcldPluginUpgradeToProNotice') )
 		
 		//Public variables, these can be overrides using instance callback
 
-		public $upgrade_link = "https://www.quantumcloud.com";
+		public $upgrade_link = "https://www.quantumcloud.net";
 		public $link_color = "#FCB214";
 		public $link_text = "Upgrade to Pro";
 		public $link_class = "";
@@ -100,14 +99,14 @@ if( !class_exists('QcldPluginUpgradeToProNotice') )
 		{
 			// Help | Support | Settings
 			$links = array_merge( $links, array(
-				'<a title="Settings" class="'.$this->link_class.'" style="" href="' . esc_url( admin_url('admin.php?page=comment-link-remove') ) . '" target="">' . __( 'Settings', 'quantumcloud' ) . '</a>'
+				'<a title="Settings" class="' . esc_attr( $this->link_class ) . '" href="' . esc_url( admin_url('admin.php?page=comment-link-remove') ) . '">' . esc_html__( 'Settings', 'comment-link-remove') . '</a>'
 			) );
 			$links = array_merge( $links, array(
-				'<a title="Support" class="'.$this->link_class.'" style="" href="' . esc_url( 'https://www.quantumcloud.com/resources/free-support/' ) . '" target="">' . __( 'Support', 'quantumcloud' ) . '</a>'
+				'<a title="Support" class="' . esc_attr( $this->link_class ) . '" href="' . esc_url( 'https://www.quantumcloud.net/resources/free-support/' ) . '">' . esc_html__( 'Support', 'comment-link-remove') . '</a>'
 			) );
 
 			$links = array_merge( $links, array(
-				'<a title="'.$this->link_text.'" class="'.$this->link_class.'" style="font-weight: bold; color: '.$this->link_color.';" href="' . esc_url( $this->upgrade_link ) . '" target="'.$this->link_target.'">' . __( $this->link_text, 'quantumcloud' ) . '</a>'
+				'<a title="' . esc_attr( $this->link_text ) . '" class="' . esc_attr( $this->link_class ) . ' qc-clr-upgrade-link" href="' . esc_url( $this->upgrade_link ) . '" target="' . esc_attr( $this->link_target ) . '">' . esc_html( $this->link_text ) . '</a>'
 			) );
 			
 			return $links;
@@ -144,7 +143,7 @@ if( !class_exists('QcldPluginUpgradeToProNotice') )
 			if ( strpos( $file, "$this->plugin_main_file" ) !== false ) {
 			
 				$new_links = array(
-					'<a class="'.$this->link_class.'" style="font-weight: bold; color: '.$this->link_color.';" href="' . esc_url( $this->upgrade_link ) . '" title="'.$this->link_text.'" target="'.$this->link_target.'">' . __( $this->link_text, 'quantumcloud' ) . '</a>'
+					'<a class="' . esc_attr( $this->link_class ) . ' qc-clr-upgrade-link" href="' . esc_url( $this->upgrade_link ) . '" title="' . esc_attr( $this->link_text ) . '" target="' . esc_attr( $this->link_target ) . '">' . esc_html( $this->link_text ) . '</a>'
 				);
 				
 				$links = array_merge( $links, $new_links );
@@ -181,7 +180,7 @@ if( !class_exists('QcldPluginUpgradeToProNotice') )
 		     return;
 		    }
 		   
-		    $link_text = '<span class="qc-up-pro-link" style="font-weight: bold; padding: 5px; background: #2271B1; border-radius: 4px; color: '.$this->link_color.'">'.$this->link_text.'</span>';
+		    $link_text = '<span class="qc-up-pro-link">' . esc_html( $this->link_text ) . '</span>';
 			if($current_user->roles[0]!='subscriber')
 				$submenu["$this->plugin_menu_slug"][300] = array( $link_text, 'activate_plugins' , $this->upgrade_link );
 			
@@ -207,7 +206,7 @@ if( is_admin() )
 	
 	//Uncommnent and Set these instance variables as per the requirements
 
-	$instance_sldf2->upgrade_link = "https://www.quantumcloud.com/products/comment-tools/";
+	$instance_sldf2->upgrade_link = "https://www.quantumcloud.net/products/comment-tools/";
 
 	$instance_sldf2->plugin_slug = 'comment-link-remove'; //Plugin Slug. i.e. Folder Name
 	$instance_sldf2->plugin_main_file = 'qc-clr-main.php'; //Primary file of the pluign

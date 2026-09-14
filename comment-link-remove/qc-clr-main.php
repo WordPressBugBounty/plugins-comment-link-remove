@@ -1,21 +1,44 @@
 <?php
 /**
  * Plugin Name: Comment Link Remove
- * Plugin URI: https://wordpress.org/plugins/comment-link-remove
+ * Plugin URI: https://www.quantumcloud.net/products/comment-tools/
  * Description: Remove author link and any other posted links from the comment fields. 
- * Version: 2.7.5
+ * Version: 2.7.6
  * Author: QuantumCloud
- * Author URI: https://www.quantumcloud.com/
- * Requires at least: 4.6
+ * Author URI: https://www.quantumcloud.net/
+ * Requires at least: 5.2
  * Tested up to: 7.1
- * Text Domain: qc-clr
+ * Text Domain: comment-link-remove
  * Domain Path: /lang/
  * License: GPL2
  */
 
 defined('ABSPATH') or die("No direct script access!");
 
+// Abort execution if Pro version is active to prevent conflicts
+if ( ! function_exists( 'is_plugin_active' ) ) {
+    require_once ABSPATH . 'wp-admin/includes/plugin.php';
+}
+if ( is_plugin_active( 'comment-tools-pro/qc-clr-main.php' ) ) {
+    return;
+}
+
+// Also abort if we are currently activating the Pro plugin
+// phpcs:disable WordPress.Security.NonceVerification.Recommended, WordPress.Security.NonceVerification.Missing
+if ( isset($_REQUEST['action']) ) {
+    if ( sanitize_text_field(wp_unslash($_REQUEST['action'])) == 'activate' && isset($_REQUEST['plugin']) && strpos(sanitize_text_field(wp_unslash($_REQUEST['plugin'])), 'comment-tools-pro') !== false ) {
+        return;
+    }
+    if ( sanitize_text_field(wp_unslash($_REQUEST['action'])) == 'activate-selected' && isset($_POST['checked']) && is_array($_POST['checked']) && in_array('comment-tools-pro/qc-clr-main.php', array_map('sanitize_text_field', wp_unslash($_POST['checked'])), true) ) {
+        return;
+    }
+}
+// phpcs:enable WordPress.Security.NonceVerification.Recommended, WordPress.Security.NonceVerification.Missing
+
 //Custom Constants
+if ( ! defined( 'QCCLR_VERSION' ) ) {
+    define( 'QCCLR_VERSION', '2.7.5' );
+}
 if ( ! defined( 'QCCLR_PLUGIN_DIR_PATH' ) ) {
     define('QCCLR_PLUGIN_DIR_PATH', plugin_dir_path(__FILE__));
 }
@@ -28,6 +51,7 @@ if ( ! defined( 'QCCLR_ASSETS_URL' ) ) {
 if ( ! defined( 'QCCLR_DIR' ) ) {
 	define('QCCLR_DIR', dirname(__FILE__));
 }
+
 
 
 //Include required files
@@ -90,7 +114,7 @@ if( $remove_author_txtlink === '1' )
 
 	if( !function_exists("qcclr_disable_comment_author_links")){
 		function qcclr_disable_comment_author_links( $author_link ){
-			return strip_tags( $author_link );
+			return wp_strip_all_tags( $author_link );
 		}
 		add_filter( 'get_comment_author_link', 'qcclr_disable_comment_author_links' );
 	}
@@ -182,8 +206,8 @@ function qc_clr_add_sublavel_menuss(){
 
         add_submenu_page(
             'comment-link-remove',
-            __('Email Subscription'),
-            __('Email Subscription'),
+            __('Email Subscription', 'comment-link-remove'),
+            __('Email Subscription', 'comment-link-remove'),
             'manage_options',
             'email-subscriptions',
             'qcld_clr_email_subscription_page'
@@ -191,8 +215,8 @@ function qc_clr_add_sublavel_menuss(){
 
 		add_submenu_page(
 		    'comment-link-remove',
-		    __('Comment Spam Protection'),
-		    __('Comment Spam Protection'),
+		    __('Comment Spam Protection', 'comment-link-remove'),
+		    __('Comment Spam Protection', 'comment-link-remove'),
 		    'manage_options',
 		    'qcld_clr_config',
 		    'qcld_clr_conf'
@@ -201,8 +225,8 @@ function qc_clr_add_sublavel_menuss(){
     
 	    add_submenu_page(
 	        'comment-link-remove',
-	        __('Comment Mention Settings'),
-	        __('Comment Mention'),
+	        __('Comment Mention Settings', 'comment-link-remove'),
+	        __('Comment Mention', 'comment-link-remove'),
 	        'manage_options',
 	        'qcclr_comment_mention',
 	        'qcclr_comment_mention_admin_settings'
@@ -211,8 +235,8 @@ function qc_clr_add_sublavel_menuss(){
 	    
 	    add_submenu_page(
 	        'comment-link-remove',
-	        __('AI Auto Reply Comments'),
-	        __('AI Auto Reply Comments'),
+	        __('AI Auto Reply Comments', 'comment-link-remove'),
+	        __('AI Auto Reply Comments', 'comment-link-remove'),
 	        'manage_options',
 	        'qcclr_comment_autoreply',
 	        'qcclr_comment_autoreply_admin_settings'
@@ -277,16 +301,10 @@ function qcld_clr_pro_notice(){
 
     ?>
 
-    <div id="message-clr" class="notice notice-info is-dismissible" style="padding:4px 0px 0px 4px;background:#e80607;">
-        <?php
-            printf(
-                __('%s  %s  %s','qc-clr'),
-                '<a href="'.esc_url('https://www.quantumcloud.com/products/comment-tools/').'" target="_blank">',
-                '<img src="'.esc_url(QCCLR_ASSETS_URL).'/img/newyear24-comment-link.jpg" >',
-                '</a>'
-            );
-
-        ?>
+    <div id="message-clr" class="notice notice-info is-dismissible">
+        <a href="<?php echo esc_url('https://www.quantumcloud.net/products/comment-tools/'); ?>" target="_blank">
+            <img src="<?php echo esc_url(QCCLR_ASSETS_URL . '/img/newyear24-comment-link.jpg'); ?>" alt="<?php esc_attr_e('Comment Tools', 'comment-link-remove'); ?>">
+        </a>
     </div>
 
 <?php
@@ -302,7 +320,8 @@ if ( ! function_exists( 'qcld_clr_activation_redirect' ) ) {
 	    $screen = get_current_screen();
 
 	    if( ( isset( $screen->base ) && $screen->base == 'plugins' ) && $plugin == plugin_basename( __FILE__ ) ) {
-	        exit( wp_redirect( admin_url( 'admin.php?page=comment-link-remove') ) );
+	        wp_safe_redirect( admin_url( 'admin.php?page=comment-link-remove') );
+	        exit;
 	    }
       
   	}

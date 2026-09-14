@@ -86,43 +86,43 @@ class qcld_clr_comment_init_settings {
 
 		$types = array(
 			'image'       => array(
-				'name' => __( 'image', 'qc-clr' ),
+				'name' => __( 'image', 'comment-link-remove'),
 				'exts' => array(),
 			),
 			'audio'       => array(
-				'name' => __( 'audio', 'qc-clr' ),
+				'name' => __( 'audio', 'comment-link-remove'),
 				'exts' => array(),
 			),
 			'video'       => array(
-				'name' => __( 'video', 'qc-clr' ),
+				'name' => __( 'video', 'comment-link-remove'),
 				'exts' => array(),
 			),
 			'document'    => array(
-				'name' => __( 'document', 'qc-clr' ),
+				'name' => __( 'document', 'comment-link-remove'),
 				'exts' => array(),
 			),
 			'spreadsheet' => array(
-				'name' => __( 'spreadsheet', 'qc-clr' ),
+				'name' => __( 'spreadsheet', 'comment-link-remove'),
 				'exts' => array(),
 			),
 			'interactive' => array(
-				'name' => __( 'interactive', 'qc-clr' ),
+				'name' => __( 'interactive', 'comment-link-remove'),
 				'exts' => array(),
 			),
 			'text'        => array(
-				'name' => __( 'text', 'qc-clr' ),
+				'name' => __( 'text', 'comment-link-remove'),
 				'exts' => array(),
 			),
 			'archive'     => array(
-				'name' => __( 'archive', 'qc-clr' ),
+				'name' => __( 'archive', 'comment-link-remove'),
 				'exts' => array(),
 			),
 			'code'        => array(
-				'name' => __( 'code', 'qc-clr' ),
+				'name' => __( 'code', 'comment-link-remove'),
 				'exts' => array(),
 			),
 			'other'       => array(
-				'name' => __( 'other', 'qc-clr' ),
+				'name' => __( 'other', 'comment-link-remove'),
 				'exts' => array(),
 			),
 		);
@@ -175,7 +175,7 @@ class qcld_clr_comment_init_settings {
 	 * @since 1.0.0
 	 */
 	public function register_settings() {
-		register_setting( self::ID, self::ID );
+		register_setting( self::ID, self::ID, array( 'sanitize_callback' => array( $this, 'sanitize_settings' ) ) );
 
 		$sections = $this->get_sections();
 		foreach ( $sections as $key => $title ) {
@@ -216,6 +216,31 @@ class qcld_clr_comment_init_settings {
 	}
 
 	/**
+	 * Sanitizes the settings options.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @param array $input Raw input.
+	 * @return array Sanitized output.
+	 */
+	public function sanitize_settings( $input ) {
+		$sanitized_input = array();
+		if ( ! is_array( $input ) ) {
+			return $sanitized_input;
+		}
+
+		foreach ( $input as $key => $val ) {
+			if ( is_array( $val ) ) {
+				$sanitized_input[ sanitize_key( $key ) ] = array_map( 'sanitize_text_field', $val );
+			} else {
+				$sanitized_input[ sanitize_key( $key ) ] = sanitize_text_field( $val );
+			}
+		}
+
+		return $sanitized_input;
+	}
+
+	/**
 	 * Adds an options page to the settings section in the admin menu.
 	 *
 	 * @since 1.0.0
@@ -224,8 +249,8 @@ class qcld_clr_comment_init_settings {
 	
 	    add_submenu_page(
 	        'comment-link-remove',
-	        __('Comment Attachment Settings'),
-	        __('Comment Attachment Settings'),
+	        __('Comment Attachment Settings', 'comment-link-remove'),
+	        __('Comment Attachment Settings', 'comment-link-remove'),
 	        'manage_options',
 	        'clr-comment-attachment',
 	        array( $this, 'render' )
@@ -240,15 +265,41 @@ class qcld_clr_comment_init_settings {
 	public function render() {
 		?>
 		<div class="wrap">
-			<h1><?php esc_html_e( 'Comment Attachment Settings', 'qc-clr' ); ?></h1>
-			<p class="qc_clr_upgrade_pro"><?php  esc_html_e( 'Comment Attachments is a Pro Version Feature. Please ', 'qc-clr' ); ?> <a href="<?php  echo esc_url( 'https://www.quantumcloud.com/products/comment-tools/', 'qc-clr' ); ?>" target="_blank"><span class="qc_clr_pro_feature" > <?php  esc_html_e( 'Upgrade to the Pro Version.', 'qc-clr' ); ?></span> </a>   <?php  esc_html_e( ' to activate this feature.', 'qc-clr' ); ?></p>
-			<form action="options.php" method="post">
-				<?php
-				settings_fields( self::ID );
-				do_settings_sections( self::ID );
-				submit_button();
-				?>
-			</form>
+			<h1><?php esc_html_e( 'Comment Attachment Settings', 'comment-link-remove'); ?></h1>
+		<div class="qc-clr-attachment-page-wrap">
+			<div class="qc-clr-attachment-card">
+				<!-- Header Area -->
+				<div class="qc-clr-attachment-header">
+					<div class="qc-clr-attachment-title-area">
+						<h2 class="qc-clr-attachment-title"><?php esc_html_e( 'Comment Attachment Settings', 'comment-link-remove'); ?></h2>
+						<span class="qc-clr-pro-badge"><?php esc_html_e( 'Pro Feature', 'comment-link-remove'); ?></span>
+					</div>
+					<p class="qc-clr-attachment-subtitle"><?php esc_html_e('Allow commenters to attach images, documents, audio, and videos directly to their comments with custom size and moderation controls.', 'comment-link-remove'); ?></p>
+
+					<!-- Pro Notice Banner -->
+					<div class="qc-clr-pro-banner">
+						<div class="qc-clr-pro-banner-content">
+							<span class="dashicons dashicons-paperclip qc-clr-paperclip-icon"></span>
+							<div class="qc-clr-pro-banner-text">
+								<strong><?php esc_html_e( 'Comment Media & File Attachments', 'comment-link-remove'); ?></strong>
+								<p><?php esc_html_e( 'Comment Attachment is a Pro Version Feature. Enable users to upload images, media, and documents with comments with gallery view and automated moderation.', 'comment-link-remove'); ?></p>
+							</div>
+						</div>
+						<a class="qc-clr-pro-upgrade-btn" href="<?php echo esc_url( 'https://www.quantumcloud.net/products/comment-tools/'); ?>" target="_blank">
+							<?php esc_html_e( 'Upgrade to Pro', 'comment-link-remove'); ?> &rarr;
+						</a>
+					</div>
+				</div>
+
+				<form action="options.php" method="post" class="qc-clr-attachment-form">
+					<?php
+					settings_fields( self::ID );
+					do_settings_sections( self::ID );
+					submit_button();
+					?>
+				</form>
+			</div>
+		</div>
 		</div>
 		<?php
 	}
@@ -262,11 +313,11 @@ class qcld_clr_comment_init_settings {
 	 */
 	public function get_sections() {
 		$sections = array(
-			'general'         => esc_html__( 'General', 'qc-clr' ),
-			'images'          => esc_html__( 'Images', 'qc-clr' ),
-			'multiple_upload' => esc_html__( 'Multiple upload', 'qc-clr' ),
-			'permissions'     => esc_html__( 'Permissions', 'qc-clr' ),
-			'in_admin'        => esc_html__( 'Admin Panel', 'qc-clr' ),
+			'general'         => esc_html__( 'General', 'comment-link-remove'),
+			'images'          => esc_html__( 'Images', 'comment-link-remove'),
+			'multiple_upload' => esc_html__( 'Multiple upload', 'comment-link-remove'),
+			'permissions'     => esc_html__( 'Permissions', 'comment-link-remove'),
+			'in_admin'        => esc_html__( 'Admin Panel', 'comment-link-remove'),
 		);
 
 		return $sections;
@@ -282,119 +333,119 @@ class qcld_clr_comment_init_settings {
 	public function get_fields() {
 		$fields = array(
 			'max_upload_size'          => array(
-				'label'   => esc_html__( 'Maximum upload file size', 'qc-clr' ),
+				'label'   => esc_html__( 'Maximum upload file size', 'comment-link-remove'),
 				/* translators: %s: the maximum allowed upload file size */
-				'desc'    => sprintf( __( 'Set the value in megabytes. Currently your server allows you to upload files up to %s.', 'qc-clr' ), $this->get_max_upload_size( true, true ) ),
+				'desc'    => sprintf( __( 'Set the value in megabytes. Currently your server allows you to upload files up to %s.', 'comment-link-remove'), $this->get_max_upload_size( true, true ) ),
 				'section' => 'general',
 				'type'    => 'number',
 				'default' => $this->get_max_upload_size( false, true ),
 			),
 			'required_attachment'      => array(
-				'label'   => esc_html__( 'Is attachment required?', 'qc-clr' ),
-				'desc'    => __( 'If checked, the user will not be able to post a comment without attaching an attachment.', 'qc-clr' ),
+				'label'   => esc_html__( 'Is attachment required?', 'comment-link-remove'),
+				'desc'    => __( 'If checked, the user will not be able to post a comment without attaching an attachment.', 'comment-link-remove'),
 				'section' => 'general',
 				'type'    => 'checkbox',
 				'default' => 0,
 			),
 			'embed_attachment'         => array(
-				'label'   => esc_html__( 'Embed attachment?', 'qc-clr' ),
-				'desc'    => __( 'If checked, the attachment is displayed as an image, video, audio, or file link. Otherwise, all attachments will be displayed as links to files.', 'qc-clr' ),
+				'label'   => esc_html__( 'Embed attachment?', 'comment-link-remove'),
+				'desc'    => __( 'If checked, the attachment is displayed as an image, video, audio, or file link. Otherwise, all attachments will be displayed as links to files.', 'comment-link-remove'),
 				'section' => 'general',
 				'type'    => 'checkbox',
 				'default' => 1,
 			),
 			'autoembed_links'          => array(
-				'label'   => esc_html__( 'Autoembed links in comment text?', 'qc-clr' ),
-				'desc'    => __( 'If checked, links (like YouTube, Facebook, Twitter, etc.) in the comment text will be automatically turned into embedded content.', 'qc-clr' ),
+				'label'   => esc_html__( 'Autoembed links in comment text?', 'comment-link-remove'),
+				'desc'    => __( 'If checked, links (like YouTube, Facebook, Twitter, etc.) in the comment text will be automatically turned into embedded content.', 'comment-link-remove'),
 				'section' => 'general',
 				'type'    => 'checkbox',
 				'default' => 1,
 			),
 			'enable_multiple_upload'   => array(
-				'label'   => esc_html__( 'Enable multiple upload?', 'qc-clr' ),
-				'desc'    => __( 'If checked, users will be able to upload multiple attachments at once.', 'qc-clr' ),
+				'label'   => esc_html__( 'Enable multiple upload?', 'comment-link-remove'),
+				'desc'    => __( 'If checked, users will be able to upload multiple attachments at once.', 'comment-link-remove'),
 				'section' => 'multiple_upload',
 				'type'    => 'checkbox',
 				'default' => 0,
 			),
 			'combine_images'           => array(
-				'label'   => esc_html__( 'Combine images to gallery?', 'qc-clr' ),
-				'desc'    => __( 'If checked, attached images will be combined to a gallery. Otherwise, the images will be displayed as a list.', 'qc-clr' ),
+				'label'   => esc_html__( 'Combine images to gallery?', 'comment-link-remove'),
+				'desc'    => __( 'If checked, attached images will be combined to a gallery. Otherwise, the images will be displayed as a list.', 'comment-link-remove'),
 				'section' => 'multiple_upload',
 				'type'    => 'checkbox',
 				'default' => 1,
 			),
 			'gallery_size'             => array(
-				'label'   => esc_html__( 'Gallery image size', 'qc-clr' ),
-				'desc'    => __( 'The size of the thumbnail for the gallery of attached images.', 'qc-clr' ),
+				'label'   => esc_html__( 'Gallery image size', 'comment-link-remove'),
+				'desc'    => __( 'The size of the thumbnail for the gallery of attached images.', 'comment-link-remove'),
 				'section' => 'multiple_upload',
 				'type'    => 'dropdown',
 				'default' => 'thumbnail',
 			),
 			'thumbnail_size'           => array(
-				'label'   => esc_html__( 'Attachment image size', 'qc-clr' ),
-				'desc'    => __( 'The size of the thumbnail for attached images.', 'qc-clr' ),
+				'label'   => esc_html__( 'Attachment image size', 'comment-link-remove'),
+				'desc'    => __( 'The size of the thumbnail for attached images.', 'comment-link-remove'),
 				'section' => 'images',
 				'type'    => 'dropdown',
 				'default' => 'medium',
 			),
 			'link_thumbnail'           => array(
-				'label'     => esc_html__( 'Link thumbnail?', 'qc-clr' ),
+				'label'     => esc_html__( 'Link thumbnail?', 'comment-link-remove'),
 				'desc'      => '',
 				'section'   => 'images',
 				'type'      => 'radio',
 				'default'   => 0,
 				'choices'   => array(
-					'0' => __( 'Not link', 'qc-clr' ),
+					'0' => __( 'Not link', 'comment-link-remove'),
 					/* translators: %s: the link to the plugin FAQ section on WordPress.org */
-					'1' => sprintf( __( 'Link to a full-size image with lightbox plugins support (see <a href="%s">FAQ</a> for details)', 'qc-clr' ), 'https://wordpress.org/plugins/qc-clr-comment-attachment/#what%20lightbox%20plugins%20are%20supported%3F' ),
-					'2' => __( 'Link to a full-size image in a new tab', 'qc-clr' ),
-					'3' => __( 'Link to the attachment page', 'qc-clr' ),
+					'1' => sprintf( __( 'Link to a full-size image with lightbox plugins support (see <a href="%s">FAQ</a> for details)', 'comment-link-remove'), 'https://wordpress.org/plugins/qc-clr-comment-attachment/#what%20lightbox%20plugins%20are%20supported%3F' ),
+					'2' => __( 'Link to a full-size image in a new tab', 'comment-link-remove'),
+					'3' => __( 'Link to the attachment page', 'comment-link-remove'),
 				),
 				'label_for' => false,
 			),
 			'allowed_file_types'       => array(
-				'label'   => esc_html__( 'Allowed File Types', 'qc-clr' ),
-				'desc'    => '* — ' . __( 'available for embedding.', 'qc-clr' ) . '<br>** — ' . __( 'allowed only for Administrators and Editors.', 'qc-clr' ),
+				'label'   => esc_html__( 'Allowed File Types', 'comment-link-remove'),
+				'desc'    => '* — ' . __( 'available for embedding.', 'comment-link-remove') . '<br>** — ' . __( 'allowed only for Administrators and Editors.', 'comment-link-remove'),
 				'section' => 'permissions',
 				'type'    => 'checkbox',
 				'default' => $this->get_allowed_file_types( 'array' ),
 			),
 			'who_can_upload'           => array(
-				'label'     => esc_html__( 'Who can upload attachment?', 'qc-clr' ),
+				'label'     => esc_html__( 'Who can upload attachment?', 'comment-link-remove'),
 				'desc'      => '',
 				'section'   => 'permissions',
 				'type'      => 'radio',
 				'default'   => 1,
 				'choices'   => array(
-					'1' => __( 'All users', 'qc-clr' ),
-					'2' => __( 'Only logged users', 'qc-clr' ),
+					'1' => __( 'All users', 'comment-link-remove'),
+					'2' => __( 'Only logged users', 'comment-link-remove'),
 				),
 				'label_for' => false,
 			),
 			'manually_moderation'      => array(
-				'label'   => esc_html__( 'Manually moderate comments with attachments', 'qc-clr' ),
-				'desc'    => __( 'If checked, all comments with attachments must be manually approved before they appear on the site.', 'qc-clr' ),
+				'label'   => esc_html__( 'Manually moderate comments with attachments', 'comment-link-remove'),
+				'desc'    => __( 'If checked, all comments with attachments must be manually approved before they appear on the site.', 'comment-link-remove'),
 				'section' => 'permissions',
 				'type'    => 'checkbox',
 				'default' => 0,
 			),
 			'delete_with_comment'      => array(
-				'label'   => esc_html__( 'Delete attachment when comment is deleted?', 'qc-clr' ),
-				'desc'    => __( 'If unchecked, the attachment will be available in Media Library after the comment has been deleted.', 'qc-clr' ),
+				'label'   => esc_html__( 'Delete attachment when comment is deleted?', 'comment-link-remove'),
+				'desc'    => __( 'If unchecked, the attachment will be available in Media Library after the comment has been deleted.', 'comment-link-remove'),
 				'section' => 'in_admin',
 				'type'    => 'checkbox',
 				'default' => 1,
 			),
 			'delete_attachment_action' => array(
-				'label'     => esc_html__( 'Delete Attachment action on Edit Comments page', 'qc-clr' ),
+				'label'     => esc_html__( 'Delete Attachment action on Edit Comments page', 'comment-link-remove'),
 				'desc'      => '',
 				'section'   => 'in_admin',
 				'type'      => 'radio',
 				'default'   => 1,
 				'choices'   => array(
-					'1' => __( 'Delete attachment from Media Library', 'qc-clr' ),
-					'0' => __( 'Unattach attachment from comment', 'qc-clr' ),
+					'1' => __( 'Delete attachment from Media Library', 'comment-link-remove'),
+					'0' => __( 'Unattach attachment from comment', 'comment-link-remove'),
 				),
 				'label_for' => false,
 			),
@@ -522,13 +573,13 @@ class qcld_clr_comment_init_settings {
 		foreach ( $choices as $val => $choice ) {
 			$width  = $choice['width'];
 			$height = $choice['height'];
-			$size   = __( 'Size', 'qc-clr' ) . ": {$width}x{$height}";
+			$size   = __( 'Size', 'comment-link-remove') . ": {$width}x{$height}";
 
-			$crop = __( 'No', 'qc-clr' );
+			$crop = __( 'No', 'comment-link-remove');
 			if ( $choice['crop'] ) {
-				$crop = __( 'Yes', 'qc-clr' );
+				$crop = __( 'Yes', 'comment-link-remove');
 			}
-			$crop = __( 'Crop', 'qc-clr' ) . ": $crop";
+			$crop = __( 'Crop', 'comment-link-remove') . ": $crop";
 
 			$title = ucfirst( $val );
 			$text  = "$title, $size, $crop";
@@ -536,7 +587,7 @@ class qcld_clr_comment_init_settings {
 			echo '<option value="' . esc_attr( $val ) . '"' . selected( $val, $setting_val, false ) . '>' . esc_html( $text ) . '</option>';
 		}
 		$val  = 'full';
-		$text = __( 'Full (original image)', 'qc-clr' );
+		$text = __( 'Full (original image)', 'comment-link-remove');
 		echo '<option value="' . esc_attr( $val ) . '"' . selected( $val, $setting_val, false ) . '>' . esc_html( $text ) . '</option>';
 		echo '</select>';
 	}
@@ -558,13 +609,13 @@ class qcld_clr_comment_init_settings {
 		/*
 		* Translators: If the type names in your language are wider or narrower than in English - you can change the width of the column here.
 		*/
-		$column_width = _x( '100', 'Allowed File Types Setting: column width in px', 'qc-clr' );
+		$column_width = _x( '100',  'Allowed File Types Setting: column width in px', 'comment-link-remove');
 
 		echo '<div id="qc-clr-file-types">';
 		$types = $this->get_allowed_file_types();
 		$more  = 6;
 		foreach ( $types as $type ) {
-			echo '<div class="qc-clr-file-type" style="width: ' . (int) $column_width . 'px;">';
+			echo '<div class="qc-clr-file-type">';
 			echo '<label class="qc-clr-file-type-name">' . $this->mb_ucfirst( esc_html( $type['name'] ) ) . '</label>';
 			echo '<div class="qc-clr-file-type-items">';
 			$i = 1;
@@ -584,7 +635,7 @@ class qcld_clr_comment_init_settings {
 			}
 			echo '</div>';
 			if ( $i > $more ) {
-				echo '<a href="#" class="qc-clr-show-all">' . esc_html__( 'Show all', 'qc-clr' ) . '</a>';
+				echo '<a href="#" class="qc-clr-show-all">' . esc_html__( 'Show all', 'comment-link-remove') . '</a>';
 			}
 			echo '</div>';
 		}

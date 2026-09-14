@@ -1,28 +1,24 @@
 <?php
-if (defined('ABSPATH') === false) {
-    exit;
-}
+defined('ABSPATH') or die("No direct script access!");
 
-?>
-<?php
-    require_once ABSPATH . 'wp-admin/includes/plugin-install.php';
-    remove_all_filters('plugins_api');
-    $qcld_chatplugintags = array(
-        'a'       => array(
-            'href'   => array(),
-            'title'  => array(),
-            'target' => array(),
-        ),
-    );
+require_once ABSPATH . 'wp-admin/includes/plugin-install.php';
+remove_all_filters('plugins_api');
+$qcld_chatplugintags = array(
+    'a'       => array(
+        'href'   => array(),
+        'title'  => array(),
+        'target' => array(),
+    ),
+);
 
-    $qcld_plugininstal = array();
+$qcld_plugininstal = array();
 
-    /* Conversational Forms Plugins */
-    $argus = [
-        'slug' => 'chatbot',
-        'fields' => [
-            'short_description' => true,
-            'icons' => true,
+/* Conversational Forms Plugins */
+$argus = [
+    'slug' => 'chatbot',
+    'fields' => [
+        'short_description' => true,
+        'icons' => true,
             'reviews'  => false, // excludes all reviews
         ],
     ];
@@ -32,67 +28,67 @@ if (defined('ABSPATH') === false) {
         $qcld_plugininstal['convers-form'] = $data;
     }
 
-?>
+    ?>
 
-<div class="recommended-plugins">
-    <div class="wp-list-table widefat plugin-install">
-        <div class="the-list">
-            <?php
-            foreach ( (array) $qcld_plugininstal as $plugin ) {
-                if ( is_object( $plugin ) ) {
-                    $plugin = (array) $plugin;
-                }
+    <div class="recommended-plugins">
+        <div class="wp-list-table widefat plugin-install">
+            <div class="the-list">
+                <?php
+                foreach ( (array) $qcld_plugininstal as $plugin ) {
+                    if ( is_object( $plugin ) ) {
+                        $plugin = (array) $plugin;
+                    }
 
                 // Display the group heading if there is one.
-                if ( isset( $plugin['group'] ) && $plugin['group'] != $group ) {
-                    if ( isset( $this->groups[ $plugin['group'] ] ) ) {
-                        $group_name = $this->groups[ $plugin['group'] ];
-                        if ( isset( $plugins_group_titles[ $group_name ] ) ) {
-                            $group_name = $plugins_group_titles[ $group_name ];
+                    if ( isset( $plugin['group'] ) && $plugin['group'] != $group ) {
+                        if ( isset( $this->groups[ $plugin['group'] ] ) ) {
+                            $group_name = $this->groups[ $plugin['group'] ];
+                            if ( isset( $plugins_group_titles[ $group_name ] ) ) {
+                                $group_name = $plugins_group_titles[ $group_name ];
+                            }
+                        } else {
+                            $group_name = $plugin['group'];
                         }
-                    } else {
-                        $group_name = $plugin['group'];
-                    }
 
                     // Starting a new group, close off the divs of the last one.
-                    if ( ! empty( $group ) ) {
-                        echo '</div></div>';
-                    }
+                        if ( ! empty( $group ) ) {
+                            echo '</div></div>';
+                        }
 
-                    echo '<div class="plugin-group"><h3>' . esc_html( $group_name ) . '</h3>';
+                        echo '<div class="plugin-group"><h3>' . esc_html( $group_name ) . '</h3>';
                     // Needs an extra wrapping div for nth-child selectors to work.
-                    echo '<div class="plugin-items">';
+                        echo '<div class="plugin-items">';
 
-                    $group = $plugin['group'];
-                }
-                $title = wp_kses( $plugin['name'], $qcld_chatplugintags );
+                        $group = $plugin['group'];
+                    }
+                    $title = wp_kses( $plugin['name'], $qcld_chatplugintags );
 
                 // Remove any HTML from the description.
-                $description = strip_tags( $plugin['short_description'] );
-                $version     = wp_kses( $plugin['version'], $qcld_chatplugintags );
+                    $description = wp_strip_all_tags( $plugin['short_description'] );
+                    $version     = wp_kses( $plugin['version'], $qcld_chatplugintags );
 
-                $name = strip_tags( $title . ' ' . $version );
+                    $name = wp_strip_all_tags( $title . ' ' . $version );
 
-                $author = wp_kses( $plugin['author'], $qcld_chatplugintags );
-                if ( ! empty( $author ) ) {
-                    /* translators: %s: Plugin author. */
-                    $author = ' <cite>' . sprintf( __( 'By %s' ), $author ) . '</cite>';
-                }
+                    $author = wp_kses( $plugin['author'], $qcld_chatplugintags );
+                    if ( ! empty( $author ) ) {
+                        /* translators: %s: Plugin author. */
+                        $author = ' <cite>' . sprintf( __( 'By %s' , 'comment-link-remove'), $author ) . '</cite>';
+                    }
 
-                $requires_php = isset( $plugin['requires_php'] ) ? $plugin['requires_php'] : null;
-                $requires_wp  = isset( $plugin['requires'] ) ? $plugin['requires'] : null;
+                    $requires_php = isset( $plugin['requires_php'] ) ? $plugin['requires_php'] : null;
+                    $requires_wp  = isset( $plugin['requires'] ) ? $plugin['requires'] : null;
 
-                $compatible_php = is_php_version_compatible( $requires_php );
-                $compatible_wp  = is_wp_version_compatible( $requires_wp );
-                $tested_wp      = ( empty( $plugin['tested'] ) || version_compare( get_bloginfo( 'version' ), $plugin['tested'], '<=' ) );
+                    $compatible_php = is_php_version_compatible( $requires_php );
+                    $compatible_wp  = is_wp_version_compatible( $requires_wp );
+                    $tested_wp      = ( empty( $plugin['tested'] ) || version_compare( get_bloginfo( 'version' ), $plugin['tested'], '<=' ) );
 
-                $action_links = array();
+                    $action_links = array();
 
-                if ( current_user_can( 'install_plugins' ) || current_user_can( 'update_plugins' ) ) {
-                    $status = install_plugin_install_status( $plugin );
+                    if ( current_user_can( 'install_plugins' ) || current_user_can( 'update_plugins' ) ) {
+                        $status = install_plugin_install_status( $plugin );
 
-                    switch ( $status['status'] ) {
-                        case 'install':
+                        switch ( $status['status'] ) {
+                            case 'install':
                             if ( $status['url'] ) {
                                 if ( $compatible_php && $compatible_wp ) {
                                     $action_links[] = sprintf(
@@ -100,20 +96,20 @@ if (defined('ABSPATH') === false) {
                                         esc_attr( $plugin['slug'] ),
                                         esc_url( $status['url'] ),
                                         /* translators: %s: Plugin name and version. */
-                                        esc_attr( sprintf( _x( 'Install %s now', 'plugin' ), $name ) ),
+                                        esc_attr( sprintf( _x( 'Install %s now',  'plugin' , 'comment-link-remove'), $name ) ),
                                         esc_attr( $name ),
-                                        __( 'Install Now' )
+                                        __( 'Install Now' , 'comment-link-remove')
                                     );
                                 } else {
                                     $action_links[] = sprintf(
                                         '<button type="button" class="button button-disabled" disabled="disabled">%s</button>',
-                                        _x( 'Cannot Install', 'plugin' )
+                                        _x( 'Cannot Install',  'plugin' , 'comment-link-remove')
                                     );
                                 }
                             }
                             break;
 
-                        case 'update_available':
+                            case 'update_available':
                             if ( $status['url'] ) {
                                 if ( $compatible_php && $compatible_wp ) {
                                     $action_links[] = sprintf(
@@ -122,30 +118,30 @@ if (defined('ABSPATH') === false) {
                                         esc_attr( $plugin['slug'] ),
                                         esc_url( $status['url'] ),
                                         /* translators: %s: Plugin name and version. */
-                                        esc_attr( sprintf( _x( 'Update %s now', 'plugin' ), $name ) ),
+                                        esc_attr( sprintf( _x( 'Update %s now',  'plugin' , 'comment-link-remove'), $name ) ),
                                         esc_attr( $name ),
-                                        __( 'Update Now' )
+                                        __( 'Update Now' , 'comment-link-remove')
                                     );
                                 } else {
                                     $action_links[] = sprintf(
                                         '<button type="button" class="button button-disabled" disabled="disabled">%s</button>',
-                                        _x( 'Cannot Update', 'plugin' )
+                                        _x( 'Cannot Update',  'plugin' , 'comment-link-remove')
                                     );
                                 }
                             }
                             break;
 
-                        case 'latest_installed':
-                        case 'newer_installed':
+                            case 'latest_installed':
+                            case 'newer_installed':
                             if ( is_plugin_active( $status['file'] ) ) {
                                 $action_links[] = sprintf(
                                     '<button type="button" class="button button-disabled" disabled="disabled">%s</button>',
-                                    _x( 'Active', 'plugin' )
+                                    _x( 'Active',  'plugin' , 'comment-link-remove')
                                 );
                             } elseif ( current_user_can( 'activate_plugin', $status['file'] ) ) {
-                                $button_text = __( 'Activate' );
+                                $button_text = __( 'Activate' , 'comment-link-remove');
                                 /* translators: %s: Plugin name. */
-                                $button_label = _x( 'Activate %s', 'plugin' );
+                                $button_label = _x( 'Activate %s',  'plugin' , 'comment-link-remove');
                                 $activate_url = add_query_arg(
                                     array(
                                         '_wpnonce' => wp_create_nonce( 'activate-plugin_' . $status['file'] ),
@@ -156,9 +152,9 @@ if (defined('ABSPATH') === false) {
                                 );
 
                                 if ( is_network_admin() ) {
-                                    $button_text = __( 'Network Activate' );
+                                    $button_text = __( 'Network Activate' , 'comment-link-remove');
                                     /* translators: %s: Plugin name. */
-                                    $button_label = _x( 'Network Activate %s', 'plugin' );
+                                    $button_label = _x( 'Network Activate %s',  'plugin' , 'comment-link-remove');
                                     $activate_url = add_query_arg( array( 'networkwide' => 1 ), $activate_url );
                                 }
 
@@ -171,28 +167,28 @@ if (defined('ABSPATH') === false) {
                             } else {
                                 $action_links[] = sprintf(
                                     '<button type="button" class="button button-disabled" disabled="disabled">%s</button>',
-                                    _x( 'Installed', 'plugin' )
+                                    _x( 'Installed',  'plugin' , 'comment-link-remove')
                                 );
                             }
                             break;
+                        }
                     }
-                }
 
-                $details_link = self_admin_url(
-                    'plugin-install.php?tab=plugin-information&amp;plugin=' . $plugin['slug'] .
-                    '&amp;width=700&amp;height=550'
-                );
-                $action_links[] = sprintf( '%s','<a href="#" data-toggle="modal" data-target="#myModal">More Details</a><div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"><div class="modal-dialog" role="document"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button></div><div class="modal-body"><iframe width="100%" height="550" src="'.$details_link.'"></iframe></div></div></div></div>');
-                /*===show icon ==*/
-                if ( ! empty( $plugin['icons']['svg'] ) ) {
-                    $plugin_icon_url = $plugin['icons']['svg'];
-                } elseif ( ! empty( $plugin['icons']['2x'] ) ) {
-                    $plugin_icon_url = $plugin['icons']['2x'];
-                } elseif ( ! empty( $plugin['icons']['1x'] ) ) {
-                    $plugin_icon_url = $plugin['icons']['1x'];
-                } else {
-                    $plugin_icon_url = $plugin['icons']['default'];
-                }
+                    $details_link = self_admin_url(
+                        'plugin-install.php?tab=plugin-information&amp;plugin=' . $plugin['slug'] .
+                        '&amp;width=700&amp;height=550'
+                    );
+                    $action_links[] = sprintf( '%s','<a href="#" data-toggle="modal" data-target="#myModal">More Details</a><div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"><div class="modal-dialog" role="document"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button></div><div class="modal-body"><iframe width="100%" height="550" src="'.$details_link.'"></iframe></div></div></div></div>');
+                    /*===show icon ==*/
+                    if ( ! empty( $plugin['icons']['svg'] ) ) {
+                        $plugin_icon_url = $plugin['icons']['svg'];
+                    } elseif ( ! empty( $plugin['icons']['2x'] ) ) {
+                        $plugin_icon_url = $plugin['icons']['2x'];
+                    } elseif ( ! empty( $plugin['icons']['1x'] ) ) {
+                        $plugin_icon_url = $plugin['icons']['1x'];
+                    } else {
+                        $plugin_icon_url = $plugin['icons']['default'];
+                    }
                 /*
                  * $action_links An array of plugin action links. Defaults are links to Details and Install Now.
                  * $plugin The plugin currently being listed.
@@ -206,45 +202,55 @@ if (defined('ABSPATH') === false) {
                     if ( ! $compatible_php || ! $compatible_wp ) {
                         echo '<div class="notice inline notice-error notice-alt"><p>';
                         if ( ! $compatible_php && ! $compatible_wp ) {
-                            _e( 'This plugin doesn&#8217;t work with your versions of WordPress and PHP.' );
+                            esc_html_e( 'This plugin doesn&#8217;t work with your versions of WordPress and PHP.' , 'comment-link-remove');
                             if ( current_user_can( 'update_core' ) && current_user_can( 'update_php' ) ) {
-                                printf(
-                                /* translators: 1: URL to WordPress Updates screen, 2: URL to Update PHP page. */
-                                    ' ' . __( '<a href="%1$s">Please update WordPress</a>, and then <a href="%2$s">learn more about updating PHP</a>.' ),
-                                    self_admin_url( 'update-core.php' ),
-                                    esc_url( wp_get_update_php_url() )
+                                echo wp_kses_post(
+                                    sprintf(
+                                        /* translators: 1: URL to WordPress Updates screen, 2: URL to Update PHP page. */
+                                        ' ' . __( '<a href="%1$s">Please update WordPress</a>, and then <a href="%2$s">learn more about updating PHP</a>.' , 'comment-link-remove'),
+                                        esc_url( self_admin_url( 'update-core.php' ) ),
+                                        esc_url( wp_get_update_php_url() )
+                                    )
                                 );
                                 wp_update_php_annotation( '</p><p><em>', '</em>' );
                             } elseif ( current_user_can( 'update_core' ) ) {
-                                printf(
-                                /* translators: %s: URL to WordPress Updates screen. */
-                                    ' ' . __( '<a href="%s">Please update WordPress</a>.' ),
-                                    self_admin_url( 'update-core.php' )
+                                echo wp_kses_post(
+                                    sprintf(
+                                        /* translators: %s: URL to WordPress Updates screen. */
+                                        ' ' . __( '<a href="%s">Please update WordPress</a>.' , 'comment-link-remove'),
+                                        esc_url( self_admin_url( 'update-core.php' ) )
+                                    )
                                 );
                             } elseif ( current_user_can( 'update_php' ) ) {
-                                printf(
-                                /* translators: %s: URL to Update PHP page. */
-                                    ' ' . __( '<a href="%s">Learn more about updating PHP</a>.' ),
-                                    esc_url( wp_get_update_php_url() )
+                                echo wp_kses_post(
+                                    sprintf(
+                                        /* translators: %s: URL to Update PHP page. */
+                                        ' ' . __( '<a href="%s">Learn more about updating PHP</a>.' , 'comment-link-remove'),
+                                        esc_url( wp_get_update_php_url() )
+                                    )
                                 );
                                 wp_update_php_annotation( '</p><p><em>', '</em>' );
                             }
                         } elseif ( ! $compatible_wp ) {
-                            _e( 'This plugin doesn&#8217;t work with your version of WordPress.' );
+                            esc_html_e( 'This plugin doesn&#8217;t work with your version of WordPress.' , 'comment-link-remove');
                             if ( current_user_can( 'update_core' ) ) {
-                                printf(
-                                /* translators: %s: URL to WordPress Updates screen. */
-                                    ' ' . __( '<a href="%s">Please update WordPress</a>.' ),
-                                    self_admin_url( 'update-core.php' )
+                                echo wp_kses_post(
+                                    sprintf(
+                                        /* translators: %s: URL to WordPress Updates screen. */
+                                        ' ' . __( '<a href="%s">Please update WordPress</a>.' , 'comment-link-remove'),
+                                        esc_url( self_admin_url( 'update-core.php' ) )
+                                    )
                                 );
                             }
                         } elseif ( ! $compatible_php ) {
-                            _e( 'This plugin doesn&#8217;t work with your version of PHP.' );
+                            esc_html_e( 'This plugin doesn&#8217;t work with your version of PHP.' , 'comment-link-remove');
                             if ( current_user_can( 'update_php' ) ) {
-                                printf(
-                                /* translators: %s: URL to Update PHP page. */
-                                    ' ' . __( '<a href="%s">Learn more about updating PHP</a>.' ),
-                                    esc_url( wp_get_update_php_url() )
+                                echo wp_kses_post(
+                                    sprintf(
+                                        /* translators: %s: URL to Update PHP page. */
+                                        ' ' . __( '<a href="%s">Learn more about updating PHP</a>.' , 'comment-link-remove'),
+                                        esc_url( wp_get_update_php_url() )
+                                    )
                                 );
                                 wp_update_php_annotation( '</p><p><em>', '</em>' );
                             }
@@ -256,15 +262,15 @@ if (defined('ABSPATH') === false) {
                         <div class="name column-name">
                             <h3>
                                 <a href="<?php echo esc_url( $details_link ); ?>" class="thickbox open-plugin-details-modal">
-                                    <?php echo esc_attr($title); ?>
-                                    <img src="<?php echo esc_attr( $plugin_icon_url ); ?>" class="plugin-icon" alt="" />
+                                    <?php echo esc_html($title); ?>
+                                    <img src="<?php echo esc_url( $plugin_icon_url ); ?>" class="plugin-icon" alt="" />
                                 </a>
                             </h3>
                         </div>
                         <div class="action-links">
                             <?php
                             if ( $action_links ) {
-                                echo '<ul class="plugin-action-buttons"><li>' . implode( '</li><li>', $action_links ) . '</li></ul>';
+                                echo wp_kses_post( '<ul class="plugin-action-buttons"><li>' . implode( '</li><li>', $action_links ) . '</li></ul>' );
                             }
                             ?>
                         </div>

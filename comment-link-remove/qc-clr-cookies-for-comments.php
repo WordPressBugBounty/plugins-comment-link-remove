@@ -25,52 +25,165 @@ function get_qcld_clr_key() {
 function qcld_clr_conf() {
 	
 	?>
-<div class="wrap" >
-<h2><?php _e('Comments for Cookies Configuration'); ?></h2>
-<p class="qc_clr_upgrade_pro"><?php  esc_html_e( 'Comment Spam Protection is a Pro Version Feature ', 'qc-clr' ); ?> <a href="<?php  echo esc_url( 'https://www.quantumcloud.com/products/comment-tools/', 'qc-clr' ); ?>" target="_blank"><span class="qc_clr_pro_feature" > <?php  esc_html_e( 'Upgrade to the Pro Version ', 'qc-clr' ); ?></span> </a> <?php  esc_html_e( 'to activate this feature.', 'qc-clr' ); ?></p>
-<div class="narrow" style="padding:15px;">
-<form action="" method="post" id="qcld_clr_conf">
-	<?php wp_nonce_field('qcld_clr') ?>
-	<h3> <?php  esc_html_e( 'Enable Spam Protection', 'qc-clr' ); ?> </h3> 
-	<p><input type='checkbox' name='qcld_clr_spam_protection' value='enable' <?php checked( get_option( 'qcld_clr_spam_protection' ), 'enable' ) ?> /> <b> <?php  esc_html_e( 'Enable Spam Protection', 'qc-clr' ); ?></b> </p>
+<div class="wrap">
+	<h1><?php esc_html_e('Comment Spam Protection', 'comment-link-remove'); ?></h1>
+<div class="qc-clr-config-page-wrap">
+	<div class="qc-clr-config-card">
+		<!-- Page Header -->
+		<div class="qc-clr-config-header">
+			<div class="qc-clr-config-title-area">
+				<h2 class="qc-clr-config-title"><?php esc_html_e('Comment Spam Protection', 'comment-link-remove'); ?></h2>
+				<span class="qc-clr-pro-badge"><?php esc_html_e( 'Pro Feature', 'comment-link-remove'); ?></span>
+			</div>
+			<p class="qc-clr-config-subtitle"><?php esc_html_e('Configure advanced cookie-based spam defense, bot payload delivery, and speed spammer detection.', 'comment-link-remove'); ?></p>
 
-	<label><h3> <?php  esc_html_e( 'What should happen to comments caught', 'qc-clr' ); ?></h3> 
-	<select name='qcld_clr_spam'><option value='delete' <?php echo ( get_option( 'qcld_clr_spam' ) == 'delete' ? 'selected' : '' ); ?> />  <?php  esc_html_e( 'Delete', 'qc-clr' ); ?> <option value='spam' <?php echo ( get_option( 'qcld_clr_spam' ) == 'spam' ? 'selected' : '' ); ?> />  <?php  esc_html_e( 'Spam', 'qc-clr' ); ?></select>
-	</label><br />
-	<h3> <?php  esc_html_e( 'Payload Delivery Mechanism', 'qc-clr' ); ?></h3> 
-	<input type='radio' name='qcld_clr_delivery' value='css' <?php checked( get_option( 'qcld_clr_delivery' ), 'css' ) ?> />  <?php  esc_html_e( 'CSS file.', 'qc-clr' ); ?><br />
-	<input type='radio' name='qcld_clr_delivery' value='img' <?php checked( get_option( 'qcld_clr_delivery' ), 'img' ) ?> />  <?php  esc_html_e( 'Image file. (recommended)', 'qc-clr' ); ?><br />
-	<p> <?php  esc_html_e( 'The CSS file loads at the top of the page, possibly slowing down how fast the page renders. The image loads at the end but if your server is very slow someone may have time to enter a comment before the image loads. Unlikely but it might happen.', 'qc-clr' ); ?></p>
-	<h3> <?php  esc_html_e( 'Speed Spammers', 'qc-clr' ); ?></h3> 
+			<!-- Pro Notice Banner -->
+			<div class="qc-clr-pro-banner">
+				<div class="qc-clr-pro-banner-content">
+					<span class="dashicons dashicons-shield qc-clr-shield-icon"></span>
+					<div class="qc-clr-pro-banner-text">
+						<strong><?php esc_html_e( 'Comment Spam Protection & Anti-Bot Defense', 'comment-link-remove'); ?></strong>
+						<p><?php esc_html_e( 'Comment Spam Protection is a Pro Version Feature. Automatically block automated spambots and speed-commenters before spam reaches your database.', 'comment-link-remove'); ?></p>
+					</div>
+				</div>
+				<a class="qc-clr-pro-upgrade-btn" href="<?php echo esc_url( 'https://www.quantumcloud.net/products/comment-tools/'); ?>" target="_blank">
+					<?php esc_html_e( 'Upgrade to Pro', 'comment-link-remove'); ?> &rarr;
+				</a>
+			</div>
+		</div>
 
-	<p> <?php  esc_html_e( 'Some spammers visit your site, leave a real looking comment and disappear again. They will do this quickly and then move on to the next target site.', 'qc-clr' ); ?> <br />  <?php  esc_html_e( 'To stop them we check how long they spend on your site before leaving the comment. Any value above 0 will reject those comments but might catch legitimate comments too. Recommended values from 3 to 6 seconds and send comments to the spam folder.', 'qc-clr' ); ?></p>
-	<input type='text' name='qcld_clr_speed' size='3' value='<?php echo (int)get_option( 'qcld_clr_speed' ) ?>' /> <?php  esc_html_e( 'Seconds', 'qc-clr' ); ?></label><br /> <br />
+		<form action="" method="post" id="qcld_clr_conf" class="qc-clr-config-form">
+			<?php wp_nonce_field('qcld_clr'); ?>
 
-	<h3> <?php  esc_html_e( 'Rejection Message', 'qc-clr' ); ?> </h3>
-	<p> <?php  esc_html_e( 'When a comment fails to be posted it is not always a spammer. Add a message here to be shown to those users. Be aware that real spammers will see this message too! The comment they made will be shown below your message.', 'qc-clr' ); ?> </p>
-	<textarea cols=40 rows=5 name='qcld_clr_spam_message'><?php echo esc_textarea( get_option( 'qcld_clr_spam_message' ) ); ?></textarea><br /><br />
-	<input type='submit' name='submit' value='Save Options' />
-	</form>
-	<?php
-	$qcld_clr_key = get_qcld_clr_key();
-	if( $qcld_clr_key ) { ?>
-	<p> <?php  esc_html_e( 'If you are feeling adventerous, you can add the following two lines', 'qc-clr' ); ?> <em> <?php  esc_html_e( 'before', 'qc-clr' ); ?> </em> <?php  esc_html_e( 'the regular WordPress mod_rewrite rules in your ', 'qc-clr' ); ?> <tt> <?php  esc_html_e( '.htaccess', 'qc-clr' ); ?> </tt>  <?php  esc_html_e( 'file. They will stop comments from spambots before they reach the database or are executed in PHP:', 'qc-clr' ); ?></p>
-	<pre>
-	RewriteCond %{HTTP_COOKIE} !^.*<?php echo $qcld_clr_key; ?>.*$
-	RewriteRule ^wp-comments-post.php - [F,L]
-	</pre>
-	<?php 
-}
-global $wpmu_version;
-if ( isset( $wpmu_version ) && $wpmu_version != '' ) {
-	?><p> <?php  esc_html_e( 'As you are using WordPress MU, copy these lines into your .htaccess file, making sure the paths match the location of the signup form.', 'qc-clr' ); ?></p>
-		<pre>
-		RewriteCond %{HTTP_COOKIE} !^.*<?php echo $qcld_clr_key; ?>.*$
-		RewriteRule ^wp-signup.php - [F,L]
-		</pre>
-	<?php
-}
-?>
+			<!-- 1. Enable Spam Protection -->
+			<div class="qc-clr-form-group-card">
+				<div class="qc-clr-form-group-header">
+					<span class="dashicons dashicons-shield-alt"></span>
+					<h3><?php esc_html_e( 'Spam Protection Status', 'comment-link-remove'); ?></h3>
+				</div>
+				<div class="qc-clr-form-group-body">
+					<label class="qc-clr-toggle-control">
+						<input type='checkbox' name='qcld_clr_spam_protection' value='enable' <?php checked( get_option( 'qcld_clr_spam_protection' ), 'enable' ); ?> />
+						<span class="qc-clr-toggle-label"><b><?php esc_html_e( 'Enable Cookie-Based Spam Protection', 'comment-link-remove'); ?></b></span>
+					</label>
+					<p class="qc-clr-field-desc"><?php esc_html_e('Validates genuine human visitor cookies before accepting comment submissions.', 'comment-link-remove'); ?></p>
+				</div>
+			</div>
+
+			<!-- 2. Action for Caught Comments -->
+			<div class="qc-clr-form-group-card">
+				<div class="qc-clr-form-group-header">
+					<span class="dashicons dashicons-trash"></span>
+					<h3><?php esc_html_e( 'Action on Detected Spam', 'comment-link-remove'); ?></h3>
+				</div>
+				<div class="qc-clr-form-group-body">
+					<label class="qc-clr-select-label" for="qcld_clr_spam">
+						<span><?php esc_html_e( 'What should happen to comments flagged as spam?', 'comment-link-remove'); ?></span>
+						<select name='qcld_clr_spam' id='qcld_clr_spam' class="qc-clr-select-input">
+							<option value='delete' <?php selected( get_option( 'qcld_clr_spam' ), 'delete' ); ?>><?php esc_html_e( 'Delete Permanently', 'comment-link-remove'); ?></option>
+							<option value='spam' <?php selected( get_option( 'qcld_clr_spam' ), 'spam' ); ?>><?php esc_html_e( 'Move to Spam Folder', 'comment-link-remove'); ?></option>
+						</select>
+					</label>
+				</div>
+			</div>
+
+			<!-- 3. Payload Delivery Mechanism -->
+			<div class="qc-clr-form-group-card">
+				<div class="qc-clr-form-group-header">
+					<span class="dashicons dashicons-rest-api"></span>
+					<h3><?php esc_html_e( 'Payload Delivery Mechanism', 'comment-link-remove'); ?></h3>
+				</div>
+				<div class="qc-clr-form-group-body">
+					<div class="qc-clr-radio-options">
+						<label class="qc-clr-radio-card <?php echo ( get_option( 'qcld_clr_delivery' ) === 'img' || ! get_option( 'qcld_clr_delivery' ) ) ? 'is-recommended' : ''; ?>">
+							<input type='radio' name='qcld_clr_delivery' value='img' <?php checked( get_option( 'qcld_clr_delivery', 'img' ), 'img' ); ?> />
+							<div class="qc-clr-radio-info">
+								<strong><?php esc_html_e( 'Image File', 'comment-link-remove'); ?> <span class="qc-clr-recommended-badge"><?php esc_html_e('Recommended', 'comment-link-remove'); ?></span></strong>
+								<p><?php esc_html_e( 'Delivers cookie payload via lightweight 1x1 image at the bottom of the page without blocking page render speed.', 'comment-link-remove'); ?></p>
+							</div>
+						</label>
+						<label class="qc-clr-radio-card">
+							<input type='radio' name='qcld_clr_delivery' value='css' <?php checked( get_option( 'qcld_clr_delivery' ), 'css' ); ?> />
+							<div class="qc-clr-radio-info">
+								<strong><?php esc_html_e( 'CSS File', 'comment-link-remove'); ?></strong>
+								<p><?php esc_html_e( 'Loads cookie payload in stylesheet at top of page. Reliable for all bots, but may slightly impact page render start.', 'comment-link-remove'); ?></p>
+							</div>
+						</label>
+					</div>
+				</div>
+			</div>
+
+			<!-- 4. Speed Spammers -->
+			<div class="qc-clr-form-group-card">
+				<div class="qc-clr-form-group-header">
+					<span class="dashicons dashicons-clock"></span>
+					<h3><?php esc_html_e( 'Speed Spammer Detection', 'comment-link-remove'); ?></h3>
+				</div>
+				<div class="qc-clr-form-group-body">
+					<p class="qc-clr-field-desc"><?php esc_html_e( 'Automated spambots post instantly upon loading the page. Set minimum seconds a commenter must spend on page before submitting.', 'comment-link-remove'); ?></p>
+					<div class="qc-clr-speed-input-wrap">
+						<input type='number' name='qcld_clr_speed' min="0" max="60" class="qc-clr-number-input" value='<?php echo esc_attr( (int) get_option( 'qcld_clr_speed', 4 ) ); ?>' />
+						<span class="qc-clr-input-unit"><?php esc_html_e( 'Seconds', 'comment-link-remove'); ?></span>
+						<span class="qc-clr-hint-chip"><?php esc_html_e('Recommended: 3 to 6 seconds', 'comment-link-remove'); ?></span>
+					</div>
+				</div>
+			</div>
+
+			<!-- 5. Rejection Message -->
+			<div class="qc-clr-form-group-card">
+				<div class="qc-clr-form-group-header">
+					<span class="dashicons dashicons-editor-help"></span>
+					<h3><?php esc_html_e( 'Custom Rejection Notice', 'comment-link-remove'); ?></h3>
+				</div>
+				<div class="qc-clr-form-group-body">
+					<p class="qc-clr-field-desc"><?php esc_html_e( 'Message displayed if a user submission fails verification. The original comment text is retained below.', 'comment-link-remove'); ?></p>
+					<textarea class="qc-clr-textarea" rows="4" name='qcld_clr_spam_message' placeholder="<?php esc_attr_e( 'Sorry, your comment submission failed verification. Please try again.', 'comment-link-remove'); ?>"><?php echo esc_textarea( get_option( 'qcld_clr_spam_message' ) ); ?></textarea>
+				</div>
+			</div>
+
+			<!-- Submit Bar -->
+			<div class="qc-clr-submit-bar">
+				<input type='submit' name='submit' class="button button-primary qc-clr-save-btn" value='<?php esc_attr_e( 'Save Options', 'comment-link-remove' ); ?>' />
+			</div>
+		</form>
+
+		<?php
+		$qcld_clr_key = get_qcld_clr_key();
+		if( $qcld_clr_key ) : ?>
+			<!-- .htaccess Advanced Rules -->
+			<div class="qc-clr-htaccess-card">
+				<div class="qc-clr-htaccess-header">
+					<span class="dashicons dashicons-media-code"></span>
+					<h4><?php esc_html_e( 'Advanced Firewall Rule (.htaccess)', 'comment-link-remove'); ?></h4>
+					<span class="qc-clr-optional-badge"><?php esc_html_e('Optional / Advanced', 'comment-link-remove'); ?></span>
+				</div>
+				<p class="qc-clr-htaccess-desc"><?php esc_html_e( 'To reject spambots before PHP or MySQL executes, add these rewrite rules before WordPress mod_rewrite in your .htaccess file:', 'comment-link-remove'); ?></p>
+				<div class="qc-clr-code-block">
+					<div class="qc-clr-code-bar">
+						<span class="qc-clr-code-lang">Apache .htaccess</span>
+					</div>
+					<pre class="qc-clr-code">RewriteCond %{HTTP_COOKIE} !^.*<?php echo esc_html( $qcld_clr_key ); ?>.*$
+RewriteRule ^wp-comments-post.php - [F,L]</pre>
+				</div>
+			</div>
+		<?php endif; ?>
+
+		<?php
+		global $wpmu_version;
+		if ( isset( $wpmu_version ) && $wpmu_version != '' && $qcld_clr_key ) : ?>
+			<div class="qc-clr-htaccess-card">
+				<div class="qc-clr-htaccess-header">
+					<span class="dashicons dashicons-admin-multisite"></span>
+					<h4><?php esc_html_e( 'WordPress Multisite (MU) Rules', 'comment-link-remove'); ?></h4>
+				</div>
+				<p class="qc-clr-htaccess-desc"><?php esc_html_e( 'For WordPress Multisite signups, add this rule to protect your signup form:', 'comment-link-remove'); ?></p>
+				<div class="qc-clr-code-block">
+					<pre class="qc-clr-code">RewriteCond %{HTTP_COOKIE} !^.*<?php echo esc_html( $qcld_clr_key ); ?>.*$
+RewriteRule ^wp-signup.php - [F,L]</pre>
+				</div>
+			</div>
+		<?php endif; ?>
+	</div>
 </div>
 </div>
 <?php
@@ -103,4 +216,3 @@ function qcld_clr_add_referrer_to_notification( $text, $comment_id ) {
 }
 add_filter( 'comment_notification_text', 'qcld_clr_add_referrer_to_notification', 10, 2 );
 add_filter( 'comment_moderation_text', 'qcld_clr_add_referrer_to_notification', 10, 2 );
-?>
